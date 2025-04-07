@@ -1,7 +1,7 @@
 #include "RiskManager.h"
 
 void RiskManager::placeBet(const Bet<>& bet) {
-    std::unique_lock lock(mutex);
+    // std::unique_lock lock(mutex);
     bets.push_back(bet);
 }
 
