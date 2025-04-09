@@ -6,3 +6,8 @@ It has two odds calculator, a model based that will calculate it based on the ma
 the supply and demand. The final calculation is some combination of these two.
 
 This cpp codebase will be the high speed structure that does the dynamic odds calculation.
+
+
+clang++ -std=c++17 *.cpp -o odds_engine && ./odds_engine
+
+command to run the cpp

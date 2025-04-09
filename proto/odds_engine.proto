@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package odds;
+
+service OddsEngine {
+  rpc UpdateMatchState (MatchStateRequest) returns (OddsResponse);
+  rpc PlaceBet (BetRequest) returns (OddsResponse);
+}
+
+message MatchStateRequest {
+  int32 innings = 1;
+  int32 targetScore = 2;
+  int32 currentScore = 3;
+  int32 wicketsLeft = 4;
+  int32 ballsRemaining = 5;
+  repeated int32 recentRuns = 6;
+  map<string, double> bowlerImpact = 7;
+  double pitchModifier = 8;
+}
+
+message OddsResponse {
+  double winProbability = 1;
+}
+
+message BetRequest {
+  string userId = 1;
+  double stake = 2;
+  double odds = 3;
+  string market = 4;
+}
