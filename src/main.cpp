@@ -1,7 +1,8 @@
 #include "OddsModel.h"
 #include <iostream>
-
+using namespace std;
 int main() {
+    cout<<"heheh"<<endl;
     MatchState match;
     match.runs = 80;
     match.wickets = 4;
@@ -14,7 +15,7 @@ int main() {
         sampleRuns.push_back(run);
     }
     match.recentRuns = sampleRuns;
-
+    
     OddsModel model;
     double winProb = model.computeProbability(match);
 

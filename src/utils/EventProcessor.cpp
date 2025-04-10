@@ -1,12 +1,12 @@
 #include "EventProcessor.h"
-#include "OddsEngineCore.h"  // Your core logic to calculate odds, e.g. updateMatchState, calculateOdds
+#include "OddsModel.h"  // Your core logic to calculate odds, e.g. updateMatchState, calculateOdds
 #include <chrono>
 
 // This simulates your odds engine’s internal state
 static MatchState globalMatchState;  // Shared match state
 std::mutex globalStateMutex;
 
-void processMatchUpdate(const Odds::MatchStateRequest& req) {
+void processMatchUpdate(const BallUpdate& req) {
     std::lock_guard<std::mutex> lock(globalStateMutex);
 
     // Update match state using the proto message
@@ -28,7 +28,7 @@ void processMatchUpdate(const Odds::MatchStateRequest& req) {
               << OddsModel::getInstance().computeProbability(globalMatchState) << "\n";
 }
 
-void processBet(const Odds::BetRequest& bet) {
+void processBetUpdate(const Bet& bet) {
     std::lock_guard<std::mutex> lock(globalStateMutex);
 
     double odds = OddsModel::getInstance().computeProbability(globalMatchState);
@@ -46,11 +46,11 @@ void eventLoop(ConcurrentQueue<Event>& queue) {
         queue.wait_and_pop(event);
 
         switch (event.type) {
-            case EventType::MatchUpdate:
+            case EventType::BallUpdate:
                 processMatchUpdate(event.matchUpdate);
                 break;
-            case EventType::BetPlacement:
-                processBet(event.bet);
+            case EventType::Bet:
+                processBetUpdate(event.bet);
                 break;
         }
 

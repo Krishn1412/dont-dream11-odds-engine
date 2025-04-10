@@ -24,7 +24,7 @@ public:
 private:
     OddsModel oddsModel;
 
-    MatchState convertToInternalState(const odds::MatchStateRequest& req) {
+    MatchState convertToInternalState(const BallUpdate& req) {
         MatchState s;
         s.innings = req.innings();
         s.targetScore = req.targetscore();
