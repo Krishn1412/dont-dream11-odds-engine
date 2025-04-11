@@ -12,4 +12,6 @@ clang++ -std=c++17 *.cpp -o odds_engine && ./odds_engine
 
 clang++ -std=c++17 src/main.cpp src/OddsModel.cpp -o odds_engine
 
-command to run the cpp
+clang++ -std=c++17 -pthread -I/opt/homebrew/opt/protobuf/include -I/opt/homebrew/include -I/opt/homebrew/opt/abseil/include src/main.cpp  src/utils/EventProcessor.cpp proto/odds_engine.pb.cc  proto/odds_engine.grpc.pb.cc  -lprotobuf -lgrpc++ -lgrpc -o odds_test
+
+run this to run the module. 
