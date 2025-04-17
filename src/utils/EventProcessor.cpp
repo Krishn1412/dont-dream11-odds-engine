@@ -1,12 +1,12 @@
 #include "EventProcessor.h"
-#include "OddsModel.h"  // Your core logic to calculate odds, e.g. updateMatchState, calculateOdds
+#include "../OddsModel.h"
 #include <chrono>
 
 // This simulates your odds engine’s internal state
 static MatchState globalMatchState;  // Shared match state
 std::mutex globalStateMutex;
 
-void processMatchUpdate(const BallUpdate& req) {
+void processMatchUpdate(odds::BallUpdate& req) {
     std::lock_guard<std::mutex> lock(globalStateMutex);
 
     // Update match state using the proto message
@@ -28,9 +28,24 @@ void processMatchUpdate(const BallUpdate& req) {
               << OddsModel::getInstance().computeProbability(globalMatchState) << "\n";
 }
 
+void flushBets(std::vector<odds::Bet>& bets) {
+    std::lock_guard<std::mutex> lock(globalStateMutex);
+
+    double odds = OddsModel::getInstance().computeProbability(globalMatchState);
+
+    std::cout << "[Batch] Processing " << bets.size() << " bets at odds: " << odds << "\n";
+
+    for (odds::Bet& bet : bets) {
+        double payout = bet.stake() * odds;
+
+        std::cout << "  [Bet] User: " << bet.userid()
+                  << ", Stake: " << bet.stake()
+                  << ", Payout: " << payout << "\n";
+    }
+}
 
 void eventLoop(ConcurrentQueue<Event>& queue, size_t batchSize = 1000, int flushIntervalMs = 50) {
-    std::vector<Bet> betBatch;
+    std::vector<odds::Bet> betBatch;
     betBatch.reserve(batchSize);
 
     auto lastFlush = std::chrono::steady_clock::now();
@@ -64,26 +79,10 @@ void eventLoop(ConcurrentQueue<Event>& queue, size_t batchSize = 1000, int flush
     }
 }
 
-void flushBets(const std::vector<Bet>& bets) {
-    std::lock_guard<std::mutex> lock(globalStateMutex);
-
-    double odds = OddsModel::getInstance().computeProbability(globalMatchState);
-
-    std::cout << "[Batch] Processing " << bets.size() << " bets at odds: " << odds << "\n";
-
-    for (const Bet& bet : bets) {
-        double payout = bet.stake() * odds;
-
-        std::cout << "  [Bet] User: " << bet.userid()
-                  << ", Stake: " << bet.stake()
-                  << ", Payout: " << payout << "\n";
-    }
-}
-
 
 void startEventProcessor(ConcurrentQueue<Event>& queue, int numThreads) {
     for (int i = 0; i < numThreads; ++i) {
-        std::thread(eventLoop, std::ref(queue)).detach();
+        std::thread(eventLoop, std::ref(queue), 1000, 50).detach();
     }
 }
 
@@ -91,3 +90,5 @@ void startEventProcessor(ConcurrentQueue<Event>& queue, int numThreads) {
 
 
 // clang++ -std=c++17 -pthread  src/main.cpp  src/utils/EventProcessor.cpp proto/odds_engine.pb.cc  proto/odds_engine.grpc.pb.cc  -lprotobuf -lgrpc++ -lgrpc -o odds_test
+
+// clang++ -std=c++17 -pthread -I/opt/homebrew/opt/protobuf/include -I/opt/homebrew/include -I/opt/homebrew/opt/abseil/include -L/opt/homebrew/opt/protobuf/lib -L/opt/homebrew/opt/grpc/lib src/main.cpp src/utils/EventProcessor.cpp proto/odds_engine.pb.cc  proto/odds_engine.grpc.pb.cc  -lprotobuf -lgrpc++ -lgrpc -lgpr -o odds_test

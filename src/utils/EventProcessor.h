@@ -3,6 +3,7 @@
 #include "ConcurrentQueue.h"
 #include "../Bet.h"
 #include "../MatchState.h"
+#include "../../proto/odds_engine.pb.h"
 #include "../../proto/odds_engine.grpc.pb.h"
 #include <string>
 #include <thread>
@@ -15,8 +16,8 @@ enum class EventType {
 
 struct Event {
     EventType type;
-    BallUpdate matchUpdate;
-    Bet bet;
+    odds::BallUpdate matchUpdate;
+    odds::Bet bet;
 };
 
 
