@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/opt/homebrew/opt/protobuf/include -I/opt/homebrew/include -I/opt/homebrew/opt/abseil/include
+CXX_INCLUDES = -I/opt/homebrew/lib -I/opt/homebrew/opt/protobuf/include -I/opt/homebrew/include -I/opt/homebrew/opt/abseil/lib -I/opt/homebrew/opt/abseil/include -I/opt/homebrew/opt/abseil/include/absl
 
 CXX_FLAGSarm64 = -std=gnu++17 -arch arm64
 
