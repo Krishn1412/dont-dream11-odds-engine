@@ -23,7 +23,8 @@ namespace odds {
 
 static const char* OddsEngine_method_names[] = {
   "/odds.OddsEngine/UpdateMatchState",
-  "/odds.OddsEngine/PlacedBet",
+  "/odds.OddsEngine/PlaceBet",
+  "/odds.OddsEngine/GetOdds",
 };
 
 std::unique_ptr< OddsEngine::Stub> OddsEngine::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -34,51 +35,75 @@ std::unique_ptr< OddsEngine::Stub> OddsEngine::NewStub(const std::shared_ptr< ::
 
 OddsEngine::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
   : channel_(channel), rpcmethod_UpdateMatchState_(OddsEngine_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_PlacedBet_(OddsEngine_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_PlaceBet_(OddsEngine_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetOdds_(OddsEngine_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
-::grpc::Status OddsEngine::Stub::UpdateMatchState(::grpc::ClientContext* context, const ::odds::BallUpdate& request, ::odds::OddsResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::odds::BallUpdate, ::odds::OddsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_UpdateMatchState_, context, request, response);
+::grpc::Status OddsEngine::Stub::UpdateMatchState(::grpc::ClientContext* context, const ::odds::MatchStateRequest& request, ::odds::OddsResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::odds::MatchStateRequest, ::odds::OddsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_UpdateMatchState_, context, request, response);
 }
 
-void OddsEngine::Stub::async::UpdateMatchState(::grpc::ClientContext* context, const ::odds::BallUpdate* request, ::odds::OddsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::odds::BallUpdate, ::odds::OddsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UpdateMatchState_, context, request, response, std::move(f));
+void OddsEngine::Stub::async::UpdateMatchState(::grpc::ClientContext* context, const ::odds::MatchStateRequest* request, ::odds::OddsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::odds::MatchStateRequest, ::odds::OddsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UpdateMatchState_, context, request, response, std::move(f));
 }
 
-void OddsEngine::Stub::async::UpdateMatchState(::grpc::ClientContext* context, const ::odds::BallUpdate* request, ::odds::OddsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+void OddsEngine::Stub::async::UpdateMatchState(::grpc::ClientContext* context, const ::odds::MatchStateRequest* request, ::odds::OddsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UpdateMatchState_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::odds::OddsResponse>* OddsEngine::Stub::PrepareAsyncUpdateMatchStateRaw(::grpc::ClientContext* context, const ::odds::BallUpdate& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::odds::OddsResponse, ::odds::BallUpdate, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_UpdateMatchState_, context, request);
+::grpc::ClientAsyncResponseReader< ::odds::OddsResponse>* OddsEngine::Stub::PrepareAsyncUpdateMatchStateRaw(::grpc::ClientContext* context, const ::odds::MatchStateRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::odds::OddsResponse, ::odds::MatchStateRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_UpdateMatchState_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::odds::OddsResponse>* OddsEngine::Stub::AsyncUpdateMatchStateRaw(::grpc::ClientContext* context, const ::odds::BallUpdate& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::odds::OddsResponse>* OddsEngine::Stub::AsyncUpdateMatchStateRaw(::grpc::ClientContext* context, const ::odds::MatchStateRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncUpdateMatchStateRaw(context, request, cq);
   result->StartCall();
   return result;
 }
 
-::grpc::Status OddsEngine::Stub::PlacedBet(::grpc::ClientContext* context, const ::odds::Bet& request, ::odds::OddsResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::odds::Bet, ::odds::OddsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PlacedBet_, context, request, response);
+::grpc::Status OddsEngine::Stub::PlaceBet(::grpc::ClientContext* context, const ::odds::BetRequest& request, ::odds::OddsResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::odds::BetRequest, ::odds::OddsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PlaceBet_, context, request, response);
 }
 
-void OddsEngine::Stub::async::PlacedBet(::grpc::ClientContext* context, const ::odds::Bet* request, ::odds::OddsResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::odds::Bet, ::odds::OddsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PlacedBet_, context, request, response, std::move(f));
+void OddsEngine::Stub::async::PlaceBet(::grpc::ClientContext* context, const ::odds::BetRequest* request, ::odds::OddsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::odds::BetRequest, ::odds::OddsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PlaceBet_, context, request, response, std::move(f));
 }
 
-void OddsEngine::Stub::async::PlacedBet(::grpc::ClientContext* context, const ::odds::Bet* request, ::odds::OddsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PlacedBet_, context, request, response, reactor);
+void OddsEngine::Stub::async::PlaceBet(::grpc::ClientContext* context, const ::odds::BetRequest* request, ::odds::OddsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PlaceBet_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::odds::OddsResponse>* OddsEngine::Stub::PrepareAsyncPlacedBetRaw(::grpc::ClientContext* context, const ::odds::Bet& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::odds::OddsResponse, ::odds::Bet, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PlacedBet_, context, request);
+::grpc::ClientAsyncResponseReader< ::odds::OddsResponse>* OddsEngine::Stub::PrepareAsyncPlaceBetRaw(::grpc::ClientContext* context, const ::odds::BetRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::odds::OddsResponse, ::odds::BetRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PlaceBet_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::odds::OddsResponse>* OddsEngine::Stub::AsyncPlacedBetRaw(::grpc::ClientContext* context, const ::odds::Bet& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::odds::OddsResponse>* OddsEngine::Stub::AsyncPlaceBetRaw(::grpc::ClientContext* context, const ::odds::BetRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
-    this->PrepareAsyncPlacedBetRaw(context, request, cq);
+    this->PrepareAsyncPlaceBetRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status OddsEngine::Stub::GetOdds(::grpc::ClientContext* context, const ::odds::OddsQueryRequest& request, ::odds::OddsResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::odds::OddsQueryRequest, ::odds::OddsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetOdds_, context, request, response);
+}
+
+void OddsEngine::Stub::async::GetOdds(::grpc::ClientContext* context, const ::odds::OddsQueryRequest* request, ::odds::OddsResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::odds::OddsQueryRequest, ::odds::OddsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetOdds_, context, request, response, std::move(f));
+}
+
+void OddsEngine::Stub::async::GetOdds(::grpc::ClientContext* context, const ::odds::OddsQueryRequest* request, ::odds::OddsResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetOdds_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::odds::OddsResponse>* OddsEngine::Stub::PrepareAsyncGetOddsRaw(::grpc::ClientContext* context, const ::odds::OddsQueryRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::odds::OddsResponse, ::odds::OddsQueryRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetOdds_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::odds::OddsResponse>* OddsEngine::Stub::AsyncGetOddsRaw(::grpc::ClientContext* context, const ::odds::OddsQueryRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetOddsRaw(context, request, cq);
   result->StartCall();
   return result;
 }
@@ -87,36 +112,53 @@ OddsEngine::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       OddsEngine_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< OddsEngine::Service, ::odds::BallUpdate, ::odds::OddsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< OddsEngine::Service, ::odds::MatchStateRequest, ::odds::OddsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](OddsEngine::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::odds::BallUpdate* req,
+             const ::odds::MatchStateRequest* req,
              ::odds::OddsResponse* resp) {
                return service->UpdateMatchState(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       OddsEngine_method_names[1],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< OddsEngine::Service, ::odds::Bet, ::odds::OddsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< OddsEngine::Service, ::odds::BetRequest, ::odds::OddsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](OddsEngine::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::odds::Bet* req,
+             const ::odds::BetRequest* req,
              ::odds::OddsResponse* resp) {
-               return service->PlacedBet(ctx, req, resp);
+               return service->PlaceBet(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      OddsEngine_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< OddsEngine::Service, ::odds::OddsQueryRequest, ::odds::OddsResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](OddsEngine::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::odds::OddsQueryRequest* req,
+             ::odds::OddsResponse* resp) {
+               return service->GetOdds(ctx, req, resp);
              }, this)));
 }
 
 OddsEngine::Service::~Service() {
 }
 
-::grpc::Status OddsEngine::Service::UpdateMatchState(::grpc::ServerContext* context, const ::odds::BallUpdate* request, ::odds::OddsResponse* response) {
+::grpc::Status OddsEngine::Service::UpdateMatchState(::grpc::ServerContext* context, const ::odds::MatchStateRequest* request, ::odds::OddsResponse* response) {
   (void) context;
   (void) request;
   (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status OddsEngine::Service::PlacedBet(::grpc::ServerContext* context, const ::odds::Bet* request, ::odds::OddsResponse* response) {
+::grpc::Status OddsEngine::Service::PlaceBet(::grpc::ServerContext* context, const ::odds::BetRequest* request, ::odds::OddsResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status OddsEngine::Service::GetOdds(::grpc::ServerContext* context, const ::odds::OddsQueryRequest* request, ::odds::OddsResponse* response) {
   (void) context;
   (void) request;
   (void) response;

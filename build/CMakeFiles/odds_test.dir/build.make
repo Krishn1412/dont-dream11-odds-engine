@@ -72,10 +72,52 @@ include CMakeFiles/odds_test.dir/flags.make
 CMakeFiles/odds_test.dir/codegen:
 .PHONY : CMakeFiles/odds_test.dir/codegen
 
+CMakeFiles/odds_test.dir/src/utils/ExposureTracker.cpp.o: CMakeFiles/odds_test.dir/flags.make
+CMakeFiles/odds_test.dir/src/utils/ExposureTracker.cpp.o: /Users/krishnparasar/Desktop/projects/dont-dream11-odds-engine/src/utils/ExposureTracker.cpp
+CMakeFiles/odds_test.dir/src/utils/ExposureTracker.cpp.o: CMakeFiles/odds_test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/krishnparasar/Desktop/projects/dont-dream11-odds-engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/odds_test.dir/src/utils/ExposureTracker.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/odds_test.dir/src/utils/ExposureTracker.cpp.o -MF CMakeFiles/odds_test.dir/src/utils/ExposureTracker.cpp.o.d -o CMakeFiles/odds_test.dir/src/utils/ExposureTracker.cpp.o -c /Users/krishnparasar/Desktop/projects/dont-dream11-odds-engine/src/utils/ExposureTracker.cpp
+
+CMakeFiles/odds_test.dir/src/utils/ExposureTracker.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/odds_test.dir/src/utils/ExposureTracker.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/krishnparasar/Desktop/projects/dont-dream11-odds-engine/src/utils/ExposureTracker.cpp > CMakeFiles/odds_test.dir/src/utils/ExposureTracker.cpp.i
+
+CMakeFiles/odds_test.dir/src/utils/ExposureTracker.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/odds_test.dir/src/utils/ExposureTracker.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/krishnparasar/Desktop/projects/dont-dream11-odds-engine/src/utils/ExposureTracker.cpp -o CMakeFiles/odds_test.dir/src/utils/ExposureTracker.cpp.s
+
+CMakeFiles/odds_test.dir/src/GameManager.cpp.o: CMakeFiles/odds_test.dir/flags.make
+CMakeFiles/odds_test.dir/src/GameManager.cpp.o: /Users/krishnparasar/Desktop/projects/dont-dream11-odds-engine/src/GameManager.cpp
+CMakeFiles/odds_test.dir/src/GameManager.cpp.o: CMakeFiles/odds_test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/krishnparasar/Desktop/projects/dont-dream11-odds-engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/odds_test.dir/src/GameManager.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/odds_test.dir/src/GameManager.cpp.o -MF CMakeFiles/odds_test.dir/src/GameManager.cpp.o.d -o CMakeFiles/odds_test.dir/src/GameManager.cpp.o -c /Users/krishnparasar/Desktop/projects/dont-dream11-odds-engine/src/GameManager.cpp
+
+CMakeFiles/odds_test.dir/src/GameManager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/odds_test.dir/src/GameManager.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/krishnparasar/Desktop/projects/dont-dream11-odds-engine/src/GameManager.cpp > CMakeFiles/odds_test.dir/src/GameManager.cpp.i
+
+CMakeFiles/odds_test.dir/src/GameManager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/odds_test.dir/src/GameManager.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/krishnparasar/Desktop/projects/dont-dream11-odds-engine/src/GameManager.cpp -o CMakeFiles/odds_test.dir/src/GameManager.cpp.s
+
+CMakeFiles/odds_test.dir/src/GameContext.cpp.o: CMakeFiles/odds_test.dir/flags.make
+CMakeFiles/odds_test.dir/src/GameContext.cpp.o: /Users/krishnparasar/Desktop/projects/dont-dream11-odds-engine/src/GameContext.cpp
+CMakeFiles/odds_test.dir/src/GameContext.cpp.o: CMakeFiles/odds_test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/krishnparasar/Desktop/projects/dont-dream11-odds-engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/odds_test.dir/src/GameContext.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/odds_test.dir/src/GameContext.cpp.o -MF CMakeFiles/odds_test.dir/src/GameContext.cpp.o.d -o CMakeFiles/odds_test.dir/src/GameContext.cpp.o -c /Users/krishnparasar/Desktop/projects/dont-dream11-odds-engine/src/GameContext.cpp
+
+CMakeFiles/odds_test.dir/src/GameContext.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/odds_test.dir/src/GameContext.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/krishnparasar/Desktop/projects/dont-dream11-odds-engine/src/GameContext.cpp > CMakeFiles/odds_test.dir/src/GameContext.cpp.i
+
+CMakeFiles/odds_test.dir/src/GameContext.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/odds_test.dir/src/GameContext.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/krishnparasar/Desktop/projects/dont-dream11-odds-engine/src/GameContext.cpp -o CMakeFiles/odds_test.dir/src/GameContext.cpp.s
+
 CMakeFiles/odds_test.dir/src/main.cpp.o: CMakeFiles/odds_test.dir/flags.make
 CMakeFiles/odds_test.dir/src/main.cpp.o: /Users/krishnparasar/Desktop/projects/dont-dream11-odds-engine/src/main.cpp
 CMakeFiles/odds_test.dir/src/main.cpp.o: CMakeFiles/odds_test.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/krishnparasar/Desktop/projects/dont-dream11-odds-engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/odds_test.dir/src/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/krishnparasar/Desktop/projects/dont-dream11-odds-engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/odds_test.dir/src/main.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/odds_test.dir/src/main.cpp.o -MF CMakeFiles/odds_test.dir/src/main.cpp.o.d -o CMakeFiles/odds_test.dir/src/main.cpp.o -c /Users/krishnparasar/Desktop/projects/dont-dream11-odds-engine/src/main.cpp
 
 CMakeFiles/odds_test.dir/src/main.cpp.i: cmake_force
@@ -89,7 +131,7 @@ CMakeFiles/odds_test.dir/src/main.cpp.s: cmake_force
 CMakeFiles/odds_test.dir/src/utils/EventProcessor.cpp.o: CMakeFiles/odds_test.dir/flags.make
 CMakeFiles/odds_test.dir/src/utils/EventProcessor.cpp.o: /Users/krishnparasar/Desktop/projects/dont-dream11-odds-engine/src/utils/EventProcessor.cpp
 CMakeFiles/odds_test.dir/src/utils/EventProcessor.cpp.o: CMakeFiles/odds_test.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/krishnparasar/Desktop/projects/dont-dream11-odds-engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/odds_test.dir/src/utils/EventProcessor.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/krishnparasar/Desktop/projects/dont-dream11-odds-engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/odds_test.dir/src/utils/EventProcessor.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/odds_test.dir/src/utils/EventProcessor.cpp.o -MF CMakeFiles/odds_test.dir/src/utils/EventProcessor.cpp.o.d -o CMakeFiles/odds_test.dir/src/utils/EventProcessor.cpp.o -c /Users/krishnparasar/Desktop/projects/dont-dream11-odds-engine/src/utils/EventProcessor.cpp
 
 CMakeFiles/odds_test.dir/src/utils/EventProcessor.cpp.i: cmake_force
@@ -103,7 +145,7 @@ CMakeFiles/odds_test.dir/src/utils/EventProcessor.cpp.s: cmake_force
 CMakeFiles/odds_test.dir/src/MatchState.cpp.o: CMakeFiles/odds_test.dir/flags.make
 CMakeFiles/odds_test.dir/src/MatchState.cpp.o: /Users/krishnparasar/Desktop/projects/dont-dream11-odds-engine/src/MatchState.cpp
 CMakeFiles/odds_test.dir/src/MatchState.cpp.o: CMakeFiles/odds_test.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/krishnparasar/Desktop/projects/dont-dream11-odds-engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/odds_test.dir/src/MatchState.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/krishnparasar/Desktop/projects/dont-dream11-odds-engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/odds_test.dir/src/MatchState.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/odds_test.dir/src/MatchState.cpp.o -MF CMakeFiles/odds_test.dir/src/MatchState.cpp.o.d -o CMakeFiles/odds_test.dir/src/MatchState.cpp.o -c /Users/krishnparasar/Desktop/projects/dont-dream11-odds-engine/src/MatchState.cpp
 
 CMakeFiles/odds_test.dir/src/MatchState.cpp.i: cmake_force
@@ -117,7 +159,7 @@ CMakeFiles/odds_test.dir/src/MatchState.cpp.s: cmake_force
 CMakeFiles/odds_test.dir/src/OddsModel.cpp.o: CMakeFiles/odds_test.dir/flags.make
 CMakeFiles/odds_test.dir/src/OddsModel.cpp.o: /Users/krishnparasar/Desktop/projects/dont-dream11-odds-engine/src/OddsModel.cpp
 CMakeFiles/odds_test.dir/src/OddsModel.cpp.o: CMakeFiles/odds_test.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/krishnparasar/Desktop/projects/dont-dream11-odds-engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/odds_test.dir/src/OddsModel.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/krishnparasar/Desktop/projects/dont-dream11-odds-engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/odds_test.dir/src/OddsModel.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/odds_test.dir/src/OddsModel.cpp.o -MF CMakeFiles/odds_test.dir/src/OddsModel.cpp.o.d -o CMakeFiles/odds_test.dir/src/OddsModel.cpp.o -c /Users/krishnparasar/Desktop/projects/dont-dream11-odds-engine/src/OddsModel.cpp
 
 CMakeFiles/odds_test.dir/src/OddsModel.cpp.i: cmake_force
@@ -131,7 +173,7 @@ CMakeFiles/odds_test.dir/src/OddsModel.cpp.s: cmake_force
 CMakeFiles/odds_test.dir/proto/odds_engine.pb.cc.o: CMakeFiles/odds_test.dir/flags.make
 CMakeFiles/odds_test.dir/proto/odds_engine.pb.cc.o: /Users/krishnparasar/Desktop/projects/dont-dream11-odds-engine/proto/odds_engine.pb.cc
 CMakeFiles/odds_test.dir/proto/odds_engine.pb.cc.o: CMakeFiles/odds_test.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/krishnparasar/Desktop/projects/dont-dream11-odds-engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/odds_test.dir/proto/odds_engine.pb.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/krishnparasar/Desktop/projects/dont-dream11-odds-engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/odds_test.dir/proto/odds_engine.pb.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/odds_test.dir/proto/odds_engine.pb.cc.o -MF CMakeFiles/odds_test.dir/proto/odds_engine.pb.cc.o.d -o CMakeFiles/odds_test.dir/proto/odds_engine.pb.cc.o -c /Users/krishnparasar/Desktop/projects/dont-dream11-odds-engine/proto/odds_engine.pb.cc
 
 CMakeFiles/odds_test.dir/proto/odds_engine.pb.cc.i: cmake_force
@@ -145,7 +187,7 @@ CMakeFiles/odds_test.dir/proto/odds_engine.pb.cc.s: cmake_force
 CMakeFiles/odds_test.dir/proto/odds_engine.grpc.pb.cc.o: CMakeFiles/odds_test.dir/flags.make
 CMakeFiles/odds_test.dir/proto/odds_engine.grpc.pb.cc.o: /Users/krishnparasar/Desktop/projects/dont-dream11-odds-engine/proto/odds_engine.grpc.pb.cc
 CMakeFiles/odds_test.dir/proto/odds_engine.grpc.pb.cc.o: CMakeFiles/odds_test.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/krishnparasar/Desktop/projects/dont-dream11-odds-engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/odds_test.dir/proto/odds_engine.grpc.pb.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/krishnparasar/Desktop/projects/dont-dream11-odds-engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/odds_test.dir/proto/odds_engine.grpc.pb.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/odds_test.dir/proto/odds_engine.grpc.pb.cc.o -MF CMakeFiles/odds_test.dir/proto/odds_engine.grpc.pb.cc.o.d -o CMakeFiles/odds_test.dir/proto/odds_engine.grpc.pb.cc.o -c /Users/krishnparasar/Desktop/projects/dont-dream11-odds-engine/proto/odds_engine.grpc.pb.cc
 
 CMakeFiles/odds_test.dir/proto/odds_engine.grpc.pb.cc.i: cmake_force
@@ -158,6 +200,9 @@ CMakeFiles/odds_test.dir/proto/odds_engine.grpc.pb.cc.s: cmake_force
 
 # Object files for target odds_test
 odds_test_OBJECTS = \
+"CMakeFiles/odds_test.dir/src/utils/ExposureTracker.cpp.o" \
+"CMakeFiles/odds_test.dir/src/GameManager.cpp.o" \
+"CMakeFiles/odds_test.dir/src/GameContext.cpp.o" \
 "CMakeFiles/odds_test.dir/src/main.cpp.o" \
 "CMakeFiles/odds_test.dir/src/utils/EventProcessor.cpp.o" \
 "CMakeFiles/odds_test.dir/src/MatchState.cpp.o" \
@@ -168,6 +213,9 @@ odds_test_OBJECTS = \
 # External object files for target odds_test
 odds_test_EXTERNAL_OBJECTS =
 
+odds_test: CMakeFiles/odds_test.dir/src/utils/ExposureTracker.cpp.o
+odds_test: CMakeFiles/odds_test.dir/src/GameManager.cpp.o
+odds_test: CMakeFiles/odds_test.dir/src/GameContext.cpp.o
 odds_test: CMakeFiles/odds_test.dir/src/main.cpp.o
 odds_test: CMakeFiles/odds_test.dir/src/utils/EventProcessor.cpp.o
 odds_test: CMakeFiles/odds_test.dir/src/MatchState.cpp.o
@@ -176,7 +224,7 @@ odds_test: CMakeFiles/odds_test.dir/proto/odds_engine.pb.cc.o
 odds_test: CMakeFiles/odds_test.dir/proto/odds_engine.grpc.pb.cc.o
 odds_test: CMakeFiles/odds_test.dir/build.make
 odds_test: CMakeFiles/odds_test.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/krishnparasar/Desktop/projects/dont-dream11-odds-engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable odds_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/krishnparasar/Desktop/projects/dont-dream11-odds-engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable odds_test"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/odds_test.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

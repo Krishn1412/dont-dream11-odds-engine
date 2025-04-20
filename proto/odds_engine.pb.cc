@@ -51,6 +51,36 @@ struct OddsResponseDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 OddsResponseDefaultTypeInternal _OddsResponse_default_instance_;
 
+inline constexpr OddsQueryRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : gameid_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        market_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR OddsQueryRequest::OddsQueryRequest(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct OddsQueryRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR OddsQueryRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~OddsQueryRequestDefaultTypeInternal() {}
+  union {
+    OddsQueryRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 OddsQueryRequestDefaultTypeInternal _OddsQueryRequest_default_instance_;
+
 inline constexpr Bet::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : userid_(
@@ -61,6 +91,7 @@ inline constexpr Bet::Impl_::Impl_(
             ::_pbi::ConstantInitialized()),
         stake_{0},
         odds_{0},
+        teama_{false},
         _cached_size_{0} {}
 
 template <typename>
@@ -101,6 +132,34 @@ struct BallUpdate_BowlerImpactEntry_DoNotUseDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 BallUpdate_BowlerImpactEntry_DoNotUseDefaultTypeInternal _BallUpdate_BowlerImpactEntry_DoNotUse_default_instance_;
 
+inline constexpr BetRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        gameid_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        bet_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR BetRequest::BetRequest(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct BetRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR BetRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~BetRequestDefaultTypeInternal() {}
+  union {
+    BetRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 BetRequestDefaultTypeInternal _BetRequest_default_instance_;
+
 inline constexpr BallUpdate::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : recentruns_{},
@@ -133,6 +192,34 @@ struct BallUpdateDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 BallUpdateDefaultTypeInternal _BallUpdate_default_instance_;
+
+inline constexpr MatchStateRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        gameid_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        update_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR MatchStateRequest::MatchStateRequest(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct MatchStateRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR MatchStateRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~MatchStateRequestDefaultTypeInternal() {}
+  union {
+    MatchStateRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MatchStateRequestDefaultTypeInternal _MatchStateRequest_default_instance_;
 }  // namespace odds
 static constexpr const ::_pb::EnumDescriptor**
     file_level_enum_descriptors_odds_5fengine_2eproto = nullptr;
@@ -169,15 +256,18 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::odds::BallUpdate, _impl_.recentruns_),
         PROTOBUF_FIELD_OFFSET(::odds::BallUpdate, _impl_.bowlerimpact_),
         PROTOBUF_FIELD_OFFSET(::odds::BallUpdate, _impl_.pitchmodifier_),
-        ~0u,  // no _has_bits_
-        PROTOBUF_FIELD_OFFSET(::odds::OddsResponse, _internal_metadata_),
+        PROTOBUF_FIELD_OFFSET(::odds::MatchStateRequest, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::odds::MatchStateRequest, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
         ~0u,  // no _weak_field_map_
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::odds::OddsResponse, _impl_.winprobability_),
+        PROTOBUF_FIELD_OFFSET(::odds::MatchStateRequest, _impl_.gameid_),
+        PROTOBUF_FIELD_OFFSET(::odds::MatchStateRequest, _impl_.update_),
+        ~0u,
+        0,
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::odds::Bet, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -190,20 +280,58 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::odds::Bet, _impl_.stake_),
         PROTOBUF_FIELD_OFFSET(::odds::Bet, _impl_.odds_),
         PROTOBUF_FIELD_OFFSET(::odds::Bet, _impl_.market_),
+        PROTOBUF_FIELD_OFFSET(::odds::Bet, _impl_.teama_),
+        PROTOBUF_FIELD_OFFSET(::odds::BetRequest, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::odds::BetRequest, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::odds::BetRequest, _impl_.gameid_),
+        PROTOBUF_FIELD_OFFSET(::odds::BetRequest, _impl_.bet_),
+        ~0u,
+        0,
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::odds::OddsQueryRequest, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::odds::OddsQueryRequest, _impl_.gameid_),
+        PROTOBUF_FIELD_OFFSET(::odds::OddsQueryRequest, _impl_.market_),
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::odds::OddsResponse, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::odds::OddsResponse, _impl_.winprobability_),
 };
 
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
         {0, 10, -1, sizeof(::odds::BallUpdate_BowlerImpactEntry_DoNotUse)},
         {12, -1, -1, sizeof(::odds::BallUpdate)},
-        {28, -1, -1, sizeof(::odds::OddsResponse)},
-        {37, -1, -1, sizeof(::odds::Bet)},
+        {28, 38, -1, sizeof(::odds::MatchStateRequest)},
+        {40, -1, -1, sizeof(::odds::Bet)},
+        {53, 63, -1, sizeof(::odds::BetRequest)},
+        {65, -1, -1, sizeof(::odds::OddsQueryRequest)},
+        {75, -1, -1, sizeof(::odds::OddsResponse)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::odds::_BallUpdate_BowlerImpactEntry_DoNotUse_default_instance_._instance,
     &::odds::_BallUpdate_default_instance_._instance,
-    &::odds::_OddsResponse_default_instance_._instance,
+    &::odds::_MatchStateRequest_default_instance_._instance,
     &::odds::_Bet_default_instance_._instance,
+    &::odds::_BetRequest_default_instance_._instance,
+    &::odds::_OddsQueryRequest_default_instance_._instance,
+    &::odds::_OddsResponse_default_instance_._instance,
 };
 const char descriptor_table_protodef_odds_5fengine_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
@@ -214,25 +342,31 @@ const char descriptor_table_protodef_odds_5fengine_2eproto[] ABSL_ATTRIBUTE_SECT
     "\006 \003(\005\0228\n\014bowlerImpact\030\007 \003(\0132\".odds.BallU"
     "pdate.BowlerImpactEntry\022\025\n\rpitchModifier"
     "\030\010 \001(\001\0323\n\021BowlerImpactEntry\022\013\n\003key\030\001 \001(\t"
-    "\022\r\n\005value\030\002 \001(\001:\0028\001\"&\n\014OddsResponse\022\026\n\016w"
-    "inProbability\030\001 \001(\001\"B\n\003Bet\022\016\n\006userId\030\001 \001"
-    "(\t\022\r\n\005stake\030\002 \001(\001\022\014\n\004odds\030\003 \001(\001\022\016\n\006marke"
-    "t\030\004 \001(\t2r\n\nOddsEngine\0228\n\020UpdateMatchStat"
-    "e\022\020.odds.BallUpdate\032\022.odds.OddsResponse\022"
-    "*\n\tPlacedBet\022\t.odds.Bet\032\022.odds.OddsRespo"
-    "nseb\006proto3"
+    "\022\r\n\005value\030\002 \001(\001:\0028\001\"E\n\021MatchStateRequest"
+    "\022\016\n\006gameId\030\001 \001(\t\022 \n\006update\030\002 \001(\0132\020.odds."
+    "BallUpdate\"Q\n\003Bet\022\016\n\006userId\030\001 \001(\t\022\r\n\005sta"
+    "ke\030\002 \001(\001\022\014\n\004odds\030\003 \001(\001\022\016\n\006market\030\004 \001(\t\022\r"
+    "\n\005teamA\030\005 \001(\010\"4\n\nBetRequest\022\016\n\006gameId\030\001 "
+    "\001(\t\022\026\n\003bet\030\002 \001(\0132\t.odds.Bet\"2\n\020OddsQuery"
+    "Request\022\016\n\006gameId\030\001 \001(\t\022\016\n\006market\030\002 \001(\t\""
+    "&\n\014OddsResponse\022\026\n\016winProbability\030\001 \001(\0012"
+    "\266\001\n\nOddsEngine\022\?\n\020UpdateMatchState\022\027.odd"
+    "s.MatchStateRequest\032\022.odds.OddsResponse\022"
+    "0\n\010PlaceBet\022\020.odds.BetRequest\032\022.odds.Odd"
+    "sResponse\0225\n\007GetOdds\022\026.odds.OddsQueryReq"
+    "uest\032\022.odds.OddsResponseb\006proto3"
 };
 static ::absl::once_flag descriptor_table_odds_5fengine_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_odds_5fengine_2eproto = {
     false,
     false,
-    531,
+    792,
     descriptor_table_protodef_odds_5fengine_2eproto,
     "odds_engine.proto",
     &descriptor_table_odds_5fengine_2eproto_once,
     nullptr,
     0,
-    4,
+    7,
     schemas,
     file_default_instances,
     TableStruct_odds_5fengine_2eproto::offsets,
@@ -782,6 +916,1181 @@ void BallUpdate::InternalSwap(BallUpdate* PROTOBUF_RESTRICT other) {
 }
 // ===================================================================
 
+class MatchStateRequest::_Internal {
+ public:
+  using HasBits =
+      decltype(std::declval<MatchStateRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(MatchStateRequest, _impl_._has_bits_);
+};
+
+MatchStateRequest::MatchStateRequest(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:odds.MatchStateRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE MatchStateRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::odds::MatchStateRequest& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        gameid_(arena, from.gameid_) {}
+
+MatchStateRequest::MatchStateRequest(
+    ::google::protobuf::Arena* arena,
+    const MatchStateRequest& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  MatchStateRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.update_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::odds::BallUpdate>(
+                              arena, *from._impl_.update_)
+                        : nullptr;
+
+  // @@protoc_insertion_point(copy_constructor:odds.MatchStateRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE MatchStateRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        gameid_(arena) {}
+
+inline void MatchStateRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.update_ = {};
+}
+MatchStateRequest::~MatchStateRequest() {
+  // @@protoc_insertion_point(destructor:odds.MatchStateRequest)
+  SharedDtor(*this);
+}
+inline void MatchStateRequest::SharedDtor(MessageLite& self) {
+  MatchStateRequest& this_ = static_cast<MatchStateRequest&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.gameid_.Destroy();
+  delete this_._impl_.update_;
+  this_._impl_.~Impl_();
+}
+
+inline void* MatchStateRequest::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) MatchStateRequest(arena);
+}
+constexpr auto MatchStateRequest::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(MatchStateRequest),
+                                            alignof(MatchStateRequest));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull MatchStateRequest::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_MatchStateRequest_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &MatchStateRequest::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<MatchStateRequest>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &MatchStateRequest::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<MatchStateRequest>(), &MatchStateRequest::ByteSizeLong,
+            &MatchStateRequest::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(MatchStateRequest, _impl_._cached_size_),
+        false,
+    },
+    &MatchStateRequest::kDescriptorMethods,
+    &descriptor_table_odds_5fengine_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* MatchStateRequest::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 1, 37, 2> MatchStateRequest::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(MatchStateRequest, _impl_._has_bits_),
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::odds::MatchStateRequest>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // .odds.BallUpdate update = 2;
+    {::_pbi::TcParser::FastMtS1,
+     {18, 0, 0, PROTOBUF_FIELD_OFFSET(MatchStateRequest, _impl_.update_)}},
+    // string gameId = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(MatchStateRequest, _impl_.gameid_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string gameId = 1;
+    {PROTOBUF_FIELD_OFFSET(MatchStateRequest, _impl_.gameid_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .odds.BallUpdate update = 2;
+    {PROTOBUF_FIELD_OFFSET(MatchStateRequest, _impl_.update_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::odds::BallUpdate>()},
+  }}, {{
+    "\26\6\0\0\0\0\0\0"
+    "odds.MatchStateRequest"
+    "gameId"
+  }},
+};
+
+PROTOBUF_NOINLINE void MatchStateRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:odds.MatchStateRequest)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.gameid_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.update_ != nullptr);
+    _impl_.update_->Clear();
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* MatchStateRequest::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const MatchStateRequest& this_ = static_cast<const MatchStateRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* MatchStateRequest::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const MatchStateRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:odds.MatchStateRequest)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // string gameId = 1;
+          if (!this_._internal_gameid().empty()) {
+            const std::string& _s = this_._internal_gameid();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "odds.MatchStateRequest.gameId");
+            target = stream->WriteStringMaybeAliased(1, _s, target);
+          }
+
+          cached_has_bits = this_._impl_._has_bits_[0];
+          // .odds.BallUpdate update = 2;
+          if (cached_has_bits & 0x00000001u) {
+            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                2, *this_._impl_.update_, this_._impl_.update_->GetCachedSize(), target,
+                stream);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:odds.MatchStateRequest)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t MatchStateRequest::ByteSizeLong(const MessageLite& base) {
+          const MatchStateRequest& this_ = static_cast<const MatchStateRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t MatchStateRequest::ByteSizeLong() const {
+          const MatchStateRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:odds.MatchStateRequest)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // string gameId = 1;
+            if (!this_._internal_gameid().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_gameid());
+            }
+          }
+           {
+            // .odds.BallUpdate update = 2;
+            cached_has_bits = this_._impl_._has_bits_[0];
+            if (cached_has_bits & 0x00000001u) {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.update_);
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void MatchStateRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<MatchStateRequest*>(&to_msg);
+  auto& from = static_cast<const MatchStateRequest&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:odds.MatchStateRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_gameid().empty()) {
+    _this->_internal_set_gameid(from._internal_gameid());
+  }
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(from._impl_.update_ != nullptr);
+    if (_this->_impl_.update_ == nullptr) {
+      _this->_impl_.update_ =
+          ::google::protobuf::Message::CopyConstruct<::odds::BallUpdate>(arena, *from._impl_.update_);
+    } else {
+      _this->_impl_.update_->MergeFrom(*from._impl_.update_);
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void MatchStateRequest::CopyFrom(const MatchStateRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:odds.MatchStateRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void MatchStateRequest::InternalSwap(MatchStateRequest* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.gameid_, &other->_impl_.gameid_, arena);
+  swap(_impl_.update_, other->_impl_.update_);
+}
+
+::google::protobuf::Metadata MatchStateRequest::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class Bet::_Internal {
+ public:
+};
+
+Bet::Bet(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:odds.Bet)
+}
+inline PROTOBUF_NDEBUG_INLINE Bet::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::odds::Bet& from_msg)
+      : userid_(arena, from.userid_),
+        market_(arena, from.market_),
+        _cached_size_{0} {}
+
+Bet::Bet(
+    ::google::protobuf::Arena* arena,
+    const Bet& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Bet* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, stake_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, stake_),
+           offsetof(Impl_, teama_) -
+               offsetof(Impl_, stake_) +
+               sizeof(Impl_::teama_));
+
+  // @@protoc_insertion_point(copy_constructor:odds.Bet)
+}
+inline PROTOBUF_NDEBUG_INLINE Bet::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : userid_(arena),
+        market_(arena),
+        _cached_size_{0} {}
+
+inline void Bet::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, stake_),
+           0,
+           offsetof(Impl_, teama_) -
+               offsetof(Impl_, stake_) +
+               sizeof(Impl_::teama_));
+}
+Bet::~Bet() {
+  // @@protoc_insertion_point(destructor:odds.Bet)
+  SharedDtor(*this);
+}
+inline void Bet::SharedDtor(MessageLite& self) {
+  Bet& this_ = static_cast<Bet&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.userid_.Destroy();
+  this_._impl_.market_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* Bet::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) Bet(arena);
+}
+constexpr auto Bet::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(Bet),
+                                            alignof(Bet));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull Bet::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_Bet_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &Bet::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<Bet>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &Bet::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<Bet>(), &Bet::ByteSizeLong,
+            &Bet::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(Bet, _impl_._cached_size_),
+        false,
+    },
+    &Bet::kDescriptorMethods,
+    &descriptor_table_odds_5fengine_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* Bet::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<3, 5, 0, 29, 2> Bet::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    5, 56,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967264,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    5,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::odds::Bet>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // string userId = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(Bet, _impl_.userid_)}},
+    // double stake = 2;
+    {::_pbi::TcParser::FastF64S1,
+     {17, 63, 0, PROTOBUF_FIELD_OFFSET(Bet, _impl_.stake_)}},
+    // double odds = 3;
+    {::_pbi::TcParser::FastF64S1,
+     {25, 63, 0, PROTOBUF_FIELD_OFFSET(Bet, _impl_.odds_)}},
+    // string market = 4;
+    {::_pbi::TcParser::FastUS1,
+     {34, 63, 0, PROTOBUF_FIELD_OFFSET(Bet, _impl_.market_)}},
+    // bool teamA = 5;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(Bet, _impl_.teama_), 63>(),
+     {40, 63, 0, PROTOBUF_FIELD_OFFSET(Bet, _impl_.teama_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string userId = 1;
+    {PROTOBUF_FIELD_OFFSET(Bet, _impl_.userid_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // double stake = 2;
+    {PROTOBUF_FIELD_OFFSET(Bet, _impl_.stake_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kDouble)},
+    // double odds = 3;
+    {PROTOBUF_FIELD_OFFSET(Bet, _impl_.odds_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kDouble)},
+    // string market = 4;
+    {PROTOBUF_FIELD_OFFSET(Bet, _impl_.market_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // bool teamA = 5;
+    {PROTOBUF_FIELD_OFFSET(Bet, _impl_.teama_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+  }},
+  // no aux_entries
+  {{
+    "\10\6\0\0\6\0\0\0"
+    "odds.Bet"
+    "userId"
+    "market"
+  }},
+};
+
+PROTOBUF_NOINLINE void Bet::Clear() {
+// @@protoc_insertion_point(message_clear_start:odds.Bet)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.userid_.ClearToEmpty();
+  _impl_.market_.ClearToEmpty();
+  ::memset(&_impl_.stake_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.teama_) -
+      reinterpret_cast<char*>(&_impl_.stake_)) + sizeof(_impl_.teama_));
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* Bet::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const Bet& this_ = static_cast<const Bet&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* Bet::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const Bet& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:odds.Bet)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // string userId = 1;
+          if (!this_._internal_userid().empty()) {
+            const std::string& _s = this_._internal_userid();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "odds.Bet.userId");
+            target = stream->WriteStringMaybeAliased(1, _s, target);
+          }
+
+          // double stake = 2;
+          if (::absl::bit_cast<::uint64_t>(this_._internal_stake()) != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteDoubleToArray(
+                2, this_._internal_stake(), target);
+          }
+
+          // double odds = 3;
+          if (::absl::bit_cast<::uint64_t>(this_._internal_odds()) != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteDoubleToArray(
+                3, this_._internal_odds(), target);
+          }
+
+          // string market = 4;
+          if (!this_._internal_market().empty()) {
+            const std::string& _s = this_._internal_market();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "odds.Bet.market");
+            target = stream->WriteStringMaybeAliased(4, _s, target);
+          }
+
+          // bool teamA = 5;
+          if (this_._internal_teama() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteBoolToArray(
+                5, this_._internal_teama(), target);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:odds.Bet)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t Bet::ByteSizeLong(const MessageLite& base) {
+          const Bet& this_ = static_cast<const Bet&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t Bet::ByteSizeLong() const {
+          const Bet& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:odds.Bet)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // string userId = 1;
+            if (!this_._internal_userid().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_userid());
+            }
+            // string market = 4;
+            if (!this_._internal_market().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_market());
+            }
+            // double stake = 2;
+            if (::absl::bit_cast<::uint64_t>(this_._internal_stake()) != 0) {
+              total_size += 9;
+            }
+            // double odds = 3;
+            if (::absl::bit_cast<::uint64_t>(this_._internal_odds()) != 0) {
+              total_size += 9;
+            }
+            // bool teamA = 5;
+            if (this_._internal_teama() != 0) {
+              total_size += 2;
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void Bet::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<Bet*>(&to_msg);
+  auto& from = static_cast<const Bet&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:odds.Bet)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_userid().empty()) {
+    _this->_internal_set_userid(from._internal_userid());
+  }
+  if (!from._internal_market().empty()) {
+    _this->_internal_set_market(from._internal_market());
+  }
+  if (::absl::bit_cast<::uint64_t>(from._internal_stake()) != 0) {
+    _this->_impl_.stake_ = from._impl_.stake_;
+  }
+  if (::absl::bit_cast<::uint64_t>(from._internal_odds()) != 0) {
+    _this->_impl_.odds_ = from._impl_.odds_;
+  }
+  if (from._internal_teama() != 0) {
+    _this->_impl_.teama_ = from._impl_.teama_;
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Bet::CopyFrom(const Bet& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:odds.Bet)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void Bet::InternalSwap(Bet* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.userid_, &other->_impl_.userid_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.market_, &other->_impl_.market_, arena);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Bet, _impl_.teama_)
+      + sizeof(Bet::_impl_.teama_)
+      - PROTOBUF_FIELD_OFFSET(Bet, _impl_.stake_)>(
+          reinterpret_cast<char*>(&_impl_.stake_),
+          reinterpret_cast<char*>(&other->_impl_.stake_));
+}
+
+::google::protobuf::Metadata Bet::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class BetRequest::_Internal {
+ public:
+  using HasBits =
+      decltype(std::declval<BetRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(BetRequest, _impl_._has_bits_);
+};
+
+BetRequest::BetRequest(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:odds.BetRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE BetRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::odds::BetRequest& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        gameid_(arena, from.gameid_) {}
+
+BetRequest::BetRequest(
+    ::google::protobuf::Arena* arena,
+    const BetRequest& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  BetRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.bet_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::odds::Bet>(
+                              arena, *from._impl_.bet_)
+                        : nullptr;
+
+  // @@protoc_insertion_point(copy_constructor:odds.BetRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE BetRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        gameid_(arena) {}
+
+inline void BetRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.bet_ = {};
+}
+BetRequest::~BetRequest() {
+  // @@protoc_insertion_point(destructor:odds.BetRequest)
+  SharedDtor(*this);
+}
+inline void BetRequest::SharedDtor(MessageLite& self) {
+  BetRequest& this_ = static_cast<BetRequest&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.gameid_.Destroy();
+  delete this_._impl_.bet_;
+  this_._impl_.~Impl_();
+}
+
+inline void* BetRequest::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) BetRequest(arena);
+}
+constexpr auto BetRequest::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(BetRequest),
+                                            alignof(BetRequest));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull BetRequest::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_BetRequest_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &BetRequest::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<BetRequest>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &BetRequest::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<BetRequest>(), &BetRequest::ByteSizeLong,
+            &BetRequest::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(BetRequest, _impl_._cached_size_),
+        false,
+    },
+    &BetRequest::kDescriptorMethods,
+    &descriptor_table_odds_5fengine_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* BetRequest::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 1, 30, 2> BetRequest::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(BetRequest, _impl_._has_bits_),
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::odds::BetRequest>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // .odds.Bet bet = 2;
+    {::_pbi::TcParser::FastMtS1,
+     {18, 0, 0, PROTOBUF_FIELD_OFFSET(BetRequest, _impl_.bet_)}},
+    // string gameId = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(BetRequest, _impl_.gameid_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string gameId = 1;
+    {PROTOBUF_FIELD_OFFSET(BetRequest, _impl_.gameid_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .odds.Bet bet = 2;
+    {PROTOBUF_FIELD_OFFSET(BetRequest, _impl_.bet_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::odds::Bet>()},
+  }}, {{
+    "\17\6\0\0\0\0\0\0"
+    "odds.BetRequest"
+    "gameId"
+  }},
+};
+
+PROTOBUF_NOINLINE void BetRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:odds.BetRequest)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.gameid_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.bet_ != nullptr);
+    _impl_.bet_->Clear();
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* BetRequest::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const BetRequest& this_ = static_cast<const BetRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* BetRequest::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const BetRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:odds.BetRequest)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // string gameId = 1;
+          if (!this_._internal_gameid().empty()) {
+            const std::string& _s = this_._internal_gameid();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "odds.BetRequest.gameId");
+            target = stream->WriteStringMaybeAliased(1, _s, target);
+          }
+
+          cached_has_bits = this_._impl_._has_bits_[0];
+          // .odds.Bet bet = 2;
+          if (cached_has_bits & 0x00000001u) {
+            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                2, *this_._impl_.bet_, this_._impl_.bet_->GetCachedSize(), target,
+                stream);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:odds.BetRequest)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t BetRequest::ByteSizeLong(const MessageLite& base) {
+          const BetRequest& this_ = static_cast<const BetRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t BetRequest::ByteSizeLong() const {
+          const BetRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:odds.BetRequest)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // string gameId = 1;
+            if (!this_._internal_gameid().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_gameid());
+            }
+          }
+           {
+            // .odds.Bet bet = 2;
+            cached_has_bits = this_._impl_._has_bits_[0];
+            if (cached_has_bits & 0x00000001u) {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.bet_);
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void BetRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<BetRequest*>(&to_msg);
+  auto& from = static_cast<const BetRequest&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:odds.BetRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_gameid().empty()) {
+    _this->_internal_set_gameid(from._internal_gameid());
+  }
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(from._impl_.bet_ != nullptr);
+    if (_this->_impl_.bet_ == nullptr) {
+      _this->_impl_.bet_ =
+          ::google::protobuf::Message::CopyConstruct<::odds::Bet>(arena, *from._impl_.bet_);
+    } else {
+      _this->_impl_.bet_->MergeFrom(*from._impl_.bet_);
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void BetRequest::CopyFrom(const BetRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:odds.BetRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void BetRequest::InternalSwap(BetRequest* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.gameid_, &other->_impl_.gameid_, arena);
+  swap(_impl_.bet_, other->_impl_.bet_);
+}
+
+::google::protobuf::Metadata BetRequest::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class OddsQueryRequest::_Internal {
+ public:
+};
+
+OddsQueryRequest::OddsQueryRequest(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:odds.OddsQueryRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE OddsQueryRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::odds::OddsQueryRequest& from_msg)
+      : gameid_(arena, from.gameid_),
+        market_(arena, from.market_),
+        _cached_size_{0} {}
+
+OddsQueryRequest::OddsQueryRequest(
+    ::google::protobuf::Arena* arena,
+    const OddsQueryRequest& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  OddsQueryRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+
+  // @@protoc_insertion_point(copy_constructor:odds.OddsQueryRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE OddsQueryRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : gameid_(arena),
+        market_(arena),
+        _cached_size_{0} {}
+
+inline void OddsQueryRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+OddsQueryRequest::~OddsQueryRequest() {
+  // @@protoc_insertion_point(destructor:odds.OddsQueryRequest)
+  SharedDtor(*this);
+}
+inline void OddsQueryRequest::SharedDtor(MessageLite& self) {
+  OddsQueryRequest& this_ = static_cast<OddsQueryRequest&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.gameid_.Destroy();
+  this_._impl_.market_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* OddsQueryRequest::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) OddsQueryRequest(arena);
+}
+constexpr auto OddsQueryRequest::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(OddsQueryRequest),
+                                            alignof(OddsQueryRequest));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull OddsQueryRequest::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_OddsQueryRequest_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &OddsQueryRequest::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<OddsQueryRequest>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &OddsQueryRequest::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<OddsQueryRequest>(), &OddsQueryRequest::ByteSizeLong,
+            &OddsQueryRequest::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(OddsQueryRequest, _impl_._cached_size_),
+        false,
+    },
+    &OddsQueryRequest::kDescriptorMethods,
+    &descriptor_table_odds_5fengine_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* OddsQueryRequest::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 42, 2> OddsQueryRequest::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::odds::OddsQueryRequest>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // string market = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(OddsQueryRequest, _impl_.market_)}},
+    // string gameId = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(OddsQueryRequest, _impl_.gameid_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string gameId = 1;
+    {PROTOBUF_FIELD_OFFSET(OddsQueryRequest, _impl_.gameid_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string market = 2;
+    {PROTOBUF_FIELD_OFFSET(OddsQueryRequest, _impl_.market_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\25\6\6\0\0\0\0\0"
+    "odds.OddsQueryRequest"
+    "gameId"
+    "market"
+  }},
+};
+
+PROTOBUF_NOINLINE void OddsQueryRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:odds.OddsQueryRequest)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.gameid_.ClearToEmpty();
+  _impl_.market_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* OddsQueryRequest::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const OddsQueryRequest& this_ = static_cast<const OddsQueryRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* OddsQueryRequest::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const OddsQueryRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:odds.OddsQueryRequest)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // string gameId = 1;
+          if (!this_._internal_gameid().empty()) {
+            const std::string& _s = this_._internal_gameid();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "odds.OddsQueryRequest.gameId");
+            target = stream->WriteStringMaybeAliased(1, _s, target);
+          }
+
+          // string market = 2;
+          if (!this_._internal_market().empty()) {
+            const std::string& _s = this_._internal_market();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "odds.OddsQueryRequest.market");
+            target = stream->WriteStringMaybeAliased(2, _s, target);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:odds.OddsQueryRequest)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t OddsQueryRequest::ByteSizeLong(const MessageLite& base) {
+          const OddsQueryRequest& this_ = static_cast<const OddsQueryRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t OddsQueryRequest::ByteSizeLong() const {
+          const OddsQueryRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:odds.OddsQueryRequest)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // string gameId = 1;
+            if (!this_._internal_gameid().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_gameid());
+            }
+            // string market = 2;
+            if (!this_._internal_market().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_market());
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void OddsQueryRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<OddsQueryRequest*>(&to_msg);
+  auto& from = static_cast<const OddsQueryRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:odds.OddsQueryRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_gameid().empty()) {
+    _this->_internal_set_gameid(from._internal_gameid());
+  }
+  if (!from._internal_market().empty()) {
+    _this->_internal_set_market(from._internal_market());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void OddsQueryRequest::CopyFrom(const OddsQueryRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:odds.OddsQueryRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void OddsQueryRequest::InternalSwap(OddsQueryRequest* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.gameid_, &other->_impl_.gameid_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.market_, &other->_impl_.market_, arena);
+}
+
+::google::protobuf::Metadata OddsQueryRequest::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
 class OddsResponse::_Internal {
  public:
 };
@@ -984,328 +2293,6 @@ void OddsResponse::InternalSwap(OddsResponse* PROTOBUF_RESTRICT other) {
 }
 
 ::google::protobuf::Metadata OddsResponse::GetMetadata() const {
-  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
-}
-// ===================================================================
-
-class Bet::_Internal {
- public:
-};
-
-Bet::Bet(::google::protobuf::Arena* arena)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, _class_data_.base()) {
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(arena) {
-#endif  // PROTOBUF_CUSTOM_VTABLE
-  SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:odds.Bet)
-}
-inline PROTOBUF_NDEBUG_INLINE Bet::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from, const ::odds::Bet& from_msg)
-      : userid_(arena, from.userid_),
-        market_(arena, from.market_),
-        _cached_size_{0} {}
-
-Bet::Bet(
-    ::google::protobuf::Arena* arena,
-    const Bet& from)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, _class_data_.base()) {
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(arena) {
-#endif  // PROTOBUF_CUSTOM_VTABLE
-  Bet* const _this = this;
-  (void)_this;
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
-  ::memcpy(reinterpret_cast<char *>(&_impl_) +
-               offsetof(Impl_, stake_),
-           reinterpret_cast<const char *>(&from._impl_) +
-               offsetof(Impl_, stake_),
-           offsetof(Impl_, odds_) -
-               offsetof(Impl_, stake_) +
-               sizeof(Impl_::odds_));
-
-  // @@protoc_insertion_point(copy_constructor:odds.Bet)
-}
-inline PROTOBUF_NDEBUG_INLINE Bet::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility,
-    ::google::protobuf::Arena* arena)
-      : userid_(arena),
-        market_(arena),
-        _cached_size_{0} {}
-
-inline void Bet::SharedCtor(::_pb::Arena* arena) {
-  new (&_impl_) Impl_(internal_visibility(), arena);
-  ::memset(reinterpret_cast<char *>(&_impl_) +
-               offsetof(Impl_, stake_),
-           0,
-           offsetof(Impl_, odds_) -
-               offsetof(Impl_, stake_) +
-               sizeof(Impl_::odds_));
-}
-Bet::~Bet() {
-  // @@protoc_insertion_point(destructor:odds.Bet)
-  SharedDtor(*this);
-}
-inline void Bet::SharedDtor(MessageLite& self) {
-  Bet& this_ = static_cast<Bet&>(self);
-  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
-  ABSL_DCHECK(this_.GetArena() == nullptr);
-  this_._impl_.userid_.Destroy();
-  this_._impl_.market_.Destroy();
-  this_._impl_.~Impl_();
-}
-
-inline void* Bet::PlacementNew_(const void*, void* mem,
-                                        ::google::protobuf::Arena* arena) {
-  return ::new (mem) Bet(arena);
-}
-constexpr auto Bet::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(Bet),
-                                            alignof(Bet));
-}
-PROTOBUF_CONSTINIT
-PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::google::protobuf::internal::ClassDataFull Bet::_class_data_ = {
-    ::google::protobuf::internal::ClassData{
-        &_Bet_default_instance_._instance,
-        &_table_.header,
-        nullptr,  // OnDemandRegisterArenaDtor
-        nullptr,  // IsInitialized
-        &Bet::MergeImpl,
-        ::google::protobuf::Message::GetNewImpl<Bet>(),
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-        &Bet::SharedDtor,
-        ::google::protobuf::Message::GetClearImpl<Bet>(), &Bet::ByteSizeLong,
-            &Bet::_InternalSerialize,
-#endif  // PROTOBUF_CUSTOM_VTABLE
-        PROTOBUF_FIELD_OFFSET(Bet, _impl_._cached_size_),
-        false,
-    },
-    &Bet::kDescriptorMethods,
-    &descriptor_table_odds_5fengine_2eproto,
-    nullptr,  // tracker
-};
-const ::google::protobuf::internal::ClassData* Bet::GetClassData() const {
-  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
-  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
-  return _class_data_.base();
-}
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 4, 0, 29, 2> Bet::_table_ = {
-  {
-    0,  // no _has_bits_
-    0, // no _extensions_
-    4, 24,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967280,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    4,  // num_field_entries
-    0,  // num_aux_entries
-    offsetof(decltype(_table_), field_names),  // no aux_entries
-    _class_data_.base(),
-    nullptr,  // post_loop_handler
-    ::_pbi::TcParser::GenericFallback,  // fallback
-    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::odds::Bet>(),  // to_prefetch
-    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
-  }, {{
-    // string market = 4;
-    {::_pbi::TcParser::FastUS1,
-     {34, 63, 0, PROTOBUF_FIELD_OFFSET(Bet, _impl_.market_)}},
-    // string userId = 1;
-    {::_pbi::TcParser::FastUS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(Bet, _impl_.userid_)}},
-    // double stake = 2;
-    {::_pbi::TcParser::FastF64S1,
-     {17, 63, 0, PROTOBUF_FIELD_OFFSET(Bet, _impl_.stake_)}},
-    // double odds = 3;
-    {::_pbi::TcParser::FastF64S1,
-     {25, 63, 0, PROTOBUF_FIELD_OFFSET(Bet, _impl_.odds_)}},
-  }}, {{
-    65535, 65535
-  }}, {{
-    // string userId = 1;
-    {PROTOBUF_FIELD_OFFSET(Bet, _impl_.userid_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // double stake = 2;
-    {PROTOBUF_FIELD_OFFSET(Bet, _impl_.stake_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kDouble)},
-    // double odds = 3;
-    {PROTOBUF_FIELD_OFFSET(Bet, _impl_.odds_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kDouble)},
-    // string market = 4;
-    {PROTOBUF_FIELD_OFFSET(Bet, _impl_.market_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-  }},
-  // no aux_entries
-  {{
-    "\10\6\0\0\6\0\0\0"
-    "odds.Bet"
-    "userId"
-    "market"
-  }},
-};
-
-PROTOBUF_NOINLINE void Bet::Clear() {
-// @@protoc_insertion_point(message_clear_start:odds.Bet)
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  _impl_.userid_.ClearToEmpty();
-  _impl_.market_.ClearToEmpty();
-  ::memset(&_impl_.stake_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.odds_) -
-      reinterpret_cast<char*>(&_impl_.stake_)) + sizeof(_impl_.odds_));
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
-}
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::uint8_t* Bet::_InternalSerialize(
-            const MessageLite& base, ::uint8_t* target,
-            ::google::protobuf::io::EpsCopyOutputStream* stream) {
-          const Bet& this_ = static_cast<const Bet&>(base);
-#else   // PROTOBUF_CUSTOM_VTABLE
-        ::uint8_t* Bet::_InternalSerialize(
-            ::uint8_t* target,
-            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-          const Bet& this_ = *this;
-#endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(serialize_to_array_start:odds.Bet)
-          ::uint32_t cached_has_bits = 0;
-          (void)cached_has_bits;
-
-          // string userId = 1;
-          if (!this_._internal_userid().empty()) {
-            const std::string& _s = this_._internal_userid();
-            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "odds.Bet.userId");
-            target = stream->WriteStringMaybeAliased(1, _s, target);
-          }
-
-          // double stake = 2;
-          if (::absl::bit_cast<::uint64_t>(this_._internal_stake()) != 0) {
-            target = stream->EnsureSpace(target);
-            target = ::_pbi::WireFormatLite::WriteDoubleToArray(
-                2, this_._internal_stake(), target);
-          }
-
-          // double odds = 3;
-          if (::absl::bit_cast<::uint64_t>(this_._internal_odds()) != 0) {
-            target = stream->EnsureSpace(target);
-            target = ::_pbi::WireFormatLite::WriteDoubleToArray(
-                3, this_._internal_odds(), target);
-          }
-
-          // string market = 4;
-          if (!this_._internal_market().empty()) {
-            const std::string& _s = this_._internal_market();
-            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "odds.Bet.market");
-            target = stream->WriteStringMaybeAliased(4, _s, target);
-          }
-
-          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
-            target =
-                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
-          }
-          // @@protoc_insertion_point(serialize_to_array_end:odds.Bet)
-          return target;
-        }
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::size_t Bet::ByteSizeLong(const MessageLite& base) {
-          const Bet& this_ = static_cast<const Bet&>(base);
-#else   // PROTOBUF_CUSTOM_VTABLE
-        ::size_t Bet::ByteSizeLong() const {
-          const Bet& this_ = *this;
-#endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(message_byte_size_start:odds.Bet)
-          ::size_t total_size = 0;
-
-          ::uint32_t cached_has_bits = 0;
-          // Prevent compiler warnings about cached_has_bits being unused
-          (void)cached_has_bits;
-
-          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
-           {
-            // string userId = 1;
-            if (!this_._internal_userid().empty()) {
-              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                              this_._internal_userid());
-            }
-            // string market = 4;
-            if (!this_._internal_market().empty()) {
-              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                              this_._internal_market());
-            }
-            // double stake = 2;
-            if (::absl::bit_cast<::uint64_t>(this_._internal_stake()) != 0) {
-              total_size += 9;
-            }
-            // double odds = 3;
-            if (::absl::bit_cast<::uint64_t>(this_._internal_odds()) != 0) {
-              total_size += 9;
-            }
-          }
-          return this_.MaybeComputeUnknownFieldsSize(total_size,
-                                                     &this_._impl_._cached_size_);
-        }
-
-void Bet::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
-  auto* const _this = static_cast<Bet*>(&to_msg);
-  auto& from = static_cast<const Bet&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:odds.Bet)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if (!from._internal_userid().empty()) {
-    _this->_internal_set_userid(from._internal_userid());
-  }
-  if (!from._internal_market().empty()) {
-    _this->_internal_set_market(from._internal_market());
-  }
-  if (::absl::bit_cast<::uint64_t>(from._internal_stake()) != 0) {
-    _this->_impl_.stake_ = from._impl_.stake_;
-  }
-  if (::absl::bit_cast<::uint64_t>(from._internal_odds()) != 0) {
-    _this->_impl_.odds_ = from._impl_.odds_;
-  }
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void Bet::CopyFrom(const Bet& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:odds.Bet)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-
-void Bet::InternalSwap(Bet* PROTOBUF_RESTRICT other) {
-  using std::swap;
-  auto* arena = GetArena();
-  ABSL_DCHECK_EQ(arena, other->GetArena());
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.userid_, &other->_impl_.userid_, arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.market_, &other->_impl_.market_, arena);
-  ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Bet, _impl_.odds_)
-      + sizeof(Bet::_impl_.odds_)
-      - PROTOBUF_FIELD_OFFSET(Bet, _impl_.stake_)>(
-          reinterpret_cast<char*>(&_impl_.stake_),
-          reinterpret_cast<char*>(&other->_impl_.stake_));
-}
-
-::google::protobuf::Metadata Bet::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // @@protoc_insertion_point(namespace_scope)

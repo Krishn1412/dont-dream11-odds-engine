@@ -3,11 +3,18 @@ syntax = "proto3";
 package odds;
 
 service OddsEngine {
-  rpc UpdateMatchState (BallUpdate) returns (OddsResponse);
-  rpc PlacedBet (Bet) returns (OddsResponse);
+  // Called by the manager to update match state for a specific game
+  rpc UpdateMatchState (MatchStateRequest) returns (OddsResponse);
+
+  // Called when a user places a bet; updates exposure + recalculates odds
+  rpc PlaceBet (BetRequest) returns (OddsResponse);
+
+  // Called to fetch latest odds for any market in any game
+  rpc GetOdds (OddsQueryRequest) returns (OddsResponse);
 }
 
-message BallUpdate{
+// Represents the match state at a point in time
+message BallUpdate {
   int32 innings = 1;
   int32 targetScore = 2;
   int32 currentScore = 3;
@@ -18,13 +25,34 @@ message BallUpdate{
   double pitchModifier = 8;
 }
 
-message OddsResponse {
-  double winProbability = 1;
+// Update the match state for a specific game
+message MatchStateRequest {
+  string gameId = 1;
+  BallUpdate update = 2;
 }
 
-message Bet{
+// Represents a bet from a user on a particular game and market
+message Bet {
   string userId = 1;
   double stake = 2;
   double odds = 3;
-  string market = 4;
+  string market = 4;  // e.g. "match_winner", "over_10.5_runs"
+  bool teamA = 5;
+}
+
+// Send a bet for a game and market
+message BetRequest {
+  string gameId = 1;
+  Bet bet = 2;
+}
+
+// Fetch odds for a specific game and market
+message OddsQueryRequest {
+  string gameId = 1;
+  string market = 2;  // e.g. "match_winner", "over_10.5_runs"
+}
+
+// The result (odds/probability) sent back to the manager
+message OddsResponse {
+  double winProbability = 1; // For now, just teamA win prob. (can be extended)
 }

@@ -1,7 +1,6 @@
 #pragma once
 #include <memory>
 #include "ConcurrentQueue.h"
-#include "../Bet.h"
 #include "../MatchState.h"
 #include "../../proto/odds_engine.pb.h"
 #include "../../proto/odds_engine.grpc.pb.h"
@@ -16,6 +15,8 @@ enum class EventType {
 
 struct Event {
     EventType type;
+    std::string gameId;
+    std::string market;
     odds::BallUpdate matchUpdate;
     odds::Bet bet;
 };

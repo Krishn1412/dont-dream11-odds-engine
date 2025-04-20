@@ -36,61 +36,87 @@ class OddsEngine final {
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    virtual ::grpc::Status UpdateMatchState(::grpc::ClientContext* context, const ::odds::BallUpdate& request, ::odds::OddsResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::odds::OddsResponse>> AsyncUpdateMatchState(::grpc::ClientContext* context, const ::odds::BallUpdate& request, ::grpc::CompletionQueue* cq) {
+    // Called by the manager to update match state for a specific game
+    virtual ::grpc::Status UpdateMatchState(::grpc::ClientContext* context, const ::odds::MatchStateRequest& request, ::odds::OddsResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::odds::OddsResponse>> AsyncUpdateMatchState(::grpc::ClientContext* context, const ::odds::MatchStateRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::odds::OddsResponse>>(AsyncUpdateMatchStateRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::odds::OddsResponse>> PrepareAsyncUpdateMatchState(::grpc::ClientContext* context, const ::odds::BallUpdate& request, ::grpc::CompletionQueue* cq) {
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::odds::OddsResponse>> PrepareAsyncUpdateMatchState(::grpc::ClientContext* context, const ::odds::MatchStateRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::odds::OddsResponse>>(PrepareAsyncUpdateMatchStateRaw(context, request, cq));
     }
-    virtual ::grpc::Status PlacedBet(::grpc::ClientContext* context, const ::odds::Bet& request, ::odds::OddsResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::odds::OddsResponse>> AsyncPlacedBet(::grpc::ClientContext* context, const ::odds::Bet& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::odds::OddsResponse>>(AsyncPlacedBetRaw(context, request, cq));
+    // Called when a user places a bet; updates exposure + recalculates odds
+    virtual ::grpc::Status PlaceBet(::grpc::ClientContext* context, const ::odds::BetRequest& request, ::odds::OddsResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::odds::OddsResponse>> AsyncPlaceBet(::grpc::ClientContext* context, const ::odds::BetRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::odds::OddsResponse>>(AsyncPlaceBetRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::odds::OddsResponse>> PrepareAsyncPlacedBet(::grpc::ClientContext* context, const ::odds::Bet& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::odds::OddsResponse>>(PrepareAsyncPlacedBetRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::odds::OddsResponse>> PrepareAsyncPlaceBet(::grpc::ClientContext* context, const ::odds::BetRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::odds::OddsResponse>>(PrepareAsyncPlaceBetRaw(context, request, cq));
+    }
+    // Called to fetch latest odds for any market in any game
+    virtual ::grpc::Status GetOdds(::grpc::ClientContext* context, const ::odds::OddsQueryRequest& request, ::odds::OddsResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::odds::OddsResponse>> AsyncGetOdds(::grpc::ClientContext* context, const ::odds::OddsQueryRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::odds::OddsResponse>>(AsyncGetOddsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::odds::OddsResponse>> PrepareAsyncGetOdds(::grpc::ClientContext* context, const ::odds::OddsQueryRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::odds::OddsResponse>>(PrepareAsyncGetOddsRaw(context, request, cq));
     }
     class async_interface {
      public:
       virtual ~async_interface() {}
-      virtual void UpdateMatchState(::grpc::ClientContext* context, const ::odds::BallUpdate* request, ::odds::OddsResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void UpdateMatchState(::grpc::ClientContext* context, const ::odds::BallUpdate* request, ::odds::OddsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void PlacedBet(::grpc::ClientContext* context, const ::odds::Bet* request, ::odds::OddsResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void PlacedBet(::grpc::ClientContext* context, const ::odds::Bet* request, ::odds::OddsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // Called by the manager to update match state for a specific game
+      virtual void UpdateMatchState(::grpc::ClientContext* context, const ::odds::MatchStateRequest* request, ::odds::OddsResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void UpdateMatchState(::grpc::ClientContext* context, const ::odds::MatchStateRequest* request, ::odds::OddsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // Called when a user places a bet; updates exposure + recalculates odds
+      virtual void PlaceBet(::grpc::ClientContext* context, const ::odds::BetRequest* request, ::odds::OddsResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void PlaceBet(::grpc::ClientContext* context, const ::odds::BetRequest* request, ::odds::OddsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // Called to fetch latest odds for any market in any game
+      virtual void GetOdds(::grpc::ClientContext* context, const ::odds::OddsQueryRequest* request, ::odds::OddsResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetOdds(::grpc::ClientContext* context, const ::odds::OddsQueryRequest* request, ::odds::OddsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
    private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::odds::OddsResponse>* AsyncUpdateMatchStateRaw(::grpc::ClientContext* context, const ::odds::BallUpdate& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::odds::OddsResponse>* PrepareAsyncUpdateMatchStateRaw(::grpc::ClientContext* context, const ::odds::BallUpdate& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::odds::OddsResponse>* AsyncPlacedBetRaw(::grpc::ClientContext* context, const ::odds::Bet& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::odds::OddsResponse>* PrepareAsyncPlacedBetRaw(::grpc::ClientContext* context, const ::odds::Bet& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::odds::OddsResponse>* AsyncUpdateMatchStateRaw(::grpc::ClientContext* context, const ::odds::MatchStateRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::odds::OddsResponse>* PrepareAsyncUpdateMatchStateRaw(::grpc::ClientContext* context, const ::odds::MatchStateRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::odds::OddsResponse>* AsyncPlaceBetRaw(::grpc::ClientContext* context, const ::odds::BetRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::odds::OddsResponse>* PrepareAsyncPlaceBetRaw(::grpc::ClientContext* context, const ::odds::BetRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::odds::OddsResponse>* AsyncGetOddsRaw(::grpc::ClientContext* context, const ::odds::OddsQueryRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::odds::OddsResponse>* PrepareAsyncGetOddsRaw(::grpc::ClientContext* context, const ::odds::OddsQueryRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
-    ::grpc::Status UpdateMatchState(::grpc::ClientContext* context, const ::odds::BallUpdate& request, ::odds::OddsResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::odds::OddsResponse>> AsyncUpdateMatchState(::grpc::ClientContext* context, const ::odds::BallUpdate& request, ::grpc::CompletionQueue* cq) {
+    ::grpc::Status UpdateMatchState(::grpc::ClientContext* context, const ::odds::MatchStateRequest& request, ::odds::OddsResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::odds::OddsResponse>> AsyncUpdateMatchState(::grpc::ClientContext* context, const ::odds::MatchStateRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::odds::OddsResponse>>(AsyncUpdateMatchStateRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::odds::OddsResponse>> PrepareAsyncUpdateMatchState(::grpc::ClientContext* context, const ::odds::BallUpdate& request, ::grpc::CompletionQueue* cq) {
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::odds::OddsResponse>> PrepareAsyncUpdateMatchState(::grpc::ClientContext* context, const ::odds::MatchStateRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::odds::OddsResponse>>(PrepareAsyncUpdateMatchStateRaw(context, request, cq));
     }
-    ::grpc::Status PlacedBet(::grpc::ClientContext* context, const ::odds::Bet& request, ::odds::OddsResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::odds::OddsResponse>> AsyncPlacedBet(::grpc::ClientContext* context, const ::odds::Bet& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::odds::OddsResponse>>(AsyncPlacedBetRaw(context, request, cq));
+    ::grpc::Status PlaceBet(::grpc::ClientContext* context, const ::odds::BetRequest& request, ::odds::OddsResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::odds::OddsResponse>> AsyncPlaceBet(::grpc::ClientContext* context, const ::odds::BetRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::odds::OddsResponse>>(AsyncPlaceBetRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::odds::OddsResponse>> PrepareAsyncPlacedBet(::grpc::ClientContext* context, const ::odds::Bet& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::odds::OddsResponse>>(PrepareAsyncPlacedBetRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::odds::OddsResponse>> PrepareAsyncPlaceBet(::grpc::ClientContext* context, const ::odds::BetRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::odds::OddsResponse>>(PrepareAsyncPlaceBetRaw(context, request, cq));
+    }
+    ::grpc::Status GetOdds(::grpc::ClientContext* context, const ::odds::OddsQueryRequest& request, ::odds::OddsResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::odds::OddsResponse>> AsyncGetOdds(::grpc::ClientContext* context, const ::odds::OddsQueryRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::odds::OddsResponse>>(AsyncGetOddsRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::odds::OddsResponse>> PrepareAsyncGetOdds(::grpc::ClientContext* context, const ::odds::OddsQueryRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::odds::OddsResponse>>(PrepareAsyncGetOddsRaw(context, request, cq));
     }
     class async final :
       public StubInterface::async_interface {
      public:
-      void UpdateMatchState(::grpc::ClientContext* context, const ::odds::BallUpdate* request, ::odds::OddsResponse* response, std::function<void(::grpc::Status)>) override;
-      void UpdateMatchState(::grpc::ClientContext* context, const ::odds::BallUpdate* request, ::odds::OddsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void PlacedBet(::grpc::ClientContext* context, const ::odds::Bet* request, ::odds::OddsResponse* response, std::function<void(::grpc::Status)>) override;
-      void PlacedBet(::grpc::ClientContext* context, const ::odds::Bet* request, ::odds::OddsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void UpdateMatchState(::grpc::ClientContext* context, const ::odds::MatchStateRequest* request, ::odds::OddsResponse* response, std::function<void(::grpc::Status)>) override;
+      void UpdateMatchState(::grpc::ClientContext* context, const ::odds::MatchStateRequest* request, ::odds::OddsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void PlaceBet(::grpc::ClientContext* context, const ::odds::BetRequest* request, ::odds::OddsResponse* response, std::function<void(::grpc::Status)>) override;
+      void PlaceBet(::grpc::ClientContext* context, const ::odds::BetRequest* request, ::odds::OddsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetOdds(::grpc::ClientContext* context, const ::odds::OddsQueryRequest* request, ::odds::OddsResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetOdds(::grpc::ClientContext* context, const ::odds::OddsQueryRequest* request, ::odds::OddsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -102,12 +128,15 @@ class OddsEngine final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class async async_stub_{this};
-    ::grpc::ClientAsyncResponseReader< ::odds::OddsResponse>* AsyncUpdateMatchStateRaw(::grpc::ClientContext* context, const ::odds::BallUpdate& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::odds::OddsResponse>* PrepareAsyncUpdateMatchStateRaw(::grpc::ClientContext* context, const ::odds::BallUpdate& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::odds::OddsResponse>* AsyncPlacedBetRaw(::grpc::ClientContext* context, const ::odds::Bet& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::odds::OddsResponse>* PrepareAsyncPlacedBetRaw(::grpc::ClientContext* context, const ::odds::Bet& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::odds::OddsResponse>* AsyncUpdateMatchStateRaw(::grpc::ClientContext* context, const ::odds::MatchStateRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::odds::OddsResponse>* PrepareAsyncUpdateMatchStateRaw(::grpc::ClientContext* context, const ::odds::MatchStateRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::odds::OddsResponse>* AsyncPlaceBetRaw(::grpc::ClientContext* context, const ::odds::BetRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::odds::OddsResponse>* PrepareAsyncPlaceBetRaw(::grpc::ClientContext* context, const ::odds::BetRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::odds::OddsResponse>* AsyncGetOddsRaw(::grpc::ClientContext* context, const ::odds::OddsQueryRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::odds::OddsResponse>* PrepareAsyncGetOddsRaw(::grpc::ClientContext* context, const ::odds::OddsQueryRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_UpdateMatchState_;
-    const ::grpc::internal::RpcMethod rpcmethod_PlacedBet_;
+    const ::grpc::internal::RpcMethod rpcmethod_PlaceBet_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetOdds_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -115,8 +144,12 @@ class OddsEngine final {
    public:
     Service();
     virtual ~Service();
-    virtual ::grpc::Status UpdateMatchState(::grpc::ServerContext* context, const ::odds::BallUpdate* request, ::odds::OddsResponse* response);
-    virtual ::grpc::Status PlacedBet(::grpc::ServerContext* context, const ::odds::Bet* request, ::odds::OddsResponse* response);
+    // Called by the manager to update match state for a specific game
+    virtual ::grpc::Status UpdateMatchState(::grpc::ServerContext* context, const ::odds::MatchStateRequest* request, ::odds::OddsResponse* response);
+    // Called when a user places a bet; updates exposure + recalculates odds
+    virtual ::grpc::Status PlaceBet(::grpc::ServerContext* context, const ::odds::BetRequest* request, ::odds::OddsResponse* response);
+    // Called to fetch latest odds for any market in any game
+    virtual ::grpc::Status GetOdds(::grpc::ServerContext* context, const ::odds::OddsQueryRequest* request, ::odds::OddsResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_UpdateMatchState : public BaseClass {
@@ -130,35 +163,55 @@ class OddsEngine final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status UpdateMatchState(::grpc::ServerContext* /*context*/, const ::odds::BallUpdate* /*request*/, ::odds::OddsResponse* /*response*/) override {
+    ::grpc::Status UpdateMatchState(::grpc::ServerContext* /*context*/, const ::odds::MatchStateRequest* /*request*/, ::odds::OddsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestUpdateMatchState(::grpc::ServerContext* context, ::odds::BallUpdate* request, ::grpc::ServerAsyncResponseWriter< ::odds::OddsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestUpdateMatchState(::grpc::ServerContext* context, ::odds::MatchStateRequest* request, ::grpc::ServerAsyncResponseWriter< ::odds::OddsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithAsyncMethod_PlacedBet : public BaseClass {
+  class WithAsyncMethod_PlaceBet : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_PlacedBet() {
+    WithAsyncMethod_PlaceBet() {
       ::grpc::Service::MarkMethodAsync(1);
     }
-    ~WithAsyncMethod_PlacedBet() override {
+    ~WithAsyncMethod_PlaceBet() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status PlacedBet(::grpc::ServerContext* /*context*/, const ::odds::Bet* /*request*/, ::odds::OddsResponse* /*response*/) override {
+    ::grpc::Status PlaceBet(::grpc::ServerContext* /*context*/, const ::odds::BetRequest* /*request*/, ::odds::OddsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestPlacedBet(::grpc::ServerContext* context, ::odds::Bet* request, ::grpc::ServerAsyncResponseWriter< ::odds::OddsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestPlaceBet(::grpc::ServerContext* context, ::odds::BetRequest* request, ::grpc::ServerAsyncResponseWriter< ::odds::OddsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_UpdateMatchState<WithAsyncMethod_PlacedBet<Service > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_GetOdds : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetOdds() {
+      ::grpc::Service::MarkMethodAsync(2);
+    }
+    ~WithAsyncMethod_GetOdds() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetOdds(::grpc::ServerContext* /*context*/, const ::odds::OddsQueryRequest* /*request*/, ::odds::OddsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetOdds(::grpc::ServerContext* context, ::odds::OddsQueryRequest* request, ::grpc::ServerAsyncResponseWriter< ::odds::OddsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_UpdateMatchState<WithAsyncMethod_PlaceBet<WithAsyncMethod_GetOdds<Service > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_UpdateMatchState : public BaseClass {
    private:
@@ -166,54 +219,81 @@ class OddsEngine final {
    public:
     WithCallbackMethod_UpdateMatchState() {
       ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::odds::BallUpdate, ::odds::OddsResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::odds::MatchStateRequest, ::odds::OddsResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::odds::BallUpdate* request, ::odds::OddsResponse* response) { return this->UpdateMatchState(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::odds::MatchStateRequest* request, ::odds::OddsResponse* response) { return this->UpdateMatchState(context, request, response); }));}
     void SetMessageAllocatorFor_UpdateMatchState(
-        ::grpc::MessageAllocator< ::odds::BallUpdate, ::odds::OddsResponse>* allocator) {
+        ::grpc::MessageAllocator< ::odds::MatchStateRequest, ::odds::OddsResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::odds::BallUpdate, ::odds::OddsResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::odds::MatchStateRequest, ::odds::OddsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_UpdateMatchState() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status UpdateMatchState(::grpc::ServerContext* /*context*/, const ::odds::BallUpdate* /*request*/, ::odds::OddsResponse* /*response*/) override {
+    ::grpc::Status UpdateMatchState(::grpc::ServerContext* /*context*/, const ::odds::MatchStateRequest* /*request*/, ::odds::OddsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* UpdateMatchState(
-      ::grpc::CallbackServerContext* /*context*/, const ::odds::BallUpdate* /*request*/, ::odds::OddsResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::odds::MatchStateRequest* /*request*/, ::odds::OddsResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_PlacedBet : public BaseClass {
+  class WithCallbackMethod_PlaceBet : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_PlacedBet() {
+    WithCallbackMethod_PlaceBet() {
       ::grpc::Service::MarkMethodCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::odds::Bet, ::odds::OddsResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::odds::BetRequest, ::odds::OddsResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::odds::Bet* request, ::odds::OddsResponse* response) { return this->PlacedBet(context, request, response); }));}
-    void SetMessageAllocatorFor_PlacedBet(
-        ::grpc::MessageAllocator< ::odds::Bet, ::odds::OddsResponse>* allocator) {
+                   ::grpc::CallbackServerContext* context, const ::odds::BetRequest* request, ::odds::OddsResponse* response) { return this->PlaceBet(context, request, response); }));}
+    void SetMessageAllocatorFor_PlaceBet(
+        ::grpc::MessageAllocator< ::odds::BetRequest, ::odds::OddsResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::odds::Bet, ::odds::OddsResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::odds::BetRequest, ::odds::OddsResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_PlacedBet() override {
+    ~WithCallbackMethod_PlaceBet() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status PlacedBet(::grpc::ServerContext* /*context*/, const ::odds::Bet* /*request*/, ::odds::OddsResponse* /*response*/) override {
+    ::grpc::Status PlaceBet(::grpc::ServerContext* /*context*/, const ::odds::BetRequest* /*request*/, ::odds::OddsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* PlacedBet(
-      ::grpc::CallbackServerContext* /*context*/, const ::odds::Bet* /*request*/, ::odds::OddsResponse* /*response*/)  { return nullptr; }
+    virtual ::grpc::ServerUnaryReactor* PlaceBet(
+      ::grpc::CallbackServerContext* /*context*/, const ::odds::BetRequest* /*request*/, ::odds::OddsResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_UpdateMatchState<WithCallbackMethod_PlacedBet<Service > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_GetOdds : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_GetOdds() {
+      ::grpc::Service::MarkMethodCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::odds::OddsQueryRequest, ::odds::OddsResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::odds::OddsQueryRequest* request, ::odds::OddsResponse* response) { return this->GetOdds(context, request, response); }));}
+    void SetMessageAllocatorFor_GetOdds(
+        ::grpc::MessageAllocator< ::odds::OddsQueryRequest, ::odds::OddsResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::odds::OddsQueryRequest, ::odds::OddsResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_GetOdds() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetOdds(::grpc::ServerContext* /*context*/, const ::odds::OddsQueryRequest* /*request*/, ::odds::OddsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetOdds(
+      ::grpc::CallbackServerContext* /*context*/, const ::odds::OddsQueryRequest* /*request*/, ::odds::OddsResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_UpdateMatchState<WithCallbackMethod_PlaceBet<WithCallbackMethod_GetOdds<Service > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_UpdateMatchState : public BaseClass {
@@ -227,24 +307,41 @@ class OddsEngine final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status UpdateMatchState(::grpc::ServerContext* /*context*/, const ::odds::BallUpdate* /*request*/, ::odds::OddsResponse* /*response*/) override {
+    ::grpc::Status UpdateMatchState(::grpc::ServerContext* /*context*/, const ::odds::MatchStateRequest* /*request*/, ::odds::OddsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
   };
   template <class BaseClass>
-  class WithGenericMethod_PlacedBet : public BaseClass {
+  class WithGenericMethod_PlaceBet : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_PlacedBet() {
+    WithGenericMethod_PlaceBet() {
       ::grpc::Service::MarkMethodGeneric(1);
     }
-    ~WithGenericMethod_PlacedBet() override {
+    ~WithGenericMethod_PlaceBet() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status PlacedBet(::grpc::ServerContext* /*context*/, const ::odds::Bet* /*request*/, ::odds::OddsResponse* /*response*/) override {
+    ::grpc::Status PlaceBet(::grpc::ServerContext* /*context*/, const ::odds::BetRequest* /*request*/, ::odds::OddsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_GetOdds : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetOdds() {
+      ::grpc::Service::MarkMethodGeneric(2);
+    }
+    ~WithGenericMethod_GetOdds() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetOdds(::grpc::ServerContext* /*context*/, const ::odds::OddsQueryRequest* /*request*/, ::odds::OddsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -261,7 +358,7 @@ class OddsEngine final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status UpdateMatchState(::grpc::ServerContext* /*context*/, const ::odds::BallUpdate* /*request*/, ::odds::OddsResponse* /*response*/) override {
+    ::grpc::Status UpdateMatchState(::grpc::ServerContext* /*context*/, const ::odds::MatchStateRequest* /*request*/, ::odds::OddsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -270,23 +367,43 @@ class OddsEngine final {
     }
   };
   template <class BaseClass>
-  class WithRawMethod_PlacedBet : public BaseClass {
+  class WithRawMethod_PlaceBet : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawMethod_PlacedBet() {
+    WithRawMethod_PlaceBet() {
       ::grpc::Service::MarkMethodRaw(1);
     }
-    ~WithRawMethod_PlacedBet() override {
+    ~WithRawMethod_PlaceBet() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status PlacedBet(::grpc::ServerContext* /*context*/, const ::odds::Bet* /*request*/, ::odds::OddsResponse* /*response*/) override {
+    ::grpc::Status PlaceBet(::grpc::ServerContext* /*context*/, const ::odds::BetRequest* /*request*/, ::odds::OddsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestPlacedBet(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestPlaceBet(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_GetOdds : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetOdds() {
+      ::grpc::Service::MarkMethodRaw(2);
+    }
+    ~WithRawMethod_GetOdds() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetOdds(::grpc::ServerContext* /*context*/, const ::odds::OddsQueryRequest* /*request*/, ::odds::OddsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetOdds(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -304,7 +421,7 @@ class OddsEngine final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status UpdateMatchState(::grpc::ServerContext* /*context*/, const ::odds::BallUpdate* /*request*/, ::odds::OddsResponse* /*response*/) override {
+    ::grpc::Status UpdateMatchState(::grpc::ServerContext* /*context*/, const ::odds::MatchStateRequest* /*request*/, ::odds::OddsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -312,25 +429,47 @@ class OddsEngine final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_PlacedBet : public BaseClass {
+  class WithRawCallbackMethod_PlaceBet : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_PlacedBet() {
+    WithRawCallbackMethod_PlaceBet() {
       ::grpc::Service::MarkMethodRawCallback(1,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->PlacedBet(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->PlaceBet(context, request, response); }));
     }
-    ~WithRawCallbackMethod_PlacedBet() override {
+    ~WithRawCallbackMethod_PlaceBet() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status PlacedBet(::grpc::ServerContext* /*context*/, const ::odds::Bet* /*request*/, ::odds::OddsResponse* /*response*/) override {
+    ::grpc::Status PlaceBet(::grpc::ServerContext* /*context*/, const ::odds::BetRequest* /*request*/, ::odds::OddsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* PlacedBet(
+    virtual ::grpc::ServerUnaryReactor* PlaceBet(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_GetOdds : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_GetOdds() {
+      ::grpc::Service::MarkMethodRawCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetOdds(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_GetOdds() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetOdds(::grpc::ServerContext* /*context*/, const ::odds::OddsQueryRequest* /*request*/, ::odds::OddsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* GetOdds(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -341,10 +480,10 @@ class OddsEngine final {
     WithStreamedUnaryMethod_UpdateMatchState() {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::odds::BallUpdate, ::odds::OddsResponse>(
+          ::odds::MatchStateRequest, ::odds::OddsResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::odds::BallUpdate, ::odds::OddsResponse>* streamer) {
+                     ::odds::MatchStateRequest, ::odds::OddsResponse>* streamer) {
                        return this->StreamedUpdateMatchState(context,
                          streamer);
                   }));
@@ -353,43 +492,70 @@ class OddsEngine final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status UpdateMatchState(::grpc::ServerContext* /*context*/, const ::odds::BallUpdate* /*request*/, ::odds::OddsResponse* /*response*/) override {
+    ::grpc::Status UpdateMatchState(::grpc::ServerContext* /*context*/, const ::odds::MatchStateRequest* /*request*/, ::odds::OddsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedUpdateMatchState(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::odds::BallUpdate,::odds::OddsResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedUpdateMatchState(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::odds::MatchStateRequest,::odds::OddsResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_PlacedBet : public BaseClass {
+  class WithStreamedUnaryMethod_PlaceBet : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithStreamedUnaryMethod_PlacedBet() {
+    WithStreamedUnaryMethod_PlaceBet() {
       ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::odds::Bet, ::odds::OddsResponse>(
+          ::odds::BetRequest, ::odds::OddsResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::odds::Bet, ::odds::OddsResponse>* streamer) {
-                       return this->StreamedPlacedBet(context,
+                     ::odds::BetRequest, ::odds::OddsResponse>* streamer) {
+                       return this->StreamedPlaceBet(context,
                          streamer);
                   }));
     }
-    ~WithStreamedUnaryMethod_PlacedBet() override {
+    ~WithStreamedUnaryMethod_PlaceBet() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status PlacedBet(::grpc::ServerContext* /*context*/, const ::odds::Bet* /*request*/, ::odds::OddsResponse* /*response*/) override {
+    ::grpc::Status PlaceBet(::grpc::ServerContext* /*context*/, const ::odds::BetRequest* /*request*/, ::odds::OddsResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedPlacedBet(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::odds::Bet,::odds::OddsResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedPlaceBet(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::odds::BetRequest,::odds::OddsResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_UpdateMatchState<WithStreamedUnaryMethod_PlacedBet<Service > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_GetOdds : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetOdds() {
+      ::grpc::Service::MarkMethodStreamed(2,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::odds::OddsQueryRequest, ::odds::OddsResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::odds::OddsQueryRequest, ::odds::OddsResponse>* streamer) {
+                       return this->StreamedGetOdds(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_GetOdds() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetOdds(::grpc::ServerContext* /*context*/, const ::odds::OddsQueryRequest* /*request*/, ::odds::OddsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetOdds(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::odds::OddsQueryRequest,::odds::OddsResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_UpdateMatchState<WithStreamedUnaryMethod_PlaceBet<WithStreamedUnaryMethod_GetOdds<Service > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_UpdateMatchState<WithStreamedUnaryMethod_PlacedBet<Service > > StreamedService;
+  typedef WithStreamedUnaryMethod_UpdateMatchState<WithStreamedUnaryMethod_PlaceBet<WithStreamedUnaryMethod_GetOdds<Service > > > StreamedService;
 };
 
 }  // namespace odds

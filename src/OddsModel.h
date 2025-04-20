@@ -1,14 +1,14 @@
 #pragma once
+
 #include "MatchState.h"
+#include "utils/ExposureTracker.h"
 
 class OddsModel {
 public:
-    static OddsModel& getInstance() {
-        static OddsModel instance;
-        return instance;
-    }
+    static OddsModel& getInstance();
 
-    double computeProbability(const MatchState& match) const;
+    double computeProbability(const MatchState& state) const;
+    double applyExposureAdjustment(double baseProbability, const ExposureState& exposure) const;
 
 private:
     OddsModel() = default;

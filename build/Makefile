@@ -177,6 +177,54 @@ proto/odds_engine.pb.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/odds_test.dir/build.make CMakeFiles/odds_test.dir/proto/odds_engine.pb.cc.s
 .PHONY : proto/odds_engine.pb.cc.s
 
+src/GameContext.o: src/GameContext.cpp.o
+.PHONY : src/GameContext.o
+
+# target to build an object file
+src/GameContext.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/odds_test.dir/build.make CMakeFiles/odds_test.dir/src/GameContext.cpp.o
+.PHONY : src/GameContext.cpp.o
+
+src/GameContext.i: src/GameContext.cpp.i
+.PHONY : src/GameContext.i
+
+# target to preprocess a source file
+src/GameContext.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/odds_test.dir/build.make CMakeFiles/odds_test.dir/src/GameContext.cpp.i
+.PHONY : src/GameContext.cpp.i
+
+src/GameContext.s: src/GameContext.cpp.s
+.PHONY : src/GameContext.s
+
+# target to generate assembly for a file
+src/GameContext.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/odds_test.dir/build.make CMakeFiles/odds_test.dir/src/GameContext.cpp.s
+.PHONY : src/GameContext.cpp.s
+
+src/GameManager.o: src/GameManager.cpp.o
+.PHONY : src/GameManager.o
+
+# target to build an object file
+src/GameManager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/odds_test.dir/build.make CMakeFiles/odds_test.dir/src/GameManager.cpp.o
+.PHONY : src/GameManager.cpp.o
+
+src/GameManager.i: src/GameManager.cpp.i
+.PHONY : src/GameManager.i
+
+# target to preprocess a source file
+src/GameManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/odds_test.dir/build.make CMakeFiles/odds_test.dir/src/GameManager.cpp.i
+.PHONY : src/GameManager.cpp.i
+
+src/GameManager.s: src/GameManager.cpp.s
+.PHONY : src/GameManager.s
+
+# target to generate assembly for a file
+src/GameManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/odds_test.dir/build.make CMakeFiles/odds_test.dir/src/GameManager.cpp.s
+.PHONY : src/GameManager.cpp.s
+
 src/MatchState.o: src/MatchState.cpp.o
 .PHONY : src/MatchState.o
 
@@ -273,6 +321,30 @@ src/utils/EventProcessor.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/odds_test.dir/build.make CMakeFiles/odds_test.dir/src/utils/EventProcessor.cpp.s
 .PHONY : src/utils/EventProcessor.cpp.s
 
+src/utils/ExposureTracker.o: src/utils/ExposureTracker.cpp.o
+.PHONY : src/utils/ExposureTracker.o
+
+# target to build an object file
+src/utils/ExposureTracker.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/odds_test.dir/build.make CMakeFiles/odds_test.dir/src/utils/ExposureTracker.cpp.o
+.PHONY : src/utils/ExposureTracker.cpp.o
+
+src/utils/ExposureTracker.i: src/utils/ExposureTracker.cpp.i
+.PHONY : src/utils/ExposureTracker.i
+
+# target to preprocess a source file
+src/utils/ExposureTracker.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/odds_test.dir/build.make CMakeFiles/odds_test.dir/src/utils/ExposureTracker.cpp.i
+.PHONY : src/utils/ExposureTracker.cpp.i
+
+src/utils/ExposureTracker.s: src/utils/ExposureTracker.cpp.s
+.PHONY : src/utils/ExposureTracker.s
+
+# target to generate assembly for a file
+src/utils/ExposureTracker.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/odds_test.dir/build.make CMakeFiles/odds_test.dir/src/utils/ExposureTracker.cpp.s
+.PHONY : src/utils/ExposureTracker.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -288,6 +360,12 @@ help:
 	@echo "... proto/odds_engine.pb.o"
 	@echo "... proto/odds_engine.pb.i"
 	@echo "... proto/odds_engine.pb.s"
+	@echo "... src/GameContext.o"
+	@echo "... src/GameContext.i"
+	@echo "... src/GameContext.s"
+	@echo "... src/GameManager.o"
+	@echo "... src/GameManager.i"
+	@echo "... src/GameManager.s"
 	@echo "... src/MatchState.o"
 	@echo "... src/MatchState.i"
 	@echo "... src/MatchState.s"
@@ -300,6 +378,9 @@ help:
 	@echo "... src/utils/EventProcessor.o"
 	@echo "... src/utils/EventProcessor.i"
 	@echo "... src/utils/EventProcessor.s"
+	@echo "... src/utils/ExposureTracker.o"
+	@echo "... src/utils/ExposureTracker.i"
+	@echo "... src/utils/ExposureTracker.s"
 .PHONY : help
 
 
