@@ -3,43 +3,55 @@
 #include "../OddsModel.h"
 #include <chrono>
 
-void processMatchUpdate(const std::string& gameId, const odds::BallUpdate& req) {
+void processMatchUpdate(const std::string& gameId, const std::string& market, const odds::BallUpdate& req) {
     auto game = GameManager::getInstance().getOrCreateGame(gameId);
-    std::lock_guard<std::mutex> lock(game->mtx);
+    auto marketCtx = game->getOrCreateMarket(market);
+    std::lock_guard<std::mutex> lock(marketCtx->mtx);
 
-    game->state.inningsNumber = req.innings();
-    game->state.target = req.targetscore();
-    game->state.runs = req.currentscore();
-    game->state.wickets = 10 - req.wicketsleft();
-    game->state.ballsRemaining = req.ballsremaining();
-    game->state.recentRuns = std::deque<int>(req.recentruns().begin(), req.recentruns().end());
-    game->state.bowlerImpact.clear();
+    marketCtx->state.inningsNumber = req.innings();
+    marketCtx->state.target = req.targetscore();
+    marketCtx->state.runs = req.currentscore();
+    marketCtx->state.wickets = 10 - req.wicketsleft();
+    marketCtx->state.ballsRemaining = req.ballsremaining();
+    marketCtx->state.recentRuns = std::deque<int>(req.recentruns().begin(), req.recentruns().end());
 
+    marketCtx->state.bowlerImpact.clear();
     for (const auto& entry : req.bowlerimpact()) {
-        game->state.bowlerImpact[entry.first] = entry.second;
+        marketCtx->state.bowlerImpact[entry.first] = entry.second;
     }
-    game->state.pitchModifier = req.pitchmodifier();
 
-    double prob = OddsModel::getInstance().computeProbability(game->state);
-    std::cout << "[MatchUpdate] Game: " << gameId << " updated. Base odds: " << prob << "\n";
+    marketCtx->state.pitchModifier = req.pitchmodifier();
+
+    double prob = OddsModel::getInstance().computeProbability(marketCtx->state);
+
+    if (!marketCtx->initialOdds.has_value()) {
+        marketCtx->initialOdds = std::make_pair(prob, 1.0 - prob);
+        std::cout << "[InitOdds] Game: " << gameId << ", Market: " << market
+                  << " initialized. Odds (A: " << prob << ", B: " << 1.0 - prob << ")\n";
+    }
+
+    std::cout << "[MatchUpdate] Game: " << gameId << ", Market: " << market
+              << " updated. Base odds: " << prob << "\n";
 }
 
-void flushExposure(const std::string& gameId) {
+void flushExposure(const std::string& gameId, const std::string& market) {
     auto game = GameManager::getInstance().getOrCreateGame(gameId);
-    std::lock_guard<std::mutex> lock(game->mtx);
+    auto marketCtx = game->getOrCreateMarket(market);
+    std::lock_guard<std::mutex> lock(marketCtx->mtx);
 
-    game->globalExposure.teamAExposure = game->globalExposure.teamAExposure + game->batchExposure.teamAExposure.load();
-    game->globalExposure.teamBExposure = game->globalExposure.teamBExposure + game->batchExposure.teamBExposure.load();
+    marketCtx->globalExposure.teamAExposure = marketCtx->globalExposure.teamAExposure + marketCtx->batchExposure.teamAExposure.load();
+    marketCtx->globalExposure.teamBExposure = marketCtx->globalExposure.teamBExposure + marketCtx->batchExposure.teamBExposure.load();
 
-    double baseProb = OddsModel::getInstance().computeProbability(game->state);
-    double newOdds = OddsModel::getInstance().applyExposureAdjustment(baseProb, game->globalExposure);
+    double baseProb = OddsModel::getInstance().computeProbability(marketCtx->state);
+    double adjustedOdds = OddsModel::getInstance().applyExposureAdjustment(baseProb, marketCtx->globalExposure);
 
-    std::cout << "[Flush] Game: " << gameId << " new odds: " << newOdds << "\n";
+    std::cout << "[Flush] Game: " << gameId << ", Market: " << market << " new odds: " << adjustedOdds << "\n";
 }
 
 void eventLoop(ConcurrentQueue<Event>& queue, size_t batchSize = 1000, int flushIntervalMs = 50) {
+    const double MAX_EXPOSURE_PER_BATCH = 1000.0;
     auto lastFlushTime = std::chrono::steady_clock::now();
-    std::unordered_map<std::string, double> batchExposureCounter;
+    std::unordered_map<std::string, std::unordered_map<std::string, double>> exposureTracker;
 
     while (true) {
         Event event;
@@ -50,26 +62,36 @@ void eventLoop(ConcurrentQueue<Event>& queue, size_t batchSize = 1000, int flush
 
         if (gotEvent) {
             auto game = GameManager::getInstance().getOrCreateGame(event.gameId);
+            auto& market = event.market;
+
             switch (event.type) {
                 case EventType::BallUpdate:
-                    processMatchUpdate(event.gameId, event.matchUpdate);
+                    processMatchUpdate(event.gameId, market, event.matchUpdate);
                     break;
+
                 case EventType::Bet:
-                    game->batchExposure.applyBet(event.bet);
-                    batchExposureCounter[event.gameId] += event.bet.stake();
+                    game->getOrCreateMarket(market)->batchExposure.applyBet(event.bet);
+                    exposureTracker[event.gameId][market] += event.bet.stake();
                     break;
             }
         }
 
-        for (auto& pair : batchExposureCounter) {
-            if (pair.second >= 1000.0 || timeToFlush) {
-                flushExposure(pair.first);
-                GameManager::getInstance().getOrCreateGame(pair.first)->batchExposure.reset();
-                pair.second = 0.0;
+        for (auto& gameEntry : exposureTracker) {
+            for (auto& marketEntry : gameEntry.second) {
+                const std::string& gameId = gameEntry.first;
+                const std::string& market = marketEntry.first;
+
+                if (marketEntry.second >= MAX_EXPOSURE_PER_BATCH || timeToFlush) {
+                    flushExposure(gameId, market);
+                    GameManager::getInstance().getOrCreateGame(gameId)->getOrCreateMarket(market)->batchExposure.reset();
+                    marketEntry.second = 0.0;
+                }
             }
         }
 
-        if (timeToFlush) lastFlushTime = now;
+        if (timeToFlush) {
+            lastFlushTime = now;
+        }
 
         std::this_thread::sleep_for(std::chrono::milliseconds(1));
     }

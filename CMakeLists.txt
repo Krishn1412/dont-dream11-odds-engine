@@ -14,8 +14,8 @@ set(PROTO_SRCS
 
 set(SOURCE_FILES
     src/utils/ExposureTracker.cpp
-    src/GameManager.cpp
     src/GameContext.cpp
+    src/GameManager.cpp
     src/main.cpp
     src/utils/EventProcessor.cpp
     src/MatchState.cpp 

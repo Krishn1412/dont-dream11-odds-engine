@@ -6,27 +6,32 @@
 #include <iostream>
 #include <random>
 
-const std::string GAME_ID = "game_1";
-const std::string MARKET = "match_winner";
+const std::vector<std::string> GAME_IDS = {"game_1", "game_2"};
+const std::vector<std::string> MARKETS = {"match_winner", "runs_over", "first_innings_total"};
 
-void initializeGameAndMarket() {
+void initializeGamesAndMarkets() {
     auto& gm = GameManager::getInstance();
-    auto game = gm.getOrCreateGame(GAME_ID);
-    auto ctx = game->getOrCreateMarket(MARKET);
-    std::lock_guard<std::mutex> lock(ctx->mtx);
-    ctx->initialOdds = std::make_pair(0.55, 0.45);
-    if (ctx->initialOdds.has_value()) {
-        std::cout << "[Init] Game: " << GAME_ID << ", Market: " << MARKET
-                  << ", Initial Odds (A: " << ctx->initialOdds->first
-                  << ", B: " << ctx->initialOdds->second << ")\n";
+
+    for (const auto& gameId : GAME_IDS) {
+        auto game = gm.getOrCreateGame(gameId);
+        for (const auto& market : MARKETS) {
+            auto ctx = game->getOrCreateMarket(market);
+            std::lock_guard<std::mutex> lock(ctx->mtx);
+            ctx->initialOdds =  std::make_pair(0.55, 0.45);
+            if (ctx->initialOdds.has_value()) {
+                std::cout << "[Init] Game: " << gameId << ", Market: " << market
+                        << ", Initial Odds (A: " << ctx->initialOdds->first
+                        << ", B: " << ctx->initialOdds->second << ")\n";
+            }
+        }
     }
 }
 
 int main() {
     ConcurrentQueue<Event> queue;
-    startEventProcessor(queue, 2);
+    startEventProcessor(queue, 4);
 
-    initializeGameAndMarket();
+    initializeGamesAndMarkets();
 
     std::random_device rd;
     std::mt19937 gen(rd());
@@ -34,10 +39,15 @@ int main() {
     std::uniform_real_distribution<> stakeDist(50.0, 150.0);
     std::uniform_real_distribution<> oddsDist(1.2, 3.0);
     std::bernoulli_distribution teamDist(0.5);
+    std::uniform_int_distribution<> gameChooser(0, GAME_IDS.size() - 1);
+    std::uniform_int_distribution<> marketChooser(0, MARKETS.size() - 1);
 
-    // BallUpdate simulation
+    // Simulated BallUpdate generator thread
     std::thread([&]() {
         while (true) {
+            std::string gameId = GAME_IDS[gameChooser(gen)];
+            std::string market = MARKETS[marketChooser(gen)];
+
             int score = 100 + rand() % 30;
             int ballsRemaining = 60 - (rand() % 12);
             int wickets = 8 - (rand() % 3);
@@ -57,8 +67,8 @@ int main() {
 
             Event ev;
             ev.type = EventType::BallUpdate;
-            ev.gameId = GAME_ID;
-            ev.market = MARKET;
+            ev.gameId = gameId;
+            ev.market = market;
             ev.matchUpdate = update;
 
             queue.push(ev);
@@ -66,20 +76,23 @@ int main() {
         }
     }).detach();
 
-    // Bet simulation
+    // Simulated Bet generator thread
     std::thread([&]() {
         for (int i = 0; i < 100000; ++i) {
+            std::string gameId = GAME_IDS[gameChooser(gen)];
+            std::string market = MARKETS[marketChooser(gen)];
+
             odds::Bet bet;
             bet.set_userid("user_" + std::to_string(i));
             bet.set_stake(stakeDist(gen));
-            bet.set_market(MARKET);
+            bet.set_market(market);
             bet.set_odds(oddsDist(gen));
             bet.set_teama(teamDist(gen));
 
             Event ev;
             ev.type = EventType::Bet;
-            ev.gameId = GAME_ID;
-            ev.market = MARKET;
+            ev.gameId = gameId;
+            ev.market = market;
             ev.bet = bet;
 
             queue.push(ev);
@@ -91,7 +104,7 @@ int main() {
         }
     }).detach();
 
-    std::cout << "[Main] Test simulation running for game_1, market match_winner...\n";
+    std::cout << "[Main] Test simulation running for multiple games and markets...\n";
 
     while (true) {
         std::this_thread::sleep_for(std::chrono::seconds(10));
@@ -99,3 +112,5 @@ int main() {
 
     return 0;
 }
+
+//  clang++ -std=c++17 -pthread -I/opt/homebrew/opt/protobuf/include -I/opt/homebrew/include -I/opt/homebrew/opt/abseil/include src/main.cpp  src/utils/EventProcessor.cpp proto/odds_engine.pb.cc  proto/odds_engine.grpc.pb.cc  -lprotobuf -lgrpc++ -lgrpc -o odds_test

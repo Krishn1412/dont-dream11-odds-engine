@@ -25,6 +25,7 @@ static const char* OddsEngine_method_names[] = {
   "/odds.OddsEngine/UpdateMatchState",
   "/odds.OddsEngine/PlaceBet",
   "/odds.OddsEngine/GetOdds",
+  "/odds.OddsEngine/SetInitialOdds",
 };
 
 std::unique_ptr< OddsEngine::Stub> OddsEngine::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -37,6 +38,7 @@ OddsEngine::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel
   : channel_(channel), rpcmethod_UpdateMatchState_(OddsEngine_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_PlaceBet_(OddsEngine_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetOdds_(OddsEngine_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetInitialOdds_(OddsEngine_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status OddsEngine::Stub::UpdateMatchState(::grpc::ClientContext* context, const ::odds::MatchStateRequest& request, ::odds::OddsResponse* response) {
@@ -108,6 +110,29 @@ void OddsEngine::Stub::async::GetOdds(::grpc::ClientContext* context, const ::od
   return result;
 }
 
+::grpc::Status OddsEngine::Stub::SetInitialOdds(::grpc::ClientContext* context, const ::odds::SetInitialOddsRequest& request, ::odds::Ack* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::odds::SetInitialOddsRequest, ::odds::Ack, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetInitialOdds_, context, request, response);
+}
+
+void OddsEngine::Stub::async::SetInitialOdds(::grpc::ClientContext* context, const ::odds::SetInitialOddsRequest* request, ::odds::Ack* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::odds::SetInitialOddsRequest, ::odds::Ack, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetInitialOdds_, context, request, response, std::move(f));
+}
+
+void OddsEngine::Stub::async::SetInitialOdds(::grpc::ClientContext* context, const ::odds::SetInitialOddsRequest* request, ::odds::Ack* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetInitialOdds_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::odds::Ack>* OddsEngine::Stub::PrepareAsyncSetInitialOddsRaw(::grpc::ClientContext* context, const ::odds::SetInitialOddsRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::odds::Ack, ::odds::SetInitialOddsRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetInitialOdds_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::odds::Ack>* OddsEngine::Stub::AsyncSetInitialOddsRaw(::grpc::ClientContext* context, const ::odds::SetInitialOddsRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetInitialOddsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 OddsEngine::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       OddsEngine_method_names[0],
@@ -139,6 +164,16 @@ OddsEngine::Service::Service() {
              ::odds::OddsResponse* resp) {
                return service->GetOdds(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      OddsEngine_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< OddsEngine::Service, ::odds::SetInitialOddsRequest, ::odds::Ack, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](OddsEngine::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::odds::SetInitialOddsRequest* req,
+             ::odds::Ack* resp) {
+               return service->SetInitialOdds(ctx, req, resp);
+             }, this)));
 }
 
 OddsEngine::Service::~Service() {
@@ -159,6 +194,13 @@ OddsEngine::Service::~Service() {
 }
 
 ::grpc::Status OddsEngine::Service::GetOdds(::grpc::ServerContext* context, const ::odds::OddsQueryRequest* request, ::odds::OddsResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status OddsEngine::Service::SetInitialOdds(::grpc::ServerContext* context, const ::odds::SetInitialOddsRequest* request, ::odds::Ack* response) {
   (void) context;
   (void) request;
   (void) response;
