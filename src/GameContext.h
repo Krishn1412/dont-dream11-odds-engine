@@ -6,7 +6,6 @@
 
 class GameContext {
 public:
-    // Retrieves an existing market or creates a new one if not present
     std::shared_ptr<MarketContext> getOrCreateMarket(const std::string& marketName);
 
 private:

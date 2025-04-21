@@ -7,7 +7,7 @@ class OddsModel {
 public:
     static OddsModel& getInstance();
 
-    double computeProbability(const MatchState& state) const;
+    double computeProbability(const MatchState& match, double lastBaseProb) const;
     double applyExposureAdjustment(double baseProbability, const ExposureState& exposure) const;
 
 private:

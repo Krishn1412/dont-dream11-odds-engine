@@ -7,7 +7,7 @@ void processMatchUpdate(const std::string& gameId, const std::string& market, co
     auto game = GameManager::getInstance().getOrCreateGame(gameId);
     auto marketCtx = game->getOrCreateMarket(market);
     std::lock_guard<std::mutex> lock(marketCtx->mtx);
-
+    // std::cout<<"test prev once $$$$$$ "<<marketCtx->lastComputedProbability<<"\n";
     marketCtx->state.inningsNumber = req.innings();
     marketCtx->state.target = req.targetscore();
     marketCtx->state.runs = req.currentscore();
@@ -22,13 +22,8 @@ void processMatchUpdate(const std::string& gameId, const std::string& market, co
 
     marketCtx->state.pitchModifier = req.pitchmodifier();
 
-    double prob = OddsModel::getInstance().computeProbability(marketCtx->state);
-
-    if (!marketCtx->initialOdds.has_value()) {
-        marketCtx->initialOdds = std::make_pair(prob, 1.0 - prob);
-        std::cout << "[InitOdds] Game: " << gameId << ", Market: " << market
-                  << " initialized. Odds (A: " << prob << ", B: " << 1.0 - prob << ")\n";
-    }
+    double prob = OddsModel::getInstance().computeProbability(marketCtx->state, marketCtx->lastComputedProbability);
+    marketCtx->lastComputedProbability = prob;
 
     std::cout << "[MatchUpdate] Game: " << gameId << ", Market: " << market
               << " updated. Base odds: " << prob << "\n";
@@ -42,10 +37,12 @@ void flushExposure(const std::string& gameId, const std::string& market) {
     marketCtx->globalExposure.teamAExposure = marketCtx->globalExposure.teamAExposure + marketCtx->batchExposure.teamAExposure.load();
     marketCtx->globalExposure.teamBExposure = marketCtx->globalExposure.teamBExposure + marketCtx->batchExposure.teamBExposure.load();
 
-    double baseProb = OddsModel::getInstance().computeProbability(marketCtx->state);
-    double adjustedOdds = OddsModel::getInstance().applyExposureAdjustment(baseProb, marketCtx->globalExposure);
+    double adjustedOdds = OddsModel::getInstance().applyExposureAdjustment(
+        marketCtx->lastComputedProbability, marketCtx->globalExposure);
 
-    std::cout << "[Flush] Game: " << gameId << ", Market: " << market << " new odds: " << adjustedOdds << "\n";
+    marketCtx->lastComputedProbability = adjustedOdds;
+    std::cout << "[Flush] Game: " << gameId << ", Market: " << market
+              << " new odds: " << adjustedOdds << "\n";
 }
 
 void eventLoop(ConcurrentQueue<Event>& queue, size_t batchSize = 1000, int flushIntervalMs = 50) {

@@ -14,12 +14,9 @@ void initializeGameAndMarket() {
     auto game = gm.getOrCreateGame(GAME_ID);
     auto ctx = game->getOrCreateMarket(MARKET);
     std::lock_guard<std::mutex> lock(ctx->mtx);
-    ctx->initialOdds = std::make_pair(0.55, 0.45);
-    if (ctx->initialOdds.has_value()) {
-        std::cout << "[Init] Game: " << GAME_ID << ", Market: " << MARKET
-                  << ", Initial Odds (A: " << ctx->initialOdds->first
-                  << ", B: " << ctx->initialOdds->second << ")\n";
-    }
+    ctx->lastComputedProbability = 0.55;
+    std::cout << "[Init] Game: " << GAME_ID << ", Market: " << MARKET
+                << ", Initial Odds " << ctx->lastComputedProbability <<"\n";
 }
 
 int main() {

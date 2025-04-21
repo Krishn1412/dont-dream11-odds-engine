@@ -7,9 +7,7 @@ OddsModel& OddsModel::getInstance() {
     return instance;
 }
 
-double OddsModel::computeProbability(const MatchState& match) const {
-    // std::scoped_lock lock(match.oddsMutex);  // Safe if used across threads
-
+double OddsModel::computeProbability(const MatchState& match, double lastBaseProb) const {
     if (match.getRemainingBalls() <= 0 || match.wickets >= 10) {
         return 0.01;
     }
@@ -20,7 +18,6 @@ double OddsModel::computeProbability(const MatchState& match) const {
     double wicketFactor = match.getWicketFactor();
     double pitchMod = match.pitchModifier;
 
-    // Pressure = (runRate - required) normalized
     double pressure = (runRate - requiredRate) / std::max(requiredRate, 1.0);
 
     double baseProb = 0.5;
@@ -29,8 +26,14 @@ double OddsModel::computeProbability(const MatchState& match) const {
     baseProb += pitchMod * 0.05;
     baseProb *= wicketFactor;
 
-    return std::clamp(baseProb, 0.01, 0.99);
+    baseProb = std::clamp(baseProb, 0.01, 0.99);
+
+    double smoothingFactor = 0.7;  // Higher = more inertia
+    double smoothedProb = lastBaseProb * smoothingFactor + baseProb * (1.0 - smoothingFactor);
+
+    return std::clamp(smoothedProb, 0.01, 0.99);
 }
+
 
 double OddsModel::applyExposureAdjustment(double baseProb, const ExposureState& exposure) const {
     double teamA = exposure.teamAExposure.load();
