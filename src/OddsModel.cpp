@@ -18,6 +18,14 @@ double OddsModel::computeProbability(const MatchState& match, double lastBasePro
     double wicketFactor = match.getWicketFactor();
     double pitchMod = match.pitchModifier;
 
+    if (requiredRate == -1){
+        // First Innings
+        
+    }
+    else{
+        // Second Innings
+
+    }
     double pressure = (runRate - requiredRate) / std::max(requiredRate, 1.0);
 
     double baseProb = 0.5;

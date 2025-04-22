@@ -3,7 +3,6 @@
 #include <unordered_map>
 #include <mutex>
 #include <string>
-#include "BallUpdate.h"
 
 struct MatchState {
     int inningsNumber = 1;
@@ -24,6 +23,4 @@ struct MatchState {
     double getRequiredRunRate() const;
     double getMomentum() const;
     double getWicketFactor() const;
-
-    void applyBallUpdate(const BallUpdate& update);
 };
