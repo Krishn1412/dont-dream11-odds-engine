@@ -35,8 +35,15 @@ message BallUpdate {
   int32 wicketsLeft = 4;
   int32 ballsRemaining = 5;
   repeated int32 recentRuns = 6;
-  map<string, double> bowlerImpact = 7;
-  double pitchModifier = 8;
+  string striker = 7;
+  string nonStriker = 8;
+  double pitchModifier = 9;
+  bool isWicket = 10;
+  bool isDot = 11;
+  bool isExtra = 12;
+  bool isBoundary = 13;
+  string bowler = 14;
+  int32 runs = 15;
 }
 
 // Update the match state for a specific game

@@ -28,9 +28,6 @@
 #include "google/protobuf/message_lite.h"
 #include "google/protobuf/repeated_field.h"  // IWYU pragma: export
 #include "google/protobuf/extension_set.h"  // IWYU pragma: export
-#include "google/protobuf/map.h"  // IWYU pragma: export
-#include "google/protobuf/map_entry.h"
-#include "google/protobuf/map_field_inl.h"
 #include "google/protobuf/unknown_field_set.h"
 // @@protoc_insertion_point(includes)
 
@@ -61,9 +58,6 @@ extern AckDefaultTypeInternal _Ack_default_instance_;
 class BallUpdate;
 struct BallUpdateDefaultTypeInternal;
 extern BallUpdateDefaultTypeInternal _BallUpdate_default_instance_;
-class BallUpdate_BowlerImpactEntry_DoNotUse;
-struct BallUpdate_BowlerImpactEntry_DoNotUseDefaultTypeInternal;
-extern BallUpdate_BowlerImpactEntry_DoNotUseDefaultTypeInternal _BallUpdate_BowlerImpactEntry_DoNotUse_default_instance_;
 class Bet;
 struct BetDefaultTypeInternal;
 extern BetDefaultTypeInternal _Bet_default_instance_;
@@ -392,7 +386,7 @@ class OddsResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const OddsResponse*>(
         &_OddsResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 8;
+  static constexpr int kIndexInFileMessages = 7;
   friend void swap(OddsResponse& a, OddsResponse& b) { a.Swap(&b); }
   inline void Swap(OddsResponse* other) {
     if (other == this) return;
@@ -582,7 +576,7 @@ class OddsQueryRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const OddsQueryRequest*>(
         &_OddsQueryRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 7;
+  static constexpr int kIndexInFileMessages = 6;
   friend void swap(OddsQueryRequest& a, OddsQueryRequest& b) { a.Swap(&b); }
   inline void Swap(OddsQueryRequest* other) {
     if (other == this) return;
@@ -796,7 +790,7 @@ class Bet final : public ::google::protobuf::Message
     return reinterpret_cast<const Bet*>(
         &_Bet_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 5;
+  static constexpr int kIndexInFileMessages = 4;
   friend void swap(Bet& a, Bet& b) { a.Swap(&b); }
   inline void Swap(Bet* other) {
     if (other == this) return;
@@ -987,42 +981,388 @@ class Bet final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
-class BallUpdate_BowlerImpactEntry_DoNotUse final
-    : public ::google::protobuf::internal::MapEntry<
-          std::string, double,
-          ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
-          ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE> {
+class BallUpdate final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:odds.BallUpdate) */ {
  public:
-  using SuperType = ::google::protobuf::internal::MapEntry<
-      std::string, double,
-      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
-      ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>;
-  BallUpdate_BowlerImpactEntry_DoNotUse();
+  inline BallUpdate() : BallUpdate(nullptr) {}
+  ~BallUpdate() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(BallUpdate* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(BallUpdate));
+  }
+#endif
+
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR BallUpdate_BowlerImpactEntry_DoNotUse(
+  explicit PROTOBUF_CONSTEXPR BallUpdate(
       ::google::protobuf::internal::ConstantInitialized);
-  explicit BallUpdate_BowlerImpactEntry_DoNotUse(::google::protobuf::Arena* arena);
-  static const BallUpdate_BowlerImpactEntry_DoNotUse* internal_default_instance() {
-    return reinterpret_cast<const BallUpdate_BowlerImpactEntry_DoNotUse*>(
-        &_BallUpdate_BowlerImpactEntry_DoNotUse_default_instance_);
+
+  inline BallUpdate(const BallUpdate& from) : BallUpdate(nullptr, from) {}
+  inline BallUpdate(BallUpdate&& from) noexcept
+      : BallUpdate(nullptr, std::move(from)) {}
+  inline BallUpdate& operator=(const BallUpdate& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline BallUpdate& operator=(BallUpdate&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
   }
 
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
 
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const BallUpdate& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const BallUpdate* internal_default_instance() {
+    return reinterpret_cast<const BallUpdate*>(
+        &_BallUpdate_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 2;
+  friend void swap(BallUpdate& a, BallUpdate& b) { a.Swap(&b); }
+  inline void Swap(BallUpdate* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(BallUpdate* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  BallUpdate* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<BallUpdate>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const BallUpdate& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const BallUpdate& from) { BallUpdate::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(BallUpdate* other);
  private:
-  friend class ::google::protobuf::MessageLite;
-  friend struct ::TableStruct_odds_5fengine_2eproto;
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "odds.BallUpdate"; }
 
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      1, 2, 0,
-      45, 2>
-      _table_;
-
+ protected:
+  explicit BallUpdate(::google::protobuf::Arena* arena);
+  BallUpdate(::google::protobuf::Arena* arena, const BallUpdate& from);
+  BallUpdate(::google::protobuf::Arena* arena, BallUpdate&& from) noexcept
+      : BallUpdate(arena) {
+    *this = ::std::move(from);
+  }
   const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
   static void* PlacementNew_(const void*, void* mem,
                              ::google::protobuf::Arena* arena);
   static constexpr auto InternalNewImpl_();
   static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kRecentRunsFieldNumber = 6,
+    kStrikerFieldNumber = 7,
+    kNonStrikerFieldNumber = 8,
+    kBowlerFieldNumber = 14,
+    kInningsFieldNumber = 1,
+    kTargetScoreFieldNumber = 2,
+    kCurrentScoreFieldNumber = 3,
+    kWicketsLeftFieldNumber = 4,
+    kPitchModifierFieldNumber = 9,
+    kBallsRemainingFieldNumber = 5,
+    kIsWicketFieldNumber = 10,
+    kIsDotFieldNumber = 11,
+    kIsExtraFieldNumber = 12,
+    kIsBoundaryFieldNumber = 13,
+    kRunsFieldNumber = 15,
+  };
+  // repeated int32 recentRuns = 6;
+  int recentruns_size() const;
+  private:
+  int _internal_recentruns_size() const;
+
+  public:
+  void clear_recentruns() ;
+  ::int32_t recentruns(int index) const;
+  void set_recentruns(int index, ::int32_t value);
+  void add_recentruns(::int32_t value);
+  const ::google::protobuf::RepeatedField<::int32_t>& recentruns() const;
+  ::google::protobuf::RepeatedField<::int32_t>* mutable_recentruns();
+
+  private:
+  const ::google::protobuf::RepeatedField<::int32_t>& _internal_recentruns() const;
+  ::google::protobuf::RepeatedField<::int32_t>* _internal_mutable_recentruns();
+
+  public:
+  // string striker = 7;
+  void clear_striker() ;
+  const std::string& striker() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_striker(Arg_&& arg, Args_... args);
+  std::string* mutable_striker();
+  PROTOBUF_NODISCARD std::string* release_striker();
+  void set_allocated_striker(std::string* value);
+
+  private:
+  const std::string& _internal_striker() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_striker(
+      const std::string& value);
+  std::string* _internal_mutable_striker();
+
+  public:
+  // string nonStriker = 8;
+  void clear_nonstriker() ;
+  const std::string& nonstriker() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_nonstriker(Arg_&& arg, Args_... args);
+  std::string* mutable_nonstriker();
+  PROTOBUF_NODISCARD std::string* release_nonstriker();
+  void set_allocated_nonstriker(std::string* value);
+
+  private:
+  const std::string& _internal_nonstriker() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_nonstriker(
+      const std::string& value);
+  std::string* _internal_mutable_nonstriker();
+
+  public:
+  // string bowler = 14;
+  void clear_bowler() ;
+  const std::string& bowler() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_bowler(Arg_&& arg, Args_... args);
+  std::string* mutable_bowler();
+  PROTOBUF_NODISCARD std::string* release_bowler();
+  void set_allocated_bowler(std::string* value);
+
+  private:
+  const std::string& _internal_bowler() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_bowler(
+      const std::string& value);
+  std::string* _internal_mutable_bowler();
+
+  public:
+  // int32 innings = 1;
+  void clear_innings() ;
+  ::int32_t innings() const;
+  void set_innings(::int32_t value);
+
+  private:
+  ::int32_t _internal_innings() const;
+  void _internal_set_innings(::int32_t value);
+
+  public:
+  // int32 targetScore = 2;
+  void clear_targetscore() ;
+  ::int32_t targetscore() const;
+  void set_targetscore(::int32_t value);
+
+  private:
+  ::int32_t _internal_targetscore() const;
+  void _internal_set_targetscore(::int32_t value);
+
+  public:
+  // int32 currentScore = 3;
+  void clear_currentscore() ;
+  ::int32_t currentscore() const;
+  void set_currentscore(::int32_t value);
+
+  private:
+  ::int32_t _internal_currentscore() const;
+  void _internal_set_currentscore(::int32_t value);
+
+  public:
+  // int32 wicketsLeft = 4;
+  void clear_wicketsleft() ;
+  ::int32_t wicketsleft() const;
+  void set_wicketsleft(::int32_t value);
+
+  private:
+  ::int32_t _internal_wicketsleft() const;
+  void _internal_set_wicketsleft(::int32_t value);
+
+  public:
+  // double pitchModifier = 9;
+  void clear_pitchmodifier() ;
+  double pitchmodifier() const;
+  void set_pitchmodifier(double value);
+
+  private:
+  double _internal_pitchmodifier() const;
+  void _internal_set_pitchmodifier(double value);
+
+  public:
+  // int32 ballsRemaining = 5;
+  void clear_ballsremaining() ;
+  ::int32_t ballsremaining() const;
+  void set_ballsremaining(::int32_t value);
+
+  private:
+  ::int32_t _internal_ballsremaining() const;
+  void _internal_set_ballsremaining(::int32_t value);
+
+  public:
+  // bool isWicket = 10;
+  void clear_iswicket() ;
+  bool iswicket() const;
+  void set_iswicket(bool value);
+
+  private:
+  bool _internal_iswicket() const;
+  void _internal_set_iswicket(bool value);
+
+  public:
+  // bool isDot = 11;
+  void clear_isdot() ;
+  bool isdot() const;
+  void set_isdot(bool value);
+
+  private:
+  bool _internal_isdot() const;
+  void _internal_set_isdot(bool value);
+
+  public:
+  // bool isExtra = 12;
+  void clear_isextra() ;
+  bool isextra() const;
+  void set_isextra(bool value);
+
+  private:
+  bool _internal_isextra() const;
+  void _internal_set_isextra(bool value);
+
+  public:
+  // bool isBoundary = 13;
+  void clear_isboundary() ;
+  bool isboundary() const;
+  void set_isboundary(bool value);
+
+  private:
+  bool _internal_isboundary() const;
+  void _internal_set_isboundary(bool value);
+
+  public:
+  // int32 runs = 15;
+  void clear_runs() ;
+  ::int32_t runs() const;
+  void set_runs(::int32_t value);
+
+  private:
+  ::int32_t _internal_runs() const;
+  void _internal_set_runs(::int32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:odds.BallUpdate)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      4, 15, 0,
+      55, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const BallUpdate& from_msg);
+    ::google::protobuf::RepeatedField<::int32_t> recentruns_;
+    ::google::protobuf::internal::CachedSize _recentruns_cached_byte_size_;
+    ::google::protobuf::internal::ArenaStringPtr striker_;
+    ::google::protobuf::internal::ArenaStringPtr nonstriker_;
+    ::google::protobuf::internal::ArenaStringPtr bowler_;
+    ::int32_t innings_;
+    ::int32_t targetscore_;
+    ::int32_t currentscore_;
+    ::int32_t wicketsleft_;
+    double pitchmodifier_;
+    ::int32_t ballsremaining_;
+    bool iswicket_;
+    bool isdot_;
+    bool isextra_;
+    bool isboundary_;
+    ::int32_t runs_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_odds_5fengine_2eproto;
 };
 // -------------------------------------------------------------------
 
@@ -1234,511 +1574,6 @@ class Ack final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
-class BetRequest final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:odds.BetRequest) */ {
- public:
-  inline BetRequest() : BetRequest(nullptr) {}
-  ~BetRequest() PROTOBUF_FINAL;
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(BetRequest* msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(BetRequest));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR BetRequest(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline BetRequest(const BetRequest& from) : BetRequest(nullptr, from) {}
-  inline BetRequest(BetRequest&& from) noexcept
-      : BetRequest(nullptr, std::move(from)) {}
-  inline BetRequest& operator=(const BetRequest& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline BetRequest& operator=(BetRequest&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const BetRequest& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const BetRequest* internal_default_instance() {
-    return reinterpret_cast<const BetRequest*>(
-        &_BetRequest_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 6;
-  friend void swap(BetRequest& a, BetRequest& b) { a.Swap(&b); }
-  inline void Swap(BetRequest* other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(BetRequest* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  BetRequest* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<BetRequest>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const BetRequest& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const BetRequest& from) { BetRequest::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(
-      ::google::protobuf::MessageLite& to_msg,
-      const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* _InternalSerialize(
-      const MessageLite& msg, ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  static void SharedDtor(MessageLite& self);
-  void InternalSwap(BetRequest* other);
- private:
-  template <typename T>
-  friend ::absl::string_view(
-      ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "odds.BetRequest"; }
-
- protected:
-  explicit BetRequest(::google::protobuf::Arena* arena);
-  BetRequest(::google::protobuf::Arena* arena, const BetRequest& from);
-  BetRequest(::google::protobuf::Arena* arena, BetRequest&& from) noexcept
-      : BetRequest(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
-  static void* PlacementNew_(const void*, void* mem,
-                             ::google::protobuf::Arena* arena);
-  static constexpr auto InternalNewImpl_();
-  static const ::google::protobuf::internal::ClassDataFull _class_data_;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kGameIdFieldNumber = 1,
-    kBetFieldNumber = 2,
-  };
-  // string gameId = 1;
-  void clear_gameid() ;
-  const std::string& gameid() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_gameid(Arg_&& arg, Args_... args);
-  std::string* mutable_gameid();
-  PROTOBUF_NODISCARD std::string* release_gameid();
-  void set_allocated_gameid(std::string* value);
-
-  private:
-  const std::string& _internal_gameid() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_gameid(
-      const std::string& value);
-  std::string* _internal_mutable_gameid();
-
-  public:
-  // .odds.Bet bet = 2;
-  bool has_bet() const;
-  void clear_bet() ;
-  const ::odds::Bet& bet() const;
-  PROTOBUF_NODISCARD ::odds::Bet* release_bet();
-  ::odds::Bet* mutable_bet();
-  void set_allocated_bet(::odds::Bet* value);
-  void unsafe_arena_set_allocated_bet(::odds::Bet* value);
-  ::odds::Bet* unsafe_arena_release_bet();
-
-  private:
-  const ::odds::Bet& _internal_bet() const;
-  ::odds::Bet* _internal_mutable_bet();
-
-  public:
-  // @@protoc_insertion_point(class_scope:odds.BetRequest)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      1, 2, 1,
-      30, 2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const BetRequest& from_msg);
-    ::google::protobuf::internal::HasBits<1> _has_bits_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::internal::ArenaStringPtr gameid_;
-    ::odds::Bet* bet_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_odds_5fengine_2eproto;
-};
-// -------------------------------------------------------------------
-
-class BallUpdate final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:odds.BallUpdate) */ {
- public:
-  inline BallUpdate() : BallUpdate(nullptr) {}
-  ~BallUpdate() PROTOBUF_FINAL;
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(BallUpdate* msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(BallUpdate));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR BallUpdate(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline BallUpdate(const BallUpdate& from) : BallUpdate(nullptr, from) {}
-  inline BallUpdate(BallUpdate&& from) noexcept
-      : BallUpdate(nullptr, std::move(from)) {}
-  inline BallUpdate& operator=(const BallUpdate& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline BallUpdate& operator=(BallUpdate&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const BallUpdate& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const BallUpdate* internal_default_instance() {
-    return reinterpret_cast<const BallUpdate*>(
-        &_BallUpdate_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 3;
-  friend void swap(BallUpdate& a, BallUpdate& b) { a.Swap(&b); }
-  inline void Swap(BallUpdate* other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(BallUpdate* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  BallUpdate* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<BallUpdate>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const BallUpdate& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const BallUpdate& from) { BallUpdate::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(
-      ::google::protobuf::MessageLite& to_msg,
-      const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* _InternalSerialize(
-      const MessageLite& msg, ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  static void SharedDtor(MessageLite& self);
-  void InternalSwap(BallUpdate* other);
- private:
-  template <typename T>
-  friend ::absl::string_view(
-      ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "odds.BallUpdate"; }
-
- protected:
-  explicit BallUpdate(::google::protobuf::Arena* arena);
-  BallUpdate(::google::protobuf::Arena* arena, const BallUpdate& from);
-  BallUpdate(::google::protobuf::Arena* arena, BallUpdate&& from) noexcept
-      : BallUpdate(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
-  static void* PlacementNew_(const void*, void* mem,
-                             ::google::protobuf::Arena* arena);
-  static constexpr auto InternalNewImpl_();
-  static const ::google::protobuf::internal::ClassDataFull _class_data_;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kRecentRunsFieldNumber = 6,
-    kBowlerImpactFieldNumber = 7,
-    kInningsFieldNumber = 1,
-    kTargetScoreFieldNumber = 2,
-    kCurrentScoreFieldNumber = 3,
-    kWicketsLeftFieldNumber = 4,
-    kPitchModifierFieldNumber = 8,
-    kBallsRemainingFieldNumber = 5,
-  };
-  // repeated int32 recentRuns = 6;
-  int recentruns_size() const;
-  private:
-  int _internal_recentruns_size() const;
-
-  public:
-  void clear_recentruns() ;
-  ::int32_t recentruns(int index) const;
-  void set_recentruns(int index, ::int32_t value);
-  void add_recentruns(::int32_t value);
-  const ::google::protobuf::RepeatedField<::int32_t>& recentruns() const;
-  ::google::protobuf::RepeatedField<::int32_t>* mutable_recentruns();
-
-  private:
-  const ::google::protobuf::RepeatedField<::int32_t>& _internal_recentruns() const;
-  ::google::protobuf::RepeatedField<::int32_t>* _internal_mutable_recentruns();
-
-  public:
-  // map<string, double> bowlerImpact = 7;
-  int bowlerimpact_size() const;
-  private:
-  int _internal_bowlerimpact_size() const;
-
-  public:
-  void clear_bowlerimpact() ;
-  const ::google::protobuf::Map<std::string, double>& bowlerimpact() const;
-  ::google::protobuf::Map<std::string, double>* mutable_bowlerimpact();
-
-  private:
-  const ::google::protobuf::Map<std::string, double>& _internal_bowlerimpact() const;
-  ::google::protobuf::Map<std::string, double>* _internal_mutable_bowlerimpact();
-
-  public:
-  // int32 innings = 1;
-  void clear_innings() ;
-  ::int32_t innings() const;
-  void set_innings(::int32_t value);
-
-  private:
-  ::int32_t _internal_innings() const;
-  void _internal_set_innings(::int32_t value);
-
-  public:
-  // int32 targetScore = 2;
-  void clear_targetscore() ;
-  ::int32_t targetscore() const;
-  void set_targetscore(::int32_t value);
-
-  private:
-  ::int32_t _internal_targetscore() const;
-  void _internal_set_targetscore(::int32_t value);
-
-  public:
-  // int32 currentScore = 3;
-  void clear_currentscore() ;
-  ::int32_t currentscore() const;
-  void set_currentscore(::int32_t value);
-
-  private:
-  ::int32_t _internal_currentscore() const;
-  void _internal_set_currentscore(::int32_t value);
-
-  public:
-  // int32 wicketsLeft = 4;
-  void clear_wicketsleft() ;
-  ::int32_t wicketsleft() const;
-  void set_wicketsleft(::int32_t value);
-
-  private:
-  ::int32_t _internal_wicketsleft() const;
-  void _internal_set_wicketsleft(::int32_t value);
-
-  public:
-  // double pitchModifier = 8;
-  void clear_pitchmodifier() ;
-  double pitchmodifier() const;
-  void set_pitchmodifier(double value);
-
-  private:
-  double _internal_pitchmodifier() const;
-  void _internal_set_pitchmodifier(double value);
-
-  public:
-  // int32 ballsRemaining = 5;
-  void clear_ballsremaining() ;
-  ::int32_t ballsremaining() const;
-  void set_ballsremaining(::int32_t value);
-
-  private:
-  ::int32_t _internal_ballsremaining() const;
-  void _internal_set_ballsremaining(::int32_t value);
-
-  public:
-  // @@protoc_insertion_point(class_scope:odds.BallUpdate)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      3, 8, 1,
-      44, 2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const BallUpdate& from_msg);
-    ::google::protobuf::RepeatedField<::int32_t> recentruns_;
-    ::google::protobuf::internal::CachedSize _recentruns_cached_byte_size_;
-    ::google::protobuf::internal::MapField<BallUpdate_BowlerImpactEntry_DoNotUse, std::string, double,
-                      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
-                      ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>
-        bowlerimpact_;
-    ::int32_t innings_;
-    ::int32_t targetscore_;
-    ::int32_t currentscore_;
-    ::int32_t wicketsleft_;
-    double pitchmodifier_;
-    ::int32_t ballsremaining_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_odds_5fengine_2eproto;
-};
-// -------------------------------------------------------------------
-
 class MatchStateRequest final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:odds.MatchStateRequest) */ {
  public:
@@ -1798,7 +1633,7 @@ class MatchStateRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const MatchStateRequest*>(
         &_MatchStateRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 4;
+  static constexpr int kIndexInFileMessages = 3;
   friend void swap(MatchStateRequest& a, MatchStateRequest& b) { a.Swap(&b); }
   inline void Swap(MatchStateRequest* other) {
     if (other == this) return;
@@ -1946,6 +1781,220 @@ class MatchStateRequest final : public ::google::protobuf::Message
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::internal::ArenaStringPtr gameid_;
     ::odds::BallUpdate* update_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_odds_5fengine_2eproto;
+};
+// -------------------------------------------------------------------
+
+class BetRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:odds.BetRequest) */ {
+ public:
+  inline BetRequest() : BetRequest(nullptr) {}
+  ~BetRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(BetRequest* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(BetRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR BetRequest(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline BetRequest(const BetRequest& from) : BetRequest(nullptr, from) {}
+  inline BetRequest(BetRequest&& from) noexcept
+      : BetRequest(nullptr, std::move(from)) {}
+  inline BetRequest& operator=(const BetRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline BetRequest& operator=(BetRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const BetRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const BetRequest* internal_default_instance() {
+    return reinterpret_cast<const BetRequest*>(
+        &_BetRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 5;
+  friend void swap(BetRequest& a, BetRequest& b) { a.Swap(&b); }
+  inline void Swap(BetRequest* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(BetRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  BetRequest* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<BetRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const BetRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const BetRequest& from) { BetRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(BetRequest* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "odds.BetRequest"; }
+
+ protected:
+  explicit BetRequest(::google::protobuf::Arena* arena);
+  BetRequest(::google::protobuf::Arena* arena, const BetRequest& from);
+  BetRequest(::google::protobuf::Arena* arena, BetRequest&& from) noexcept
+      : BetRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kGameIdFieldNumber = 1,
+    kBetFieldNumber = 2,
+  };
+  // string gameId = 1;
+  void clear_gameid() ;
+  const std::string& gameid() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_gameid(Arg_&& arg, Args_... args);
+  std::string* mutable_gameid();
+  PROTOBUF_NODISCARD std::string* release_gameid();
+  void set_allocated_gameid(std::string* value);
+
+  private:
+  const std::string& _internal_gameid() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_gameid(
+      const std::string& value);
+  std::string* _internal_mutable_gameid();
+
+  public:
+  // .odds.Bet bet = 2;
+  bool has_bet() const;
+  void clear_bet() ;
+  const ::odds::Bet& bet() const;
+  PROTOBUF_NODISCARD ::odds::Bet* release_bet();
+  ::odds::Bet* mutable_bet();
+  void set_allocated_bet(::odds::Bet* value);
+  void unsafe_arena_set_allocated_bet(::odds::Bet* value);
+  ::odds::Bet* unsafe_arena_release_bet();
+
+  private:
+  const ::odds::Bet& _internal_bet() const;
+  ::odds::Bet* _internal_mutable_bet();
+
+  public:
+  // @@protoc_insertion_point(class_scope:odds.BetRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 1,
+      30, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const BetRequest& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr gameid_;
+    ::odds::Bet* bet_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -2184,8 +2233,6 @@ inline void Ack::set_allocated_message(std::string* value) {
 
 // -------------------------------------------------------------------
 
-// -------------------------------------------------------------------
-
 // BallUpdate
 
 // int32 innings = 1;
@@ -2343,35 +2390,103 @@ inline ::google::protobuf::RepeatedField<::int32_t>* BallUpdate::_internal_mutab
   return &_impl_.recentruns_;
 }
 
-// map<string, double> bowlerImpact = 7;
-inline int BallUpdate::_internal_bowlerimpact_size() const {
-  return _internal_bowlerimpact().size();
-}
-inline int BallUpdate::bowlerimpact_size() const {
-  return _internal_bowlerimpact_size();
-}
-inline void BallUpdate::clear_bowlerimpact() {
+// string striker = 7;
+inline void BallUpdate::clear_striker() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.bowlerimpact_.Clear();
+  _impl_.striker_.ClearToEmpty();
 }
-inline const ::google::protobuf::Map<std::string, double>& BallUpdate::_internal_bowlerimpact() const {
+inline const std::string& BallUpdate::striker() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:odds.BallUpdate.striker)
+  return _internal_striker();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void BallUpdate::set_striker(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.striker_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:odds.BallUpdate.striker)
+}
+inline std::string* BallUpdate::mutable_striker() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_striker();
+  // @@protoc_insertion_point(field_mutable:odds.BallUpdate.striker)
+  return _s;
+}
+inline const std::string& BallUpdate::_internal_striker() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.bowlerimpact_.GetMap();
+  return _impl_.striker_.Get();
 }
-inline const ::google::protobuf::Map<std::string, double>& BallUpdate::bowlerimpact() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_map:odds.BallUpdate.bowlerImpact)
-  return _internal_bowlerimpact();
-}
-inline ::google::protobuf::Map<std::string, double>* BallUpdate::_internal_mutable_bowlerimpact() {
+inline void BallUpdate::_internal_set_striker(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.bowlerimpact_.MutableMap();
+  _impl_.striker_.Set(value, GetArena());
 }
-inline ::google::protobuf::Map<std::string, double>* BallUpdate::mutable_bowlerimpact() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_map:odds.BallUpdate.bowlerImpact)
-  return _internal_mutable_bowlerimpact();
+inline std::string* BallUpdate::_internal_mutable_striker() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.striker_.Mutable( GetArena());
+}
+inline std::string* BallUpdate::release_striker() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:odds.BallUpdate.striker)
+  return _impl_.striker_.Release();
+}
+inline void BallUpdate::set_allocated_striker(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.striker_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.striker_.IsDefault()) {
+    _impl_.striker_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:odds.BallUpdate.striker)
 }
 
-// double pitchModifier = 8;
+// string nonStriker = 8;
+inline void BallUpdate::clear_nonstriker() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.nonstriker_.ClearToEmpty();
+}
+inline const std::string& BallUpdate::nonstriker() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:odds.BallUpdate.nonStriker)
+  return _internal_nonstriker();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void BallUpdate::set_nonstriker(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.nonstriker_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:odds.BallUpdate.nonStriker)
+}
+inline std::string* BallUpdate::mutable_nonstriker() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_nonstriker();
+  // @@protoc_insertion_point(field_mutable:odds.BallUpdate.nonStriker)
+  return _s;
+}
+inline const std::string& BallUpdate::_internal_nonstriker() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.nonstriker_.Get();
+}
+inline void BallUpdate::_internal_set_nonstriker(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.nonstriker_.Set(value, GetArena());
+}
+inline std::string* BallUpdate::_internal_mutable_nonstriker() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.nonstriker_.Mutable( GetArena());
+}
+inline std::string* BallUpdate::release_nonstriker() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:odds.BallUpdate.nonStriker)
+  return _impl_.nonstriker_.Release();
+}
+inline void BallUpdate::set_allocated_nonstriker(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.nonstriker_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.nonstriker_.IsDefault()) {
+    _impl_.nonstriker_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:odds.BallUpdate.nonStriker)
+}
+
+// double pitchModifier = 9;
 inline void BallUpdate::clear_pitchmodifier() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.pitchmodifier_ = 0;
@@ -2391,6 +2506,164 @@ inline double BallUpdate::_internal_pitchmodifier() const {
 inline void BallUpdate::_internal_set_pitchmodifier(double value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.pitchmodifier_ = value;
+}
+
+// bool isWicket = 10;
+inline void BallUpdate::clear_iswicket() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.iswicket_ = false;
+}
+inline bool BallUpdate::iswicket() const {
+  // @@protoc_insertion_point(field_get:odds.BallUpdate.isWicket)
+  return _internal_iswicket();
+}
+inline void BallUpdate::set_iswicket(bool value) {
+  _internal_set_iswicket(value);
+  // @@protoc_insertion_point(field_set:odds.BallUpdate.isWicket)
+}
+inline bool BallUpdate::_internal_iswicket() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.iswicket_;
+}
+inline void BallUpdate::_internal_set_iswicket(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.iswicket_ = value;
+}
+
+// bool isDot = 11;
+inline void BallUpdate::clear_isdot() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.isdot_ = false;
+}
+inline bool BallUpdate::isdot() const {
+  // @@protoc_insertion_point(field_get:odds.BallUpdate.isDot)
+  return _internal_isdot();
+}
+inline void BallUpdate::set_isdot(bool value) {
+  _internal_set_isdot(value);
+  // @@protoc_insertion_point(field_set:odds.BallUpdate.isDot)
+}
+inline bool BallUpdate::_internal_isdot() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.isdot_;
+}
+inline void BallUpdate::_internal_set_isdot(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.isdot_ = value;
+}
+
+// bool isExtra = 12;
+inline void BallUpdate::clear_isextra() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.isextra_ = false;
+}
+inline bool BallUpdate::isextra() const {
+  // @@protoc_insertion_point(field_get:odds.BallUpdate.isExtra)
+  return _internal_isextra();
+}
+inline void BallUpdate::set_isextra(bool value) {
+  _internal_set_isextra(value);
+  // @@protoc_insertion_point(field_set:odds.BallUpdate.isExtra)
+}
+inline bool BallUpdate::_internal_isextra() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.isextra_;
+}
+inline void BallUpdate::_internal_set_isextra(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.isextra_ = value;
+}
+
+// bool isBoundary = 13;
+inline void BallUpdate::clear_isboundary() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.isboundary_ = false;
+}
+inline bool BallUpdate::isboundary() const {
+  // @@protoc_insertion_point(field_get:odds.BallUpdate.isBoundary)
+  return _internal_isboundary();
+}
+inline void BallUpdate::set_isboundary(bool value) {
+  _internal_set_isboundary(value);
+  // @@protoc_insertion_point(field_set:odds.BallUpdate.isBoundary)
+}
+inline bool BallUpdate::_internal_isboundary() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.isboundary_;
+}
+inline void BallUpdate::_internal_set_isboundary(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.isboundary_ = value;
+}
+
+// string bowler = 14;
+inline void BallUpdate::clear_bowler() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.bowler_.ClearToEmpty();
+}
+inline const std::string& BallUpdate::bowler() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:odds.BallUpdate.bowler)
+  return _internal_bowler();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void BallUpdate::set_bowler(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.bowler_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:odds.BallUpdate.bowler)
+}
+inline std::string* BallUpdate::mutable_bowler() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_bowler();
+  // @@protoc_insertion_point(field_mutable:odds.BallUpdate.bowler)
+  return _s;
+}
+inline const std::string& BallUpdate::_internal_bowler() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.bowler_.Get();
+}
+inline void BallUpdate::_internal_set_bowler(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.bowler_.Set(value, GetArena());
+}
+inline std::string* BallUpdate::_internal_mutable_bowler() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.bowler_.Mutable( GetArena());
+}
+inline std::string* BallUpdate::release_bowler() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:odds.BallUpdate.bowler)
+  return _impl_.bowler_.Release();
+}
+inline void BallUpdate::set_allocated_bowler(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.bowler_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.bowler_.IsDefault()) {
+    _impl_.bowler_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:odds.BallUpdate.bowler)
+}
+
+// int32 runs = 15;
+inline void BallUpdate::clear_runs() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.runs_ = 0;
+}
+inline ::int32_t BallUpdate::runs() const {
+  // @@protoc_insertion_point(field_get:odds.BallUpdate.runs)
+  return _internal_runs();
+}
+inline void BallUpdate::set_runs(::int32_t value) {
+  _internal_set_runs(value);
+  // @@protoc_insertion_point(field_set:odds.BallUpdate.runs)
+}
+inline ::int32_t BallUpdate::_internal_runs() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.runs_;
+}
+inline void BallUpdate::_internal_set_runs(::int32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.runs_ = value;
 }
 
 // -------------------------------------------------------------------

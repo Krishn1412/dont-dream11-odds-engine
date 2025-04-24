@@ -145,24 +145,52 @@ struct BetDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 BetDefaultTypeInternal _Bet_default_instance_;
-              template <typename>
-PROTOBUF_CONSTEXPR BallUpdate_BowlerImpactEntry_DoNotUse::BallUpdate_BowlerImpactEntry_DoNotUse(::_pbi::ConstantInitialized)
+
+inline constexpr BallUpdate::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : recentruns_{},
+        _recentruns_cached_byte_size_{0},
+        striker_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        nonstriker_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        bowler_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        innings_{0},
+        targetscore_{0},
+        currentscore_{0},
+        wicketsleft_{0},
+        pitchmodifier_{0},
+        ballsremaining_{0},
+        iswicket_{false},
+        isdot_{false},
+        isextra_{false},
+        isboundary_{false},
+        runs_{0},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR BallUpdate::BallUpdate(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : BallUpdate_BowlerImpactEntry_DoNotUse::MapEntry(_class_data_.base()){}
+    : ::google::protobuf::Message(_class_data_.base()),
 #else   // PROTOBUF_CUSTOM_VTABLE
-    : BallUpdate_BowlerImpactEntry_DoNotUse::MapEntry() {
-}
+    : ::google::protobuf::Message(),
 #endif  // PROTOBUF_CUSTOM_VTABLE
-struct BallUpdate_BowlerImpactEntry_DoNotUseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR BallUpdate_BowlerImpactEntry_DoNotUseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~BallUpdate_BowlerImpactEntry_DoNotUseDefaultTypeInternal() {}
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct BallUpdateDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR BallUpdateDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~BallUpdateDefaultTypeInternal() {}
   union {
-    BallUpdate_BowlerImpactEntry_DoNotUse _instance;
+    BallUpdate _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 BallUpdate_BowlerImpactEntry_DoNotUseDefaultTypeInternal _BallUpdate_BowlerImpactEntry_DoNotUse_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 BallUpdateDefaultTypeInternal _BallUpdate_default_instance_;
 
 inline constexpr Ack::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -192,67 +220,6 @@ struct AckDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AckDefaultTypeInternal _Ack_default_instance_;
 
-inline constexpr BetRequest::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : _cached_size_{0},
-        gameid_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        bet_{nullptr} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR BetRequest::BetRequest(::_pbi::ConstantInitialized)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(_class_data_.base()),
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(),
-#endif  // PROTOBUF_CUSTOM_VTABLE
-      _impl_(::_pbi::ConstantInitialized()) {
-}
-struct BetRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR BetRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~BetRequestDefaultTypeInternal() {}
-  union {
-    BetRequest _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 BetRequestDefaultTypeInternal _BetRequest_default_instance_;
-
-inline constexpr BallUpdate::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : recentruns_{},
-        _recentruns_cached_byte_size_{0},
-        bowlerimpact_{},
-        innings_{0},
-        targetscore_{0},
-        currentscore_{0},
-        wicketsleft_{0},
-        pitchmodifier_{0},
-        ballsremaining_{0},
-        _cached_size_{0} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR BallUpdate::BallUpdate(::_pbi::ConstantInitialized)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(_class_data_.base()),
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(),
-#endif  // PROTOBUF_CUSTOM_VTABLE
-      _impl_(::_pbi::ConstantInitialized()) {
-}
-struct BallUpdateDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR BallUpdateDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~BallUpdateDefaultTypeInternal() {}
-  union {
-    BallUpdate _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 BallUpdateDefaultTypeInternal _BallUpdate_default_instance_;
-
 inline constexpr MatchStateRequest::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
@@ -280,6 +247,34 @@ struct MatchStateRequestDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MatchStateRequestDefaultTypeInternal _MatchStateRequest_default_instance_;
+
+inline constexpr BetRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        gameid_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        bet_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR BetRequest::BetRequest(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct BetRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR BetRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~BetRequestDefaultTypeInternal() {}
+  union {
+    BetRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 BetRequestDefaultTypeInternal _BetRequest_default_instance_;
 }  // namespace odds
 static constexpr const ::_pb::EnumDescriptor**
     file_level_enum_descriptors_odds_5fengine_2eproto = nullptr;
@@ -310,18 +305,6 @@ const ::uint32_t
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::odds::Ack, _impl_.success_),
         PROTOBUF_FIELD_OFFSET(::odds::Ack, _impl_.message_),
-        PROTOBUF_FIELD_OFFSET(::odds::BallUpdate_BowlerImpactEntry_DoNotUse, _impl_._has_bits_),
-        PROTOBUF_FIELD_OFFSET(::odds::BallUpdate_BowlerImpactEntry_DoNotUse, _internal_metadata_),
-        ~0u,  // no _extensions_
-        ~0u,  // no _oneof_case_
-        ~0u,  // no _weak_field_map_
-        ~0u,  // no _inlined_string_donated_
-        ~0u,  // no _split_
-        ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::odds::BallUpdate_BowlerImpactEntry_DoNotUse, _impl_.key_),
-        PROTOBUF_FIELD_OFFSET(::odds::BallUpdate_BowlerImpactEntry_DoNotUse, _impl_.value_),
-        0,
-        1,
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::odds::BallUpdate, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -336,8 +319,15 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::odds::BallUpdate, _impl_.wicketsleft_),
         PROTOBUF_FIELD_OFFSET(::odds::BallUpdate, _impl_.ballsremaining_),
         PROTOBUF_FIELD_OFFSET(::odds::BallUpdate, _impl_.recentruns_),
-        PROTOBUF_FIELD_OFFSET(::odds::BallUpdate, _impl_.bowlerimpact_),
+        PROTOBUF_FIELD_OFFSET(::odds::BallUpdate, _impl_.striker_),
+        PROTOBUF_FIELD_OFFSET(::odds::BallUpdate, _impl_.nonstriker_),
         PROTOBUF_FIELD_OFFSET(::odds::BallUpdate, _impl_.pitchmodifier_),
+        PROTOBUF_FIELD_OFFSET(::odds::BallUpdate, _impl_.iswicket_),
+        PROTOBUF_FIELD_OFFSET(::odds::BallUpdate, _impl_.isdot_),
+        PROTOBUF_FIELD_OFFSET(::odds::BallUpdate, _impl_.isextra_),
+        PROTOBUF_FIELD_OFFSET(::odds::BallUpdate, _impl_.isboundary_),
+        PROTOBUF_FIELD_OFFSET(::odds::BallUpdate, _impl_.bowler_),
+        PROTOBUF_FIELD_OFFSET(::odds::BallUpdate, _impl_.runs_),
         PROTOBUF_FIELD_OFFSET(::odds::MatchStateRequest, _impl_._has_bits_),
         PROTOBUF_FIELD_OFFSET(::odds::MatchStateRequest, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -400,18 +390,16 @@ static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
         {0, -1, -1, sizeof(::odds::SetInitialOddsRequest)},
         {12, -1, -1, sizeof(::odds::Ack)},
-        {22, 32, -1, sizeof(::odds::BallUpdate_BowlerImpactEntry_DoNotUse)},
-        {34, -1, -1, sizeof(::odds::BallUpdate)},
-        {50, 60, -1, sizeof(::odds::MatchStateRequest)},
-        {62, -1, -1, sizeof(::odds::Bet)},
-        {75, 85, -1, sizeof(::odds::BetRequest)},
-        {87, -1, -1, sizeof(::odds::OddsQueryRequest)},
-        {97, -1, -1, sizeof(::odds::OddsResponse)},
+        {22, -1, -1, sizeof(::odds::BallUpdate)},
+        {45, 55, -1, sizeof(::odds::MatchStateRequest)},
+        {57, -1, -1, sizeof(::odds::Bet)},
+        {70, 80, -1, sizeof(::odds::BetRequest)},
+        {82, -1, -1, sizeof(::odds::OddsQueryRequest)},
+        {92, -1, -1, sizeof(::odds::OddsResponse)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::odds::_SetInitialOddsRequest_default_instance_._instance,
     &::odds::_Ack_default_instance_._instance,
-    &::odds::_BallUpdate_BowlerImpactEntry_DoNotUse_default_instance_._instance,
     &::odds::_BallUpdate_default_instance_._instance,
     &::odds::_MatchStateRequest_default_instance_._instance,
     &::odds::_Bet_default_instance_._instance,
@@ -425,39 +413,40 @@ const char descriptor_table_protodef_odds_5fengine_2eproto[] ABSL_ATTRIBUTE_SECT
     "ddsRequest\022\017\n\007game_id\030\001 \001(\t\022\016\n\006market\030\002 "
     "\001(\t\022\023\n\013team_a_odds\030\003 \001(\001\022\023\n\013team_b_odds\030"
     "\004 \001(\001\"\'\n\003Ack\022\017\n\007success\030\001 \001(\010\022\017\n\007message"
-    "\030\002 \001(\t\"\217\002\n\nBallUpdate\022\017\n\007innings\030\001 \001(\005\022\023"
+    "\030\002 \001(\t\"\251\002\n\nBallUpdate\022\017\n\007innings\030\001 \001(\005\022\023"
     "\n\013targetScore\030\002 \001(\005\022\024\n\014currentScore\030\003 \001("
     "\005\022\023\n\013wicketsLeft\030\004 \001(\005\022\026\n\016ballsRemaining"
-    "\030\005 \001(\005\022\022\n\nrecentRuns\030\006 \003(\005\0228\n\014bowlerImpa"
-    "ct\030\007 \003(\0132\".odds.BallUpdate.BowlerImpactE"
-    "ntry\022\025\n\rpitchModifier\030\010 \001(\001\0323\n\021BowlerImp"
-    "actEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\001:\0028\001"
-    "\"E\n\021MatchStateRequest\022\016\n\006gameId\030\001 \001(\t\022 \n"
-    "\006update\030\002 \001(\0132\020.odds.BallUpdate\"Q\n\003Bet\022\016"
-    "\n\006userId\030\001 \001(\t\022\r\n\005stake\030\002 \001(\001\022\014\n\004odds\030\003 "
-    "\001(\001\022\016\n\006market\030\004 \001(\t\022\r\n\005teamA\030\005 \001(\010\"4\n\nBe"
-    "tRequest\022\016\n\006gameId\030\001 \001(\t\022\026\n\003bet\030\002 \001(\0132\t."
-    "odds.Bet\"2\n\020OddsQueryRequest\022\016\n\006gameId\030\001"
-    " \001(\t\022\016\n\006market\030\002 \001(\t\"&\n\014OddsResponse\022\026\n\016"
-    "winProbability\030\001 \001(\0012\360\001\n\nOddsEngine\022\?\n\020U"
-    "pdateMatchState\022\027.odds.MatchStateRequest"
-    "\032\022.odds.OddsResponse\0220\n\010PlaceBet\022\020.odds."
-    "BetRequest\032\022.odds.OddsResponse\0225\n\007GetOdd"
-    "s\022\026.odds.OddsQueryRequest\032\022.odds.OddsRes"
-    "ponse\0228\n\016SetInitialOdds\022\033.odds.SetInitia"
-    "lOddsRequest\032\t.odds.Ackb\006proto3"
+    "\030\005 \001(\005\022\022\n\nrecentRuns\030\006 \003(\005\022\017\n\007striker\030\007 "
+    "\001(\t\022\022\n\nnonStriker\030\010 \001(\t\022\025\n\rpitchModifier"
+    "\030\t \001(\001\022\020\n\010isWicket\030\n \001(\010\022\r\n\005isDot\030\013 \001(\010\022"
+    "\017\n\007isExtra\030\014 \001(\010\022\022\n\nisBoundary\030\r \001(\010\022\016\n\006"
+    "bowler\030\016 \001(\t\022\014\n\004runs\030\017 \001(\005\"E\n\021MatchState"
+    "Request\022\016\n\006gameId\030\001 \001(\t\022 \n\006update\030\002 \001(\0132"
+    "\020.odds.BallUpdate\"Q\n\003Bet\022\016\n\006userId\030\001 \001(\t"
+    "\022\r\n\005stake\030\002 \001(\001\022\014\n\004odds\030\003 \001(\001\022\016\n\006market\030"
+    "\004 \001(\t\022\r\n\005teamA\030\005 \001(\010\"4\n\nBetRequest\022\016\n\006ga"
+    "meId\030\001 \001(\t\022\026\n\003bet\030\002 \001(\0132\t.odds.Bet\"2\n\020Od"
+    "dsQueryRequest\022\016\n\006gameId\030\001 \001(\t\022\016\n\006market"
+    "\030\002 \001(\t\"&\n\014OddsResponse\022\026\n\016winProbability"
+    "\030\001 \001(\0012\360\001\n\nOddsEngine\022\?\n\020UpdateMatchStat"
+    "e\022\027.odds.MatchStateRequest\032\022.odds.OddsRe"
+    "sponse\0220\n\010PlaceBet\022\020.odds.BetRequest\032\022.o"
+    "dds.OddsResponse\0225\n\007GetOdds\022\026.odds.OddsQ"
+    "ueryRequest\032\022.odds.OddsResponse\0228\n\016SetIn"
+    "itialOdds\022\033.odds.SetInitialOddsRequest\032\t"
+    ".odds.Ackb\006proto3"
 };
 static ::absl::once_flag descriptor_table_odds_5fengine_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_odds_5fengine_2eproto = {
     false,
     false,
-    991,
+    1017,
     descriptor_table_protodef_odds_5fengine_2eproto,
     "odds_engine.proto",
     &descriptor_table_odds_5fengine_2eproto_once,
     nullptr,
     0,
-    9,
+    8,
     schemas,
     file_default_instances,
     TableStruct_odds_5fengine_2eproto::offsets,
@@ -1045,96 +1034,6 @@ void Ack::InternalSwap(Ack* PROTOBUF_RESTRICT other) {
 }
 // ===================================================================
 
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-              BallUpdate_BowlerImpactEntry_DoNotUse::BallUpdate_BowlerImpactEntry_DoNotUse() : SuperType(_class_data_.base()) {}
-              BallUpdate_BowlerImpactEntry_DoNotUse::BallUpdate_BowlerImpactEntry_DoNotUse(::google::protobuf::Arena* arena)
-                  : SuperType(arena, _class_data_.base()) {}
-#else   // PROTOBUF_CUSTOM_VTABLE
-              BallUpdate_BowlerImpactEntry_DoNotUse::BallUpdate_BowlerImpactEntry_DoNotUse() : SuperType() {}
-              BallUpdate_BowlerImpactEntry_DoNotUse::BallUpdate_BowlerImpactEntry_DoNotUse(::google::protobuf::Arena* arena) : SuperType(arena) {}
-#endif  // PROTOBUF_CUSTOM_VTABLE
-              inline void* BallUpdate_BowlerImpactEntry_DoNotUse::PlacementNew_(const void*, void* mem,
-                                                      ::google::protobuf::Arena* arena) {
-                return ::new (mem) BallUpdate_BowlerImpactEntry_DoNotUse(arena);
-              }
-              constexpr auto BallUpdate_BowlerImpactEntry_DoNotUse::InternalNewImpl_() {
-                return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(BallUpdate_BowlerImpactEntry_DoNotUse),
-                                                          alignof(BallUpdate_BowlerImpactEntry_DoNotUse));
-              }
-              PROTOBUF_CONSTINIT
-              PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-              const ::google::protobuf::internal::ClassDataFull BallUpdate_BowlerImpactEntry_DoNotUse::_class_data_ = {
-                  ::google::protobuf::internal::ClassData{
-                      &_BallUpdate_BowlerImpactEntry_DoNotUse_default_instance_._instance,
-                      &_table_.header,
-                      nullptr,  // OnDemandRegisterArenaDtor
-                      nullptr,  // IsInitialized
-                      &BallUpdate_BowlerImpactEntry_DoNotUse::MergeImpl,
-                      ::google::protobuf::Message::GetNewImpl<BallUpdate_BowlerImpactEntry_DoNotUse>(),
-              #if defined(PROTOBUF_CUSTOM_VTABLE)
-                      &BallUpdate_BowlerImpactEntry_DoNotUse::SharedDtor,
-                      static_cast<void (::google::protobuf::MessageLite::*)()>(
-                          &BallUpdate_BowlerImpactEntry_DoNotUse::ClearImpl),
-                          ::google::protobuf::Message::ByteSizeLongImpl, ::google::protobuf::Message::_InternalSerializeImpl
-                          ,
-              #endif  // PROTOBUF_CUSTOM_VTABLE
-                      PROTOBUF_FIELD_OFFSET(BallUpdate_BowlerImpactEntry_DoNotUse, _impl_._cached_size_),
-                      false,
-                  },
-                  &BallUpdate_BowlerImpactEntry_DoNotUse::kDescriptorMethods,
-                  &descriptor_table_odds_5fengine_2eproto,
-                  nullptr,  // tracker
-              };
-              const ::google::protobuf::internal::ClassData* BallUpdate_BowlerImpactEntry_DoNotUse::GetClassData() const {
-                ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
-                ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
-                return _class_data_.base();
-              }
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 45, 2> BallUpdate_BowlerImpactEntry_DoNotUse::_table_ = {
-  {
-    PROTOBUF_FIELD_OFFSET(BallUpdate_BowlerImpactEntry_DoNotUse, _impl_._has_bits_),
-    0, // no _extensions_
-    2, 8,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
-    0,  // num_aux_entries
-    offsetof(decltype(_table_), field_names),  // no aux_entries
-    _class_data_.base(),
-    nullptr,  // post_loop_handler
-    ::_pbi::TcParser::DiscardEverythingFallback,  // fallback
-    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::odds::BallUpdate_BowlerImpactEntry_DoNotUse>(),  // to_prefetch
-    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
-  }, {{
-    // double value = 2;
-    {::_pbi::TcParser::FastF64S1,
-     {17, 63, 0, PROTOBUF_FIELD_OFFSET(BallUpdate_BowlerImpactEntry_DoNotUse, _impl_.value_)}},
-    // string key = 1;
-    {::_pbi::TcParser::FastUS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(BallUpdate_BowlerImpactEntry_DoNotUse, _impl_.key_)}},
-  }}, {{
-    65535, 65535
-  }}, {{
-    // string key = 1;
-    {PROTOBUF_FIELD_OFFSET(BallUpdate_BowlerImpactEntry_DoNotUse, _impl_.key_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // double value = 2;
-    {PROTOBUF_FIELD_OFFSET(BallUpdate_BowlerImpactEntry_DoNotUse, _impl_.value_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kDouble)},
-  }},
-  // no aux_entries
-  {{
-    "\41\3\0\0\0\0\0\0"
-    "odds.BallUpdate.BowlerImpactEntry"
-    "key"
-  }},
-};
-
-// ===================================================================
-
 class BallUpdate::_Internal {
  public:
 };
@@ -1153,7 +1052,9 @@ inline PROTOBUF_NDEBUG_INLINE BallUpdate::Impl_::Impl_(
     const Impl_& from, const ::odds::BallUpdate& from_msg)
       : recentruns_{visibility, arena, from.recentruns_},
         _recentruns_cached_byte_size_{0},
-        bowlerimpact_{visibility, arena, from.bowlerimpact_},
+        striker_(arena, from.striker_),
+        nonstriker_(arena, from.nonstriker_),
+        bowler_(arena, from.bowler_),
         _cached_size_{0} {}
 
 BallUpdate::BallUpdate(
@@ -1173,9 +1074,9 @@ BallUpdate::BallUpdate(
                offsetof(Impl_, innings_),
            reinterpret_cast<const char *>(&from._impl_) +
                offsetof(Impl_, innings_),
-           offsetof(Impl_, ballsremaining_) -
+           offsetof(Impl_, runs_) -
                offsetof(Impl_, innings_) +
-               sizeof(Impl_::ballsremaining_));
+               sizeof(Impl_::runs_));
 
   // @@protoc_insertion_point(copy_constructor:odds.BallUpdate)
 }
@@ -1184,7 +1085,9 @@ inline PROTOBUF_NDEBUG_INLINE BallUpdate::Impl_::Impl_(
     ::google::protobuf::Arena* arena)
       : recentruns_{visibility, arena},
         _recentruns_cached_byte_size_{0},
-        bowlerimpact_{visibility, arena},
+        striker_(arena),
+        nonstriker_(arena),
+        bowler_(arena),
         _cached_size_{0} {}
 
 inline void BallUpdate::SharedCtor(::_pb::Arena* arena) {
@@ -1192,9 +1095,9 @@ inline void BallUpdate::SharedCtor(::_pb::Arena* arena) {
   ::memset(reinterpret_cast<char *>(&_impl_) +
                offsetof(Impl_, innings_),
            0,
-           offsetof(Impl_, ballsremaining_) -
+           offsetof(Impl_, runs_) -
                offsetof(Impl_, innings_) +
-               sizeof(Impl_::ballsremaining_));
+               sizeof(Impl_::runs_));
 }
 BallUpdate::~BallUpdate() {
   // @@protoc_insertion_point(destructor:odds.BallUpdate)
@@ -1204,6 +1107,9 @@ inline void BallUpdate::SharedDtor(MessageLite& self) {
   BallUpdate& this_ = static_cast<BallUpdate&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.striker_.Destroy();
+  this_._impl_.nonstriker_.Destroy();
+  this_._impl_.bowler_.Destroy();
   this_._impl_.~Impl_();
 }
 
@@ -1216,14 +1122,6 @@ constexpr auto BallUpdate::InternalNewImpl_() {
       PROTOBUF_FIELD_OFFSET(BallUpdate, _impl_.recentruns_) +
           decltype(BallUpdate::_impl_.recentruns_)::
               InternalGetArenaOffset(
-                  ::google::protobuf::Message::internal_visibility()),
-      PROTOBUF_FIELD_OFFSET(BallUpdate, _impl_.bowlerimpact_) +
-          decltype(BallUpdate::_impl_.bowlerimpact_)::
-              InternalGetArenaOffset(
-                  ::google::protobuf::Message::internal_visibility()),
-      PROTOBUF_FIELD_OFFSET(BallUpdate, _impl_.bowlerimpact_) +
-          decltype(BallUpdate::_impl_.bowlerimpact_)::
-              InternalGetArenaOffsetAlt(
                   ::google::protobuf::Message::internal_visibility()),
   });
   if (arena_bits.has_value()) {
@@ -1263,17 +1161,17 @@ const ::google::protobuf::internal::ClassData* BallUpdate::GetClassData() const 
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 8, 1, 44, 2> BallUpdate::_table_ = {
+const ::_pbi::TcParseTable<4, 15, 0, 55, 2> BallUpdate::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    8, 56,  // max_field_number, fast_idx_mask
+    15, 120,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967040,  // skipmap
+    4294934528,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    8,  // num_field_entries
-    1,  // num_aux_entries
-    offsetof(decltype(_table_), aux_entries),
+    15,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
     _class_data_.base(),
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
@@ -1281,9 +1179,7 @@ const ::_pbi::TcParseTable<3, 8, 1, 44, 2> BallUpdate::_table_ = {
     ::_pbi::TcParser::GetTable<::odds::BallUpdate>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // double pitchModifier = 8;
-    {::_pbi::TcParser::FastF64S1,
-     {65, 63, 0, PROTOBUF_FIELD_OFFSET(BallUpdate, _impl_.pitchmodifier_)}},
+    {::_pbi::TcParser::MiniParse, {}},
     // int32 innings = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(BallUpdate, _impl_.innings_), 63>(),
      {8, 63, 0, PROTOBUF_FIELD_OFFSET(BallUpdate, _impl_.innings_)}},
@@ -1302,7 +1198,33 @@ const ::_pbi::TcParseTable<3, 8, 1, 44, 2> BallUpdate::_table_ = {
     // repeated int32 recentRuns = 6;
     {::_pbi::TcParser::FastV32P1,
      {50, 63, 0, PROTOBUF_FIELD_OFFSET(BallUpdate, _impl_.recentruns_)}},
-    {::_pbi::TcParser::MiniParse, {}},
+    // string striker = 7;
+    {::_pbi::TcParser::FastUS1,
+     {58, 63, 0, PROTOBUF_FIELD_OFFSET(BallUpdate, _impl_.striker_)}},
+    // string nonStriker = 8;
+    {::_pbi::TcParser::FastUS1,
+     {66, 63, 0, PROTOBUF_FIELD_OFFSET(BallUpdate, _impl_.nonstriker_)}},
+    // double pitchModifier = 9;
+    {::_pbi::TcParser::FastF64S1,
+     {73, 63, 0, PROTOBUF_FIELD_OFFSET(BallUpdate, _impl_.pitchmodifier_)}},
+    // bool isWicket = 10;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(BallUpdate, _impl_.iswicket_), 63>(),
+     {80, 63, 0, PROTOBUF_FIELD_OFFSET(BallUpdate, _impl_.iswicket_)}},
+    // bool isDot = 11;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(BallUpdate, _impl_.isdot_), 63>(),
+     {88, 63, 0, PROTOBUF_FIELD_OFFSET(BallUpdate, _impl_.isdot_)}},
+    // bool isExtra = 12;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(BallUpdate, _impl_.isextra_), 63>(),
+     {96, 63, 0, PROTOBUF_FIELD_OFFSET(BallUpdate, _impl_.isextra_)}},
+    // bool isBoundary = 13;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(BallUpdate, _impl_.isboundary_), 63>(),
+     {104, 63, 0, PROTOBUF_FIELD_OFFSET(BallUpdate, _impl_.isboundary_)}},
+    // string bowler = 14;
+    {::_pbi::TcParser::FastUS1,
+     {114, 63, 0, PROTOBUF_FIELD_OFFSET(BallUpdate, _impl_.bowler_)}},
+    // int32 runs = 15;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(BallUpdate, _impl_.runs_), 63>(),
+     {120, 63, 0, PROTOBUF_FIELD_OFFSET(BallUpdate, _impl_.runs_)}},
   }}, {{
     65535, 65535
   }}, {{
@@ -1324,21 +1246,41 @@ const ::_pbi::TcParseTable<3, 8, 1, 44, 2> BallUpdate::_table_ = {
     // repeated int32 recentRuns = 6;
     {PROTOBUF_FIELD_OFFSET(BallUpdate, _impl_.recentruns_), 0, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kPackedInt32)},
-    // map<string, double> bowlerImpact = 7;
-    {PROTOBUF_FIELD_OFFSET(BallUpdate, _impl_.bowlerimpact_), 0, 0,
-    (0 | ::_fl::kFcRepeated | ::_fl::kMap)},
-    // double pitchModifier = 8;
+    // string striker = 7;
+    {PROTOBUF_FIELD_OFFSET(BallUpdate, _impl_.striker_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string nonStriker = 8;
+    {PROTOBUF_FIELD_OFFSET(BallUpdate, _impl_.nonstriker_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // double pitchModifier = 9;
     {PROTOBUF_FIELD_OFFSET(BallUpdate, _impl_.pitchmodifier_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kDouble)},
-  }}, {{
-    {::_pbi::TcParser::GetMapAuxInfo<
-        decltype(BallUpdate()._impl_.bowlerimpact_)>(
-        1, 0, 0, 9,
-        1)},
-  }}, {{
-    "\17\0\0\0\0\0\0\14\0\0\0\0\0\0\0\0"
+    // bool isWicket = 10;
+    {PROTOBUF_FIELD_OFFSET(BallUpdate, _impl_.iswicket_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // bool isDot = 11;
+    {PROTOBUF_FIELD_OFFSET(BallUpdate, _impl_.isdot_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // bool isExtra = 12;
+    {PROTOBUF_FIELD_OFFSET(BallUpdate, _impl_.isextra_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // bool isBoundary = 13;
+    {PROTOBUF_FIELD_OFFSET(BallUpdate, _impl_.isboundary_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // string bowler = 14;
+    {PROTOBUF_FIELD_OFFSET(BallUpdate, _impl_.bowler_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // int32 runs = 15;
+    {PROTOBUF_FIELD_OFFSET(BallUpdate, _impl_.runs_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+  }},
+  // no aux_entries
+  {{
+    "\17\0\0\0\0\0\0\7\12\0\0\0\0\0\6\0"
     "odds.BallUpdate"
-    "bowlerImpact"
+    "striker"
+    "nonStriker"
+    "bowler"
   }},
 };
 
@@ -1350,10 +1292,12 @@ PROTOBUF_NOINLINE void BallUpdate::Clear() {
   (void) cached_has_bits;
 
   _impl_.recentruns_.Clear();
-  _impl_.bowlerimpact_.Clear();
+  _impl_.striker_.ClearToEmpty();
+  _impl_.nonstriker_.ClearToEmpty();
+  _impl_.bowler_.ClearToEmpty();
   ::memset(&_impl_.innings_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.ballsremaining_) -
-      reinterpret_cast<char*>(&_impl_.innings_)) + sizeof(_impl_.ballsremaining_));
+      reinterpret_cast<char*>(&_impl_.runs_) -
+      reinterpret_cast<char*>(&_impl_.innings_)) + sizeof(_impl_.runs_));
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -1416,38 +1360,70 @@ PROTOBUF_NOINLINE void BallUpdate::Clear() {
             }
           }
 
-          // map<string, double> bowlerImpact = 7;
-          if (!this_._internal_bowlerimpact().empty()) {
-            using MapType = ::google::protobuf::Map<std::string, double>;
-            using WireHelper = _pbi::MapEntryFuncs<std::string, double,
-                                           _pbi::WireFormatLite::TYPE_STRING,
-                                           _pbi::WireFormatLite::TYPE_DOUBLE>;
-            const auto& field = this_._internal_bowlerimpact();
-
-            if (stream->IsSerializationDeterministic() && field.size() > 1) {
-              for (const auto& entry : ::google::protobuf::internal::MapSorterPtr<MapType>(field)) {
-                target = WireHelper::InternalSerialize(
-                    7, entry.first, entry.second, target, stream);
-                ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                    entry.first.data(), static_cast<int>(entry.first.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "odds.BallUpdate.bowlerImpact");
-              }
-            } else {
-              for (const auto& entry : field) {
-                target = WireHelper::InternalSerialize(
-                    7, entry.first, entry.second, target, stream);
-                ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                    entry.first.data(), static_cast<int>(entry.first.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "odds.BallUpdate.bowlerImpact");
-              }
-            }
+          // string striker = 7;
+          if (!this_._internal_striker().empty()) {
+            const std::string& _s = this_._internal_striker();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "odds.BallUpdate.striker");
+            target = stream->WriteStringMaybeAliased(7, _s, target);
           }
 
-          // double pitchModifier = 8;
+          // string nonStriker = 8;
+          if (!this_._internal_nonstriker().empty()) {
+            const std::string& _s = this_._internal_nonstriker();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "odds.BallUpdate.nonStriker");
+            target = stream->WriteStringMaybeAliased(8, _s, target);
+          }
+
+          // double pitchModifier = 9;
           if (::absl::bit_cast<::uint64_t>(this_._internal_pitchmodifier()) != 0) {
             target = stream->EnsureSpace(target);
             target = ::_pbi::WireFormatLite::WriteDoubleToArray(
-                8, this_._internal_pitchmodifier(), target);
+                9, this_._internal_pitchmodifier(), target);
+          }
+
+          // bool isWicket = 10;
+          if (this_._internal_iswicket() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteBoolToArray(
+                10, this_._internal_iswicket(), target);
+          }
+
+          // bool isDot = 11;
+          if (this_._internal_isdot() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteBoolToArray(
+                11, this_._internal_isdot(), target);
+          }
+
+          // bool isExtra = 12;
+          if (this_._internal_isextra() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteBoolToArray(
+                12, this_._internal_isextra(), target);
+          }
+
+          // bool isBoundary = 13;
+          if (this_._internal_isboundary() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteBoolToArray(
+                13, this_._internal_isboundary(), target);
+          }
+
+          // string bowler = 14;
+          if (!this_._internal_bowler().empty()) {
+            const std::string& _s = this_._internal_bowler();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "odds.BallUpdate.bowler");
+            target = stream->WriteStringMaybeAliased(14, _s, target);
+          }
+
+          // int32 runs = 15;
+          if (this_._internal_runs() != 0) {
+            target = ::google::protobuf::internal::WireFormatLite::
+                WriteInt32ToArrayWithField<15>(
+                    stream, this_._internal_runs(), target);
           }
 
           if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
@@ -1482,18 +1458,23 @@ PROTOBUF_NOINLINE void BallUpdate::Clear() {
                       this_._internal_recentruns(), 1,
                       this_._impl_._recentruns_cached_byte_size_);
             }
-            // map<string, double> bowlerImpact = 7;
-            {
-              total_size +=
-                  1 * ::google::protobuf::internal::FromIntSize(this_._internal_bowlerimpact_size());
-              for (const auto& entry : this_._internal_bowlerimpact()) {
-                total_size += _pbi::MapEntryFuncs<std::string, double,
-                                               _pbi::WireFormatLite::TYPE_STRING,
-                                               _pbi::WireFormatLite::TYPE_DOUBLE>::ByteSizeLong(entry.first, entry.second);
-              }
-            }
           }
            {
+            // string striker = 7;
+            if (!this_._internal_striker().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_striker());
+            }
+            // string nonStriker = 8;
+            if (!this_._internal_nonstriker().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_nonstriker());
+            }
+            // string bowler = 14;
+            if (!this_._internal_bowler().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_bowler());
+            }
             // int32 innings = 1;
             if (this_._internal_innings() != 0) {
               total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
@@ -1514,7 +1495,7 @@ PROTOBUF_NOINLINE void BallUpdate::Clear() {
               total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
                   this_._internal_wicketsleft());
             }
-            // double pitchModifier = 8;
+            // double pitchModifier = 9;
             if (::absl::bit_cast<::uint64_t>(this_._internal_pitchmodifier()) != 0) {
               total_size += 9;
             }
@@ -1522,6 +1503,27 @@ PROTOBUF_NOINLINE void BallUpdate::Clear() {
             if (this_._internal_ballsremaining() != 0) {
               total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
                   this_._internal_ballsremaining());
+            }
+            // bool isWicket = 10;
+            if (this_._internal_iswicket() != 0) {
+              total_size += 2;
+            }
+            // bool isDot = 11;
+            if (this_._internal_isdot() != 0) {
+              total_size += 2;
+            }
+            // bool isExtra = 12;
+            if (this_._internal_isextra() != 0) {
+              total_size += 2;
+            }
+            // bool isBoundary = 13;
+            if (this_._internal_isboundary() != 0) {
+              total_size += 2;
+            }
+            // int32 runs = 15;
+            if (this_._internal_runs() != 0) {
+              total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+                  this_._internal_runs());
             }
           }
           return this_.MaybeComputeUnknownFieldsSize(total_size,
@@ -1537,7 +1539,15 @@ void BallUpdate::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::goog
   (void) cached_has_bits;
 
   _this->_internal_mutable_recentruns()->MergeFrom(from._internal_recentruns());
-  _this->_impl_.bowlerimpact_.MergeFrom(from._impl_.bowlerimpact_);
+  if (!from._internal_striker().empty()) {
+    _this->_internal_set_striker(from._internal_striker());
+  }
+  if (!from._internal_nonstriker().empty()) {
+    _this->_internal_set_nonstriker(from._internal_nonstriker());
+  }
+  if (!from._internal_bowler().empty()) {
+    _this->_internal_set_bowler(from._internal_bowler());
+  }
   if (from._internal_innings() != 0) {
     _this->_impl_.innings_ = from._impl_.innings_;
   }
@@ -1556,6 +1566,21 @@ void BallUpdate::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::goog
   if (from._internal_ballsremaining() != 0) {
     _this->_impl_.ballsremaining_ = from._impl_.ballsremaining_;
   }
+  if (from._internal_iswicket() != 0) {
+    _this->_impl_.iswicket_ = from._impl_.iswicket_;
+  }
+  if (from._internal_isdot() != 0) {
+    _this->_impl_.isdot_ = from._impl_.isdot_;
+  }
+  if (from._internal_isextra() != 0) {
+    _this->_impl_.isextra_ = from._impl_.isextra_;
+  }
+  if (from._internal_isboundary() != 0) {
+    _this->_impl_.isboundary_ = from._impl_.isboundary_;
+  }
+  if (from._internal_runs() != 0) {
+    _this->_impl_.runs_ = from._impl_.runs_;
+  }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -1569,12 +1594,16 @@ void BallUpdate::CopyFrom(const BallUpdate& from) {
 
 void BallUpdate::InternalSwap(BallUpdate* PROTOBUF_RESTRICT other) {
   using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   _impl_.recentruns_.InternalSwap(&other->_impl_.recentruns_);
-  _impl_.bowlerimpact_.InternalSwap(&other->_impl_.bowlerimpact_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.striker_, &other->_impl_.striker_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.nonstriker_, &other->_impl_.nonstriker_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.bowler_, &other->_impl_.bowler_, arena);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(BallUpdate, _impl_.ballsremaining_)
-      + sizeof(BallUpdate::_impl_.ballsremaining_)
+      PROTOBUF_FIELD_OFFSET(BallUpdate, _impl_.runs_)
+      + sizeof(BallUpdate::_impl_.runs_)
       - PROTOBUF_FIELD_OFFSET(BallUpdate, _impl_.innings_)>(
           reinterpret_cast<char*>(&_impl_.innings_),
           reinterpret_cast<char*>(&other->_impl_.innings_));

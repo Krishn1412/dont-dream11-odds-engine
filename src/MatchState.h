@@ -14,6 +14,7 @@ struct MatchState {
 
     std::deque<int> recentRuns;
     std::unordered_map<std::string, double> bowlerImpact;
+    std::unordered_map<std::string, double> batterImpact;
     double pitchModifier = 0.0;
 
     std::mutex oddsMutex;
@@ -23,4 +24,18 @@ struct MatchState {
     double getRequiredRunRate() const;
     double getMomentum() const;
     double getWicketFactor() const;
+};
+
+struct BatterStats {
+    int ballsFaced = 0;
+    int dotBalls = 0;
+    int boundaries = 0;
+};
+
+struct BowlerStats {
+    int ballsBowled = 0;
+    int dotBalls = 0;
+    int boundariesConceded = 0;
+    int wickets = 0;
+    int totalRuns = 0;
 };

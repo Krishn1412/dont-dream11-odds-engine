@@ -5,6 +5,7 @@
 #include <chrono>
 #include <iostream>
 #include <random>
+#include <vector>
 
 const std::string GAME_ID = "game_1";
 const std::string MARKET = "match_winner";
@@ -15,8 +16,23 @@ void initializeGameAndMarket() {
     auto ctx = game->getOrCreateMarket(MARKET);
     std::lock_guard<std::mutex> lock(ctx->mtx);
     ctx->lastComputedProbability = 0.55;
+
+    std::vector<std::string> batters = {"Batter1", "Batter2", "Batter3", "Batter4", "Batter5"};
+    std::vector<std::string> bowlers = {"BowlerA", "BowlerB", "BowlerC"};
+
+    for (const auto& batter : batters) {
+        ctx->state.batterImpact[batter] = 5.0; // neutral starting impact
+        ctx->batterStats[batter] = BatterStats{};
+    }
+
+    for (const auto& bowler : bowlers) {
+        ctx->state.bowlerImpact[bowler] = 5.0; // neutral starting impact
+        ctx->bowlerStats[bowler] = BowlerStats{};
+    }
+
     std::cout << "[Init] Game: " << GAME_ID << ", Market: " << MARKET
-                << ", Initial Odds " << ctx->lastComputedProbability <<"\n";
+              << ", Initial Odds " << ctx->lastComputedProbability << "\n";
+    std::cout << "[Init] Initialized batter/bowler impact scores and stats\n";
 }
 
 int main() {
@@ -31,35 +47,77 @@ int main() {
     std::uniform_real_distribution<> stakeDist(50.0, 150.0);
     std::uniform_real_distribution<> oddsDist(1.2, 3.0);
     std::bernoulli_distribution teamDist(0.5);
+    std::uniform_int_distribution<> wicketChance(0, 100);
+    std::uniform_int_distribution<> extraChance(0, 100);
+
+    std::vector<std::string> batters = {"Batter1", "Batter2", "Batter3", "Batter4", "Batter5"};
+    std::vector<std::string> bowlers = {"BowlerA", "BowlerB", "BowlerC"};
+    int strikerIdx = 0;
+    int nonStrikerIdx = 1;
+    int nextBatterIdx = 2;
+    int bowlerIdx = 0;
+
+    int score = 100;
+    int ballsRemaining = 60;
+    int wickets = 2;
 
     // BallUpdate simulation
     std::thread([&]() {
-        while (true) {
-            int score = 100 + rand() % 30;
-            int ballsRemaining = 60 - (rand() % 12);
-            int wickets = 8 - (rand() % 3);
-
+        while (ballsRemaining > 0 && wickets < 10) {
             odds::BallUpdate update;
             update.set_innings(2);
             update.set_targetscore(180);
             update.set_currentscore(score);
-            update.set_wicketsleft(wickets);
+            update.set_wicketsleft(10 - wickets);
             update.set_ballsremaining(ballsRemaining);
 
-            for (int i = 0; i < 6; ++i)
-                update.add_recentruns(runDist(gen));
+            std::string striker = batters[strikerIdx % batters.size()];
+            std::string nonStriker = batters[nonStrikerIdx % batters.size()];
+            std::string bowler = bowlers[bowlerIdx % bowlers.size()];
 
-            (*update.mutable_bowlerimpact())["BowlerA"] = 1.0 + (rand() % 3) * 0.1;
+            update.set_striker(striker);
+            update.set_nonstriker(nonStriker);
+            update.set_bowler(bowler);
+
             update.set_pitchmodifier(1.0 + (rand() % 5) * 0.05);
 
-            Event ev;
-            ev.type = EventType::BallUpdate;
-            ev.gameId = GAME_ID;
-            ev.market = MARKET;
-            ev.matchUpdate = update;
+            for (int i = 0; i < 6 && ballsRemaining > 0; ++i) {
+                int run = runDist(gen);
+                bool isWicket = (wicketChance(gen) < 8);  // ~8% chance
+                bool isExtra = (extraChance(gen) < 3);     // ~3% chance
+                bool isDot = (run == 0 && !isWicket);
 
-            queue.push(ev);
-            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+                update.add_recentruns(run);
+                update.set_iswicket(isWicket);
+                update.set_isextra(isExtra);
+                update.set_isdot(isDot);
+
+                if (isWicket) {
+                    ++wickets;
+                    strikerIdx = nextBatterIdx++;
+                } else {
+                    score += run;
+                    // Swap strikers on odd runs
+                    if (run % 2 == 1) std::swap(strikerIdx, nonStrikerIdx);
+                }
+
+                --ballsRemaining;
+                update.set_currentscore(score);
+                update.set_wicketsleft(10 - wickets);
+                update.set_ballsremaining(ballsRemaining);
+
+                Event ev;
+                ev.type = EventType::BallUpdate;
+                ev.gameId = GAME_ID;
+                ev.market = MARKET;
+                ev.matchUpdate = update;
+                queue.push(ev);
+
+                std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+            }
+
+            // Change bowler every over
+            ++bowlerIdx;
         }
     }).detach();
 

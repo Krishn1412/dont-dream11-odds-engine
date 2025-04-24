@@ -15,14 +15,23 @@ void processMatchUpdate(const std::string& gameId, const std::string& market, co
     marketCtx->state.ballsRemaining = req.ballsremaining();
     marketCtx->state.recentRuns = std::deque<int>(req.recentruns().begin(), req.recentruns().end());
 
-    marketCtx->state.bowlerImpact.clear();
-    for (const auto& entry : req.bowlerimpact()) {
-        marketCtx->state.bowlerImpact[entry.first] = entry.second;
-    }
+    double batterScore = OddsModel::getInstance().computeBatterImpact(
+        marketCtx->state,
+        marketCtx->state.batterImpact,
+        marketCtx->batterStats,
+        req
+    );
+
+    double bowlerScore = OddsModel::getInstance().computeBowlerImpact(
+        marketCtx->state,
+        marketCtx->state.bowlerImpact,
+        marketCtx->bowlerStats,
+        req
+    );
 
     marketCtx->state.pitchModifier = req.pitchmodifier();
 
-    double prob = OddsModel::getInstance().computeProbability(marketCtx->state, marketCtx->lastComputedProbability);
+    double prob = OddsModel::getInstance().computeProbability(marketCtx->state, marketCtx->lastComputedProbability, req);
     marketCtx->lastComputedProbability = prob;
 
     std::cout << "[MatchUpdate] Game: " << gameId << ", Market: " << market
