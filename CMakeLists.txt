@@ -20,6 +20,7 @@ set(SOURCE_FILES
     src/utils/EventProcessor.cpp
     src/MatchState.cpp 
     src/OddsModel.cpp
+    proto/OddsEngineServiceImpl.cpp
     ${PROTO_SRCS}
 )
 include_directories(

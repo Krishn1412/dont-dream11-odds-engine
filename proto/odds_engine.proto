@@ -18,8 +18,7 @@ service OddsEngine {
 message SetInitialOddsRequest {
   string game_id = 1;
   string market = 2;
-  double team_a_odds = 3;
-  double team_b_odds = 4;
+  double initialProbability = 3;
 }
 
 message Ack {

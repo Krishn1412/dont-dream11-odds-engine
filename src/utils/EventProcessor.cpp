@@ -3,39 +3,47 @@
 #include "../OddsModel.h"
 #include <chrono>
 
-void processMatchUpdate(const std::string& gameId, const std::string& market, const odds::BallUpdate& req) {
+void processMatchUpdate(const std::string& gameId, const odds::BallUpdate& req) {
     auto game = GameManager::getInstance().getOrCreateGame(gameId);
-    auto marketCtx = game->getOrCreateMarket(market);
-    std::lock_guard<std::mutex> lock(marketCtx->mtx);
-    // std::cout<<"test prev once $$$$$$ "<<marketCtx->lastComputedProbability<<"\n";
-    marketCtx->state.inningsNumber = req.innings();
-    marketCtx->state.target = req.targetscore();
-    marketCtx->state.runs = req.currentscore();
-    marketCtx->state.wickets = 10 - req.wicketsleft();
-    marketCtx->state.ballsRemaining = req.ballsremaining();
-    marketCtx->state.recentRuns = std::deque<int>(req.recentruns().begin(), req.recentruns().end());
+
+    std::lock_guard<std::mutex> gameLock(game->mtx);
+
+    MatchState& state = game->state;
+
+    state.inningsNumber = req.innings();
+    state.target = req.targetscore();
+    state.runs = req.currentscore();
+    state.wickets = 10 - req.wicketsleft();
+    state.ballsRemaining = req.ballsremaining();
+    state.recentRuns = std::deque<int>(req.recentruns().begin(), req.recentruns().end());
 
     double batterScore = OddsModel::getInstance().computeBatterImpact(
-        marketCtx->state,
-        marketCtx->state.batterImpact,
-        marketCtx->batterStats,
+        state,
+        state.batterImpact,
+        game->batterStats,
         req
     );
 
     double bowlerScore = OddsModel::getInstance().computeBowlerImpact(
-        marketCtx->state,
-        marketCtx->state.bowlerImpact,
-        marketCtx->bowlerStats,
+        state,
+        state.bowlerImpact,
+        game->bowlerStats,
         req
     );
 
-    marketCtx->state.pitchModifier = req.pitchmodifier();
+    state.pitchModifier = req.pitchmodifier();
 
-    double prob = OddsModel::getInstance().computeProbability(marketCtx->state, marketCtx->lastComputedProbability, req);
-    marketCtx->lastComputedProbability = prob;
+    std::vector<std::string> markets = game->getActiveMarkets();
+    for (const auto& marketName : markets) {
+        auto marketCtx = game->getOrCreateMarket(marketName);
+        std::lock_guard<std::mutex> marketLock(marketCtx->mtx);
 
-    std::cout << "[MatchUpdate] Game: " << gameId << ", Market: " << market
-              << " updated. Base odds: " << prob << "\n";
+        double prob = OddsModel::getInstance().computeProbability(state, marketCtx->lastComputedProbability, req);
+        marketCtx->lastComputedProbability = prob;
+
+        std::cout << "[MatchUpdate] Game: " << gameId << ", Market: " << marketName
+                  << " updated. Base odds: " << prob << "\n";
+    }
 }
 
 void flushExposure(const std::string& gameId, const std::string& market) {
@@ -68,14 +76,14 @@ void eventLoop(ConcurrentQueue<Event>& queue, size_t batchSize = 1000, int flush
 
         if (gotEvent) {
             auto game = GameManager::getInstance().getOrCreateGame(event.gameId);
-            auto& market = event.market;
 
             switch (event.type) {
                 case EventType::BallUpdate:
-                    processMatchUpdate(event.gameId, market, event.matchUpdate);
+                    processMatchUpdate(event.gameId, event.matchUpdate);
                     break;
 
                 case EventType::Bet:
+                    grpc::string market = event.bet.market();
                     game->getOrCreateMarket(market)->batchExposure.applyBet(event.bet);
                     exposureTracker[event.gameId][market] += event.bet.stake();
                     break;

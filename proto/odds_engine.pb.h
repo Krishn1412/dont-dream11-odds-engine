@@ -237,8 +237,7 @@ class SetInitialOddsRequest final : public ::google::protobuf::Message
   enum : int {
     kGameIdFieldNumber = 1,
     kMarketFieldNumber = 2,
-    kTeamAOddsFieldNumber = 3,
-    kTeamBOddsFieldNumber = 4,
+    kInitialProbabilityFieldNumber = 3,
   };
   // string game_id = 1;
   void clear_game_id() ;
@@ -272,24 +271,14 @@ class SetInitialOddsRequest final : public ::google::protobuf::Message
   std::string* _internal_mutable_market();
 
   public:
-  // double team_a_odds = 3;
-  void clear_team_a_odds() ;
-  double team_a_odds() const;
-  void set_team_a_odds(double value);
+  // double initialProbability = 3;
+  void clear_initialprobability() ;
+  double initialprobability() const;
+  void set_initialprobability(double value);
 
   private:
-  double _internal_team_a_odds() const;
-  void _internal_set_team_a_odds(double value);
-
-  public:
-  // double team_b_odds = 4;
-  void clear_team_b_odds() ;
-  double team_b_odds() const;
-  void set_team_b_odds(double value);
-
-  private:
-  double _internal_team_b_odds() const;
-  void _internal_set_team_b_odds(double value);
+  double _internal_initialprobability() const;
+  void _internal_set_initialprobability(double value);
 
   public:
   // @@protoc_insertion_point(class_scope:odds.SetInitialOddsRequest)
@@ -297,7 +286,7 @@ class SetInitialOddsRequest final : public ::google::protobuf::Message
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 4, 0,
+      2, 3, 0,
       48, 2>
       _table_;
 
@@ -317,8 +306,7 @@ class SetInitialOddsRequest final : public ::google::protobuf::Message
                           const SetInitialOddsRequest& from_msg);
     ::google::protobuf::internal::ArenaStringPtr game_id_;
     ::google::protobuf::internal::ArenaStringPtr market_;
-    double team_a_odds_;
-    double team_b_odds_;
+    double initialprobability_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -2113,48 +2101,26 @@ inline void SetInitialOddsRequest::set_allocated_market(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:odds.SetInitialOddsRequest.market)
 }
 
-// double team_a_odds = 3;
-inline void SetInitialOddsRequest::clear_team_a_odds() {
+// double initialProbability = 3;
+inline void SetInitialOddsRequest::clear_initialprobability() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.team_a_odds_ = 0;
+  _impl_.initialprobability_ = 0;
 }
-inline double SetInitialOddsRequest::team_a_odds() const {
-  // @@protoc_insertion_point(field_get:odds.SetInitialOddsRequest.team_a_odds)
-  return _internal_team_a_odds();
+inline double SetInitialOddsRequest::initialprobability() const {
+  // @@protoc_insertion_point(field_get:odds.SetInitialOddsRequest.initialProbability)
+  return _internal_initialprobability();
 }
-inline void SetInitialOddsRequest::set_team_a_odds(double value) {
-  _internal_set_team_a_odds(value);
-  // @@protoc_insertion_point(field_set:odds.SetInitialOddsRequest.team_a_odds)
+inline void SetInitialOddsRequest::set_initialprobability(double value) {
+  _internal_set_initialprobability(value);
+  // @@protoc_insertion_point(field_set:odds.SetInitialOddsRequest.initialProbability)
 }
-inline double SetInitialOddsRequest::_internal_team_a_odds() const {
+inline double SetInitialOddsRequest::_internal_initialprobability() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.team_a_odds_;
+  return _impl_.initialprobability_;
 }
-inline void SetInitialOddsRequest::_internal_set_team_a_odds(double value) {
+inline void SetInitialOddsRequest::_internal_set_initialprobability(double value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.team_a_odds_ = value;
-}
-
-// double team_b_odds = 4;
-inline void SetInitialOddsRequest::clear_team_b_odds() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.team_b_odds_ = 0;
-}
-inline double SetInitialOddsRequest::team_b_odds() const {
-  // @@protoc_insertion_point(field_get:odds.SetInitialOddsRequest.team_b_odds)
-  return _internal_team_b_odds();
-}
-inline void SetInitialOddsRequest::set_team_b_odds(double value) {
-  _internal_set_team_b_odds(value);
-  // @@protoc_insertion_point(field_set:odds.SetInitialOddsRequest.team_b_odds)
-}
-inline double SetInitialOddsRequest::_internal_team_b_odds() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.team_b_odds_;
-}
-inline void SetInitialOddsRequest::_internal_set_team_b_odds(double value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.team_b_odds_ = value;
+  _impl_.initialprobability_ = value;
 }
 
 // -------------------------------------------------------------------

@@ -16,7 +16,6 @@ enum class EventType {
 struct Event {
     EventType type;
     std::string gameId;
-    std::string market;
     odds::BallUpdate matchUpdate;
     odds::Bet bet;
 };

@@ -10,6 +10,4 @@ struct MarketContext {
     std::optional<std::pair<double, double>> initialOdds;
     double lastComputedProbability = 0.5;
     std::mutex mtx;
-    std::unordered_map<std::string, BatterStats> batterStats;
-    std::unordered_map<std::string, BowlerStats> bowlerStats;
 };

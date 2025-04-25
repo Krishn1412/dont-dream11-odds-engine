@@ -34,8 +34,7 @@ inline constexpr SetInitialOddsRequest::Impl_::Impl_(
         market_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        team_a_odds_{0},
-        team_b_odds_{0},
+        initialprobability_{0},
         _cached_size_{0} {}
 
 template <typename>
@@ -293,8 +292,7 @@ const ::uint32_t
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::odds::SetInitialOddsRequest, _impl_.game_id_),
         PROTOBUF_FIELD_OFFSET(::odds::SetInitialOddsRequest, _impl_.market_),
-        PROTOBUF_FIELD_OFFSET(::odds::SetInitialOddsRequest, _impl_.team_a_odds_),
-        PROTOBUF_FIELD_OFFSET(::odds::SetInitialOddsRequest, _impl_.team_b_odds_),
+        PROTOBUF_FIELD_OFFSET(::odds::SetInitialOddsRequest, _impl_.initialprobability_),
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::odds::Ack, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -389,13 +387,13 @@ const ::uint32_t
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
         {0, -1, -1, sizeof(::odds::SetInitialOddsRequest)},
-        {12, -1, -1, sizeof(::odds::Ack)},
-        {22, -1, -1, sizeof(::odds::BallUpdate)},
-        {45, 55, -1, sizeof(::odds::MatchStateRequest)},
-        {57, -1, -1, sizeof(::odds::Bet)},
-        {70, 80, -1, sizeof(::odds::BetRequest)},
-        {82, -1, -1, sizeof(::odds::OddsQueryRequest)},
-        {92, -1, -1, sizeof(::odds::OddsResponse)},
+        {11, -1, -1, sizeof(::odds::Ack)},
+        {21, -1, -1, sizeof(::odds::BallUpdate)},
+        {44, 54, -1, sizeof(::odds::MatchStateRequest)},
+        {56, -1, -1, sizeof(::odds::Bet)},
+        {69, 79, -1, sizeof(::odds::BetRequest)},
+        {81, -1, -1, sizeof(::odds::OddsQueryRequest)},
+        {91, -1, -1, sizeof(::odds::OddsResponse)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::odds::_SetInitialOddsRequest_default_instance_._instance,
@@ -409,38 +407,38 @@ static const ::_pb::Message* const file_default_instances[] = {
 };
 const char descriptor_table_protodef_odds_5fengine_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
-    "\n\021odds_engine.proto\022\004odds\"b\n\025SetInitialO"
+    "\n\021odds_engine.proto\022\004odds\"T\n\025SetInitialO"
     "ddsRequest\022\017\n\007game_id\030\001 \001(\t\022\016\n\006market\030\002 "
-    "\001(\t\022\023\n\013team_a_odds\030\003 \001(\001\022\023\n\013team_b_odds\030"
-    "\004 \001(\001\"\'\n\003Ack\022\017\n\007success\030\001 \001(\010\022\017\n\007message"
-    "\030\002 \001(\t\"\251\002\n\nBallUpdate\022\017\n\007innings\030\001 \001(\005\022\023"
-    "\n\013targetScore\030\002 \001(\005\022\024\n\014currentScore\030\003 \001("
-    "\005\022\023\n\013wicketsLeft\030\004 \001(\005\022\026\n\016ballsRemaining"
-    "\030\005 \001(\005\022\022\n\nrecentRuns\030\006 \003(\005\022\017\n\007striker\030\007 "
-    "\001(\t\022\022\n\nnonStriker\030\010 \001(\t\022\025\n\rpitchModifier"
-    "\030\t \001(\001\022\020\n\010isWicket\030\n \001(\010\022\r\n\005isDot\030\013 \001(\010\022"
-    "\017\n\007isExtra\030\014 \001(\010\022\022\n\nisBoundary\030\r \001(\010\022\016\n\006"
-    "bowler\030\016 \001(\t\022\014\n\004runs\030\017 \001(\005\"E\n\021MatchState"
-    "Request\022\016\n\006gameId\030\001 \001(\t\022 \n\006update\030\002 \001(\0132"
-    "\020.odds.BallUpdate\"Q\n\003Bet\022\016\n\006userId\030\001 \001(\t"
-    "\022\r\n\005stake\030\002 \001(\001\022\014\n\004odds\030\003 \001(\001\022\016\n\006market\030"
-    "\004 \001(\t\022\r\n\005teamA\030\005 \001(\010\"4\n\nBetRequest\022\016\n\006ga"
-    "meId\030\001 \001(\t\022\026\n\003bet\030\002 \001(\0132\t.odds.Bet\"2\n\020Od"
-    "dsQueryRequest\022\016\n\006gameId\030\001 \001(\t\022\016\n\006market"
-    "\030\002 \001(\t\"&\n\014OddsResponse\022\026\n\016winProbability"
-    "\030\001 \001(\0012\360\001\n\nOddsEngine\022\?\n\020UpdateMatchStat"
-    "e\022\027.odds.MatchStateRequest\032\022.odds.OddsRe"
-    "sponse\0220\n\010PlaceBet\022\020.odds.BetRequest\032\022.o"
-    "dds.OddsResponse\0225\n\007GetOdds\022\026.odds.OddsQ"
-    "ueryRequest\032\022.odds.OddsResponse\0228\n\016SetIn"
-    "itialOdds\022\033.odds.SetInitialOddsRequest\032\t"
-    ".odds.Ackb\006proto3"
+    "\001(\t\022\032\n\022initialProbability\030\003 \001(\001\"\'\n\003Ack\022\017"
+    "\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\"\251\002\n\nBal"
+    "lUpdate\022\017\n\007innings\030\001 \001(\005\022\023\n\013targetScore\030"
+    "\002 \001(\005\022\024\n\014currentScore\030\003 \001(\005\022\023\n\013wicketsLe"
+    "ft\030\004 \001(\005\022\026\n\016ballsRemaining\030\005 \001(\005\022\022\n\nrece"
+    "ntRuns\030\006 \003(\005\022\017\n\007striker\030\007 \001(\t\022\022\n\nnonStri"
+    "ker\030\010 \001(\t\022\025\n\rpitchModifier\030\t \001(\001\022\020\n\010isWi"
+    "cket\030\n \001(\010\022\r\n\005isDot\030\013 \001(\010\022\017\n\007isExtra\030\014 \001"
+    "(\010\022\022\n\nisBoundary\030\r \001(\010\022\016\n\006bowler\030\016 \001(\t\022\014"
+    "\n\004runs\030\017 \001(\005\"E\n\021MatchStateRequest\022\016\n\006gam"
+    "eId\030\001 \001(\t\022 \n\006update\030\002 \001(\0132\020.odds.BallUpd"
+    "ate\"Q\n\003Bet\022\016\n\006userId\030\001 \001(\t\022\r\n\005stake\030\002 \001("
+    "\001\022\014\n\004odds\030\003 \001(\001\022\016\n\006market\030\004 \001(\t\022\r\n\005teamA"
+    "\030\005 \001(\010\"4\n\nBetRequest\022\016\n\006gameId\030\001 \001(\t\022\026\n\003"
+    "bet\030\002 \001(\0132\t.odds.Bet\"2\n\020OddsQueryRequest"
+    "\022\016\n\006gameId\030\001 \001(\t\022\016\n\006market\030\002 \001(\t\"&\n\014Odds"
+    "Response\022\026\n\016winProbability\030\001 \001(\0012\360\001\n\nOdd"
+    "sEngine\022\?\n\020UpdateMatchState\022\027.odds.Match"
+    "StateRequest\032\022.odds.OddsResponse\0220\n\010Plac"
+    "eBet\022\020.odds.BetRequest\032\022.odds.OddsRespon"
+    "se\0225\n\007GetOdds\022\026.odds.OddsQueryRequest\032\022."
+    "odds.OddsResponse\0228\n\016SetInitialOdds\022\033.od"
+    "ds.SetInitialOddsRequest\032\t.odds.Ackb\006pro"
+    "to3"
 };
 static ::absl::once_flag descriptor_table_odds_5fengine_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_odds_5fengine_2eproto = {
     false,
     false,
-    1017,
+    1003,
     descriptor_table_protodef_odds_5fengine_2eproto,
     "odds_engine.proto",
     &descriptor_table_odds_5fengine_2eproto_once,
@@ -489,13 +487,7 @@ SetInitialOddsRequest::SetInitialOddsRequest(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
-  ::memcpy(reinterpret_cast<char *>(&_impl_) +
-               offsetof(Impl_, team_a_odds_),
-           reinterpret_cast<const char *>(&from._impl_) +
-               offsetof(Impl_, team_a_odds_),
-           offsetof(Impl_, team_b_odds_) -
-               offsetof(Impl_, team_a_odds_) +
-               sizeof(Impl_::team_b_odds_));
+  _impl_.initialprobability_ = from._impl_.initialprobability_;
 
   // @@protoc_insertion_point(copy_constructor:odds.SetInitialOddsRequest)
 }
@@ -508,12 +500,7 @@ inline PROTOBUF_NDEBUG_INLINE SetInitialOddsRequest::Impl_::Impl_(
 
 inline void SetInitialOddsRequest::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  ::memset(reinterpret_cast<char *>(&_impl_) +
-               offsetof(Impl_, team_a_odds_),
-           0,
-           offsetof(Impl_, team_b_odds_) -
-               offsetof(Impl_, team_a_odds_) +
-               sizeof(Impl_::team_b_odds_));
+  _impl_.initialprobability_ = {};
 }
 SetInitialOddsRequest::~SetInitialOddsRequest() {
   // @@protoc_insertion_point(destructor:odds.SetInitialOddsRequest)
@@ -564,15 +551,15 @@ const ::google::protobuf::internal::ClassData* SetInitialOddsRequest::GetClassDa
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 4, 0, 48, 2> SetInitialOddsRequest::_table_ = {
+const ::_pbi::TcParseTable<2, 3, 0, 48, 2> SetInitialOddsRequest::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    4, 24,  // max_field_number, fast_idx_mask
+    3, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967280,  // skipmap
+    4294967288,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    4,  // num_field_entries
+    3,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     _class_data_.base(),
@@ -582,18 +569,16 @@ const ::_pbi::TcParseTable<2, 4, 0, 48, 2> SetInitialOddsRequest::_table_ = {
     ::_pbi::TcParser::GetTable<::odds::SetInitialOddsRequest>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // double team_b_odds = 4;
-    {::_pbi::TcParser::FastF64S1,
-     {33, 63, 0, PROTOBUF_FIELD_OFFSET(SetInitialOddsRequest, _impl_.team_b_odds_)}},
+    {::_pbi::TcParser::MiniParse, {}},
     // string game_id = 1;
     {::_pbi::TcParser::FastUS1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(SetInitialOddsRequest, _impl_.game_id_)}},
     // string market = 2;
     {::_pbi::TcParser::FastUS1,
      {18, 63, 0, PROTOBUF_FIELD_OFFSET(SetInitialOddsRequest, _impl_.market_)}},
-    // double team_a_odds = 3;
+    // double initialProbability = 3;
     {::_pbi::TcParser::FastF64S1,
-     {25, 63, 0, PROTOBUF_FIELD_OFFSET(SetInitialOddsRequest, _impl_.team_a_odds_)}},
+     {25, 63, 0, PROTOBUF_FIELD_OFFSET(SetInitialOddsRequest, _impl_.initialprobability_)}},
   }}, {{
     65535, 65535
   }}, {{
@@ -603,11 +588,8 @@ const ::_pbi::TcParseTable<2, 4, 0, 48, 2> SetInitialOddsRequest::_table_ = {
     // string market = 2;
     {PROTOBUF_FIELD_OFFSET(SetInitialOddsRequest, _impl_.market_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // double team_a_odds = 3;
-    {PROTOBUF_FIELD_OFFSET(SetInitialOddsRequest, _impl_.team_a_odds_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kDouble)},
-    // double team_b_odds = 4;
-    {PROTOBUF_FIELD_OFFSET(SetInitialOddsRequest, _impl_.team_b_odds_), 0, 0,
+    // double initialProbability = 3;
+    {PROTOBUF_FIELD_OFFSET(SetInitialOddsRequest, _impl_.initialprobability_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kDouble)},
   }},
   // no aux_entries
@@ -628,9 +610,7 @@ PROTOBUF_NOINLINE void SetInitialOddsRequest::Clear() {
 
   _impl_.game_id_.ClearToEmpty();
   _impl_.market_.ClearToEmpty();
-  ::memset(&_impl_.team_a_odds_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.team_b_odds_) -
-      reinterpret_cast<char*>(&_impl_.team_a_odds_)) + sizeof(_impl_.team_b_odds_));
+  _impl_.initialprobability_ = 0;
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -665,18 +645,11 @@ PROTOBUF_NOINLINE void SetInitialOddsRequest::Clear() {
             target = stream->WriteStringMaybeAliased(2, _s, target);
           }
 
-          // double team_a_odds = 3;
-          if (::absl::bit_cast<::uint64_t>(this_._internal_team_a_odds()) != 0) {
+          // double initialProbability = 3;
+          if (::absl::bit_cast<::uint64_t>(this_._internal_initialprobability()) != 0) {
             target = stream->EnsureSpace(target);
             target = ::_pbi::WireFormatLite::WriteDoubleToArray(
-                3, this_._internal_team_a_odds(), target);
-          }
-
-          // double team_b_odds = 4;
-          if (::absl::bit_cast<::uint64_t>(this_._internal_team_b_odds()) != 0) {
-            target = stream->EnsureSpace(target);
-            target = ::_pbi::WireFormatLite::WriteDoubleToArray(
-                4, this_._internal_team_b_odds(), target);
+                3, this_._internal_initialprobability(), target);
           }
 
           if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
@@ -714,12 +687,8 @@ PROTOBUF_NOINLINE void SetInitialOddsRequest::Clear() {
               total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                               this_._internal_market());
             }
-            // double team_a_odds = 3;
-            if (::absl::bit_cast<::uint64_t>(this_._internal_team_a_odds()) != 0) {
-              total_size += 9;
-            }
-            // double team_b_odds = 4;
-            if (::absl::bit_cast<::uint64_t>(this_._internal_team_b_odds()) != 0) {
+            // double initialProbability = 3;
+            if (::absl::bit_cast<::uint64_t>(this_._internal_initialprobability()) != 0) {
               total_size += 9;
             }
           }
@@ -741,11 +710,8 @@ void SetInitialOddsRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, c
   if (!from._internal_market().empty()) {
     _this->_internal_set_market(from._internal_market());
   }
-  if (::absl::bit_cast<::uint64_t>(from._internal_team_a_odds()) != 0) {
-    _this->_impl_.team_a_odds_ = from._impl_.team_a_odds_;
-  }
-  if (::absl::bit_cast<::uint64_t>(from._internal_team_b_odds()) != 0) {
-    _this->_impl_.team_b_odds_ = from._impl_.team_b_odds_;
+  if (::absl::bit_cast<::uint64_t>(from._internal_initialprobability()) != 0) {
+    _this->_impl_.initialprobability_ = from._impl_.initialprobability_;
   }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -765,12 +731,7 @@ void SetInitialOddsRequest::InternalSwap(SetInitialOddsRequest* PROTOBUF_RESTRIC
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.game_id_, &other->_impl_.game_id_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.market_, &other->_impl_.market_, arena);
-  ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(SetInitialOddsRequest, _impl_.team_b_odds_)
-      + sizeof(SetInitialOddsRequest::_impl_.team_b_odds_)
-      - PROTOBUF_FIELD_OFFSET(SetInitialOddsRequest, _impl_.team_a_odds_)>(
-          reinterpret_cast<char*>(&_impl_.team_a_odds_),
-          reinterpret_cast<char*>(&other->_impl_.team_a_odds_));
+        swap(_impl_.initialprobability_, other->_impl_.initialprobability_);
 }
 
 ::google::protobuf::Metadata SetInitialOddsRequest::GetMetadata() const {
