@@ -1,4 +1,4 @@
-# dont-dream11-odds-engine
+# dont-dream11-odds-engine (WIP)
 
 core odds calculator part of don't-dream11, which has two more services. A python middleware with modelling logic and a nextjs system for website.
 
