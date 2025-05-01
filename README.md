@@ -26,3 +26,4 @@ protoc -I=proto \
 
   run this for proto file generation
 
+This is a pure odds calculator which will only talk to the Python Manager service to provide and update the odds. It uses gRPC api for that.
