@@ -120,7 +120,6 @@ int main() {
         }
     }).detach();
 
-    // Bet simulation
     std::thread([&]() {
         for (int i = 0; i < 100000; ++i) {
             odds::Bet bet;

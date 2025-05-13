@@ -1,6 +1,6 @@
 #include <grpcpp/grpcpp.h>
 #include "../proto/OddsEngineServiceImpl.h"
-#include "utils/ConcurrentQueue.h"  // Assuming this is the header for the queue
+#include "utils/ConcurrentQueue.h"
 
 void RunServer() {
   std::string server_address("0.0.0.0:50051");
