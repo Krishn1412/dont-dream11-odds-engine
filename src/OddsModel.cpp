@@ -141,7 +141,7 @@ double OddsModel::computeBatterImpact(
 
     double oldImpact = batterImpact[batter];
     double newImpact = std::clamp(oldImpact + delta, 0.0, 10.0);
-    std::cout<<"$$$$$$$$$$$$$$$$############"<<std::endl;
+    // std::cout<<"$$$$$$$$$$$$$$$$############"<<std::endl;
     if (newImpact != oldImpact) {
         std::cout << "[ImpactChange] Batter: " << batter
                   << " | Old: " << oldImpact
@@ -199,7 +199,7 @@ double OddsModel::computeBowlerImpact(
 
     double oldImpact = bowlerImpact[bowler];
     double newImpact = std::clamp(oldImpact + delta, 0.0, 10.0);
-    std::cout<<"$$$$$$$$$$$$$$$$############"<<std::endl;
+    // std::cout<<"$$$$$$$$$$$$$$$$############"<<std::endl;
     if (newImpact != oldImpact) {
         std::cout << "[ImpactChange] Bowler: " << bowler
                   << " | Old: " << oldImpact

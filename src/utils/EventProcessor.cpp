@@ -7,7 +7,7 @@ void processMatchUpdate(const std::string& gameId, const odds::BallUpdate& req) 
     auto game = GameManager::getInstance().getOrCreateGame(gameId);
 
     std::lock_guard<std::mutex> gameLock(game->mtx);
-
+    std::cout << "[ProcessMatchUpdate] Received update for game: " << gameId << std::endl;
     MatchState& state = game->state;
 
     state.inningsNumber = req.innings();
@@ -50,7 +50,7 @@ void flushExposure(const std::string& gameId, const std::string& market) {
     auto game = GameManager::getInstance().getOrCreateGame(gameId);
     auto marketCtx = game->getOrCreateMarket(market);
     std::lock_guard<std::mutex> lock(marketCtx->mtx);
-
+    std::cout << "[FlushExposure] Game: " << gameId << ", Market: " << market << std::endl;
     marketCtx->globalExposure.teamAExposure = marketCtx->globalExposure.teamAExposure + marketCtx->batchExposure.teamAExposure.load();
     marketCtx->globalExposure.teamBExposure = marketCtx->globalExposure.teamBExposure + marketCtx->batchExposure.teamBExposure.load();
 

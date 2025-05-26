@@ -1,12 +1,13 @@
 #include <grpcpp/grpcpp.h>
 #include "../proto/OddsEngineServiceImpl.h"
 #include "utils/ConcurrentQueue.h"
+#include "utils/EventProcessor.h"
 
 void RunServer() {
   std::string server_address("0.0.0.0:50051");
 
   ConcurrentQueue<Event> queue;
-
+  startEventProcessor(queue, 4);
   OddsEngineServiceImpl service(queue);
 
   grpc::ServerBuilder builder;

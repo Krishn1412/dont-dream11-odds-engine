@@ -22,12 +22,12 @@ void initializeGameAndMarket() {
 
     for (const auto& batter : batters) {
         ctx->state.batterImpact[batter] = 5.0; // neutral starting impact
-        ctx->batterStats[batter] = BatterStats{};
+        game->batterStats[batter] = BatterStats{};
     }
 
     for (const auto& bowler : bowlers) {
         ctx->state.bowlerImpact[bowler] = 5.0; // neutral starting impact
-        ctx->bowlerStats[bowler] = BowlerStats{};
+        game->bowlerStats[bowler] = BowlerStats{};
     }
 
     std::cout << "[Init] Game: " << GAME_ID << ", Market: " << MARKET
@@ -108,7 +108,6 @@ int main() {
                 Event ev;
                 ev.type = EventType::BallUpdate;
                 ev.gameId = GAME_ID;
-                ev.market = MARKET;
                 ev.matchUpdate = update;
                 queue.push(ev);
 
@@ -132,7 +131,6 @@ int main() {
             Event ev;
             ev.type = EventType::Bet;
             ev.gameId = GAME_ID;
-            ev.market = MARKET;
             ev.bet = bet;
 
             queue.push(ev);

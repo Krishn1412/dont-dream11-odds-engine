@@ -7,7 +7,7 @@ grpc::Status OddsEngineServiceImpl::UpdateMatchState(
     grpc::ServerContext* context,
     const odds::MatchStateRequest* request,
     odds::OddsResponse* response) {
-
+    std::cout << "[UpdateMatchState] Received update for game: " << request->gameid() << std::endl;
     // Create an Event for BallUpdate
     Event ev;
     ev.type = EventType::BallUpdate;
@@ -16,8 +16,7 @@ grpc::Status OddsEngineServiceImpl::UpdateMatchState(
 
     queue.push(ev);
 
-    // Respond with an empty OddsResponse (could be updated after processing if needed)
-    response->set_winprobability(0.0);  // Placeholder
+    response->set_winprobability(0.0);
     return grpc::Status::OK;
 }
 
@@ -25,7 +24,7 @@ grpc::Status OddsEngineServiceImpl::PlaceBet(
     grpc::ServerContext* context,
     const odds::BetRequest* request,
     odds::OddsResponse* response) {
-
+    std::cout << "[PlaceBet] Received Placed Bets request " << std::endl; 
     Event ev;
     ev.type = EventType::Bet;
     ev.gameId = request->gameid();
@@ -42,7 +41,7 @@ grpc::Status OddsEngineServiceImpl::GetOdds(
     grpc::ServerContext* context,
     const odds::OddsQueryRequest* request,
     odds::OddsResponse* response) {
-
+    std::cout << "[GetOdds] Received Get odds request " << std::endl;    
     auto& gm = GameManager::getInstance();
     auto game = gm.getOrCreateGame(request->gameid());
     auto ctx = game->getOrCreateMarket(request->market());
@@ -57,7 +56,7 @@ grpc::Status OddsEngineServiceImpl::SetInitialOdds(
     grpc::ServerContext* context,
     const odds::SetInitialOddsRequest* request,
     odds::Ack* response) {
-
+    std::cout << "[SetInitialOdds] Received Set Initial Odds request " << std::endl; 
     auto& gm = GameManager::getInstance();
     auto game = gm.getOrCreateGame(request->game_id());
     auto ctx = game->getOrCreateMarket(request->market());
