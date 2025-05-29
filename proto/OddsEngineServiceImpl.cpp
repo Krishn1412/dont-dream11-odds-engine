@@ -46,8 +46,8 @@ grpc::Status OddsEngineServiceImpl::GetOdds(
     auto game = gm.getOrCreateGame(request->gameid());
     auto ctx = game->getOrCreateMarket(request->market());
 
-    std::lock_guard<std::mutex> lock(ctx->mtx);
-
+    // std::lock_guard<std::mutex> lock(ctx->mtx);
+     
     response->set_winprobability(ctx->lastComputedProbability);
     return grpc::Status::OK;
 }
